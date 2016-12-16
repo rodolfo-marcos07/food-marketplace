@@ -36,7 +36,10 @@ appModule.factory('itemService', function($http){
 		obter: function(){
 			var itensRef = database.ref('itens/');
 			itensRef.on('value', function(snapshot){
-				console.log(snapshot.val());
+				snapshot.forEach(function(item){
+					console.log(item.key);
+					console.log(item.val());
+				});
 			});
 		}
 	};
