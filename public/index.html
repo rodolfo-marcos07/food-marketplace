@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script type="text/javascript" src="assets/js/angular.min.js"></script>
-  <script type="text/javascript" src="app/app.js"></script>
-  <title></title>
+	<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+	<script type="text/javascript" src="assets/js/angular.min.js"></script>
+	<script type="text/javascript" src="app/app.js"></script>
+	<script type="text/javascript" src="app/item/controller/itemcontroller.js"></script>
+	<script type="text/javascript" src="app/item/directive/itemcard.js"></script>
+	<title></title>
 </head>
 <body ng-app="app08" ng-controller="mainCtrl">
-{{teste}}
+	<div ng-repeat="i in items">
+		
+	</div>
+	<div>
+		<input type="text" ng-model="item.titulo">
+		<input type="text" ng-model="item.desc">
+		<input type="button" ng-click="salvar()" value="Salvar">
+	</div>
 </body>
 </html>
