@@ -1,0 +1,8 @@
+Instale o firebase localmente para rodar e publicar o projeto
+-> npm install -g firebase-tools
+
+Rodar o servidor localmente
+-> firebase serve
+
+Deploy dos arquivos
+-> firebase deploy
