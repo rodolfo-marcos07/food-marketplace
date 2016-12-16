@@ -3,19 +3,21 @@
 <head>
 	<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
 	<script type="text/javascript" src="assets/js/angular.min.js"></script>
+	<script type="text/javascript" src="assets/js/angular-ui-router.min.js"></script>
 	<script type="text/javascript" src="app/app.js"></script>
-	<script type="text/javascript" src="app/item/controller/itemcontroller.js"></script>
-	<script type="text/javascript" src="app/item/directive/itemcard.js"></script>
+	<script type="text/javascript" src="app/cardapio/controller/cardapiocontroller.js"></script>
+	<script type="text/javascript" src="app/cardapio/directive/itemcard.js"></script>
 	<title></title>
 </head>
 <body ng-app="app08" ng-controller="mainCtrl">
-	<div ng-repeat="i in items">
-		
-	</div>
+	<ui-view></ui-view>
 	<div>
 		<input type="text" ng-model="item.titulo">
 		<input type="text" ng-model="item.desc">
+		<input ng-model="imagem" onchange="angular.element(this).scope().file_changed(this)" type="file" accept="image/*"/>
+		{{imagem}}
 		<input type="button" ng-click="salvar()" value="Salvar">
 	</div>
+	<pre>{{item}}</pre>
 </body>
 </html>

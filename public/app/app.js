@@ -1,4 +1,4 @@
-var appModule = angular.module('app08', []);
+var appModule = angular.module('app08', ['ui.router']);
 
 // Firebase Integration
 var config = {
@@ -11,33 +11,38 @@ var config = {
 firebase.initializeApp(config);
 
 // Main Controller
-appModule.controller('mainCtrl', function($scope, itemService){
-	
-	var main = $scope;
-	main.teste = "App 08 beggins";
-	$scope.item = {};
-	$scope.itens = [];
-	
-	var q_obter = itemService.obter();
-	q_obter.then(function(data_callback){
-		console.log(data_callback.data);
-	}, null);
-
-	$scope.salvar = function(){
-		itemService.salvar($scope.item.titulo, $scope.item.desc);
-	}
+appModule.controller('mainCtrl', function($scope, cardapioService){
+	$scope.file_changed = function(element) {
+		$scope.$apply(function(scope) {
+			var photofile = element.files[0];
+		});
+	};
 });
 
-appModule.factory('itemService', function($http){
+// Services
+appModule.factory('cardapioService', function($http){
+	
 	// Get a reference to the database service
 	var database = firebase.database();
+	// Get a reference to the storage service, which is used to create references in your storage bucket
+	var storage = firebase.storage();
+	var storageRef = storage.ref();
+
 	var service = {
-		salvar: function(t, d){
+		salvar: function(t, d, i){
 			// Get the key when inserting
-			var key = database.ref().child('itens').push().key
+			var key = database.ref().child('itens').push().key;
+			// Get reference for image
+			var imgRef = storageRef.child('images/'+key+'.jpg');
+			// Upload file
+			var uploadTask = imgRef.put(i);
+
+			// Prepare object to save on database
 			var updates = {};
-			var toSave = {titulo:t, descricao:d};
+			var toSave = {titulo:t, descricao:d, imagem:imgRef.fullPath};
 			updates['/itens/'+key] = toSave;
+
+			// Save on database
 			return database.ref().update(updates);
 		},
 		obter: function(){
@@ -56,4 +61,18 @@ appModule.factory('itemService', function($http){
 		}
 	};
 	return service;
+});
+
+// UI-Router
+appModule.config(function($stateProvider, $urlRouterProvider) {
+  
+  var homeState = {
+    name: 'home',
+    url: '/',
+    controller: 'cardapioController',
+    templateUrl: 'app/cardapio/template/cardapio.html'
+  }
+
+  $stateProvider.state(homeState);
+  $urlRouterProvider.otherwise("/");
 });
