@@ -12,10 +12,17 @@ firebase.initializeApp(config);
 
 // Main Controller
 appModule.controller('mainCtrl', function($scope, itemService){
+	
 	var main = $scope;
 	main.teste = "App 08 beggins";
 	$scope.item = {};
-	$scope.itens = itemService.obter();
+	$scope.itens = [];
+	
+	var q_obter = itemService.obter();
+	q_obter.then(function(data_callback){
+		console.log(data_callback.data);
+	}, null);
+
 	$scope.salvar = function(){
 		itemService.salvar($scope.item.titulo, $scope.item.desc);
 	}
@@ -34,13 +41,18 @@ appModule.factory('itemService', function($http){
 			return database.ref().update(updates);
 		},
 		obter: function(){
-			var itensRef = database.ref('itens/');
-			itensRef.on('value', function(snapshot){
-				snapshot.forEach(function(item){
-					console.log(item.key);
-					console.log(item.val());
-				});
-			});
+			
+			var urlDB = 'https://app-08.firebaseio.com/itens.json';
+			return $http({method:'GET',url:urlDB});
+
+			// ################ REAL TIME GET ###############
+			// var itensRef = database.ref('itens.json');
+			// itensRef.on('value', function(snapshot){
+			// 	snapshot.forEach(function(item){
+			// 		console.log(item.key);
+			// 		console.log(item.val());
+			// 	});
+			// });
 		}
 	};
 	return service;
