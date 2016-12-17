@@ -14,8 +14,7 @@
 	<div>
 		<input type="text" ng-model="item.titulo">
 		<input type="text" ng-model="item.desc">
-		<input ng-model="imagem" onchange="angular.element(this).scope().file_changed(this)" type="file" accept="image/*"/>
-		{{imagem}}
+		<input type="file" data-file="item.imagem"/>
 		<input type="button" ng-click="salvar()" value="Salvar">
 	</div>
 	<pre>{{item}}</pre>
