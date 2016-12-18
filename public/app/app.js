@@ -25,7 +25,7 @@ appModule.factory('cardapioService', function($http){
 	var storageRef = storage.ref();
 
 	var service = {
-		salvar: function(tit, desc, file){
+		salvar: function(tit, desc, cat, file){
 			// Get the key when inserting
 			var key = database.ref().child('itens').push().key;
 			// Get reference for image
@@ -35,25 +35,30 @@ appModule.factory('cardapioService', function($http){
 
 			// Prepare object to save on database
 			var updates = {};
-			var toSave = {titulo:tit, descricao:desc, imagem:imgRef.fullPath};
+			var toSave = {titulo:tit, descricao:desc, imagem:imgRef.fullPath, categoria: cat};
 			updates['/itens/'+key] = toSave;
 
 			// Save on database
 			return database.ref().update(updates);
 		},
-		obter: function(){
-			
-			var urlDB = 'https://app-08.firebaseio.com/itens.json';
-			return $http({method:'GET',url:urlDB});
+		obter: function(categoria){
+			// Retorna todas as categorias
+			// if(categorias == null){
+			// 	var urlDB = 'https://app-08.firebaseio.com/itens.json?"orderBy"="titulo"';
+			// 	return $http({method:'GET',url:urlDB});
+			// }else{
+			// 	var urlDB = 'https://app-08.firebaseio.com/itens.json?"orderBy"="titulo"';
+			// 	return $http({method:'GET',url:urlDB});
+			// }
 
 			// ################ REAL TIME GET ###############
-			// var itensRef = database.ref('itens.json');
-			// itensRef.on('value', function(snapshot){
-			// 	snapshot.forEach(function(item){
-			// 		console.log(item.key);
-			// 		console.log(item.val());
-			// 	});
-			// });
+			if(categorias==null){
+				var itensRef = database.ref('itens');
+				return itensRef;
+			}else{
+				var itensRef = database.ref('itens').orderByChild("categoria").equalTo(categoria);
+				return itensRef;
+			}
 		},
 		obterFilePath: function(file){
 			var starsRef = storageRef.child(file);

@@ -7,7 +7,7 @@ appModule.controller('novoItemController', function($scope, cardapioService, CAT
 		});
 	};
 	$scope.salvar = function(){
-		cardapioService.salvar($scope.item.titulo, $scope.item.desc, $scope.item.imagem);
+		cardapioService.salvar($scope.item.titulo, $scope.item.desc, $scope.item.imagem, $scope.item.categoria);
 	}
 });
 
