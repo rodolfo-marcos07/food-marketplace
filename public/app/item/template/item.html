@@ -1,0 +1,13 @@
+<div ng-controller="novoItemController">
+	<h4>Inserir novo ítem</h4>
+	<form name="newitemform">
+		<input type="text" ng-model="item.titulo">
+		<input type="text" ng-model="item.desc">
+		<input type="file" data-file="item.imagem"/>
+		<select ng-model="item.categoria" ng-options="c.name as c.name for c in categoriasOpt" ng-required="true">
+			<option value="">Selecione as categorias</option>
+		</select>
+		<input type="button" ng-click="salvar()" value="Salvar">
+	</form>
+	<pre>{{item}}</pre>
+</div>
