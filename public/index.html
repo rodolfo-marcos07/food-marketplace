@@ -18,6 +18,11 @@
 			<li><a ui-sref="home" ui-sref-active="active">Home</a></li>
 			<li><a ui-sref="novoItem" ui-sref-active="active">Novo item</a></li>
 		</ul>
+		<div class="user">
+			<p>{{usuario.nome}}</p>
+			<img src="{{usuario.img}}">
+			<p ng-click="logoff()">Sair</p>
+		</div>
 	</header>
 	<ui-view class="mainContent"></ui-view>
 </body>
