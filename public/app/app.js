@@ -52,7 +52,7 @@ appModule.factory('cardapioService', function($http){
 			// }
 
 			// ################ REAL TIME GET ###############
-			if(categorias==null){
+			if(categoria==null){
 				var itensRef = database.ref('itens');
 				return itensRef;
 			}else{
