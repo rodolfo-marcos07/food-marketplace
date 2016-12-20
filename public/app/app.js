@@ -11,10 +11,12 @@ var config = {
 firebase.initializeApp(config);
 
 // Main Controller
-appModule.controller('mainCtrl', function($scope, cardapioService){
-	
+appModule.controller('mainCtrl', function($scope, loadingFactory, cardapioService){
+
 	var main = $scope;
 	main.usuario = {};
+
+	loadingFactory.loadingOn();
 
 	main.logoff = function(){
 		firebase.auth().signOut().then(function() {
@@ -35,7 +37,9 @@ appModule.controller('mainCtrl', function($scope, cardapioService){
 		var user = result.user;
 		main.usuario.nome = user.displayName;
 		main.usuario.img = user.photoURL;
-		console.log(user);
+		
+		loadingFactory.loadingOff();
+
 	}).catch(function(error) {
 		// Handle Errors here.
 		var errorCode = error.code;
@@ -44,6 +48,8 @@ appModule.controller('mainCtrl', function($scope, cardapioService){
 		var email = error.email;
 		// The firebase.auth.AuthCredential type that was used.
 		var credential = error.credential;
+
+		loadingFactory.loadingOff();
 	});
 });
 

@@ -5,6 +5,8 @@
 	<script type="text/javascript" src="assets/js/angular.min.js"></script>
 	<script type="text/javascript" src="assets/js/angular-ui-router.min.js"></script>
 	<script type="text/javascript" src="app/app.js"></script>
+	<script type="text/javascript" src="app/loading/service/loadingservice.js"></script>
+	<script type="text/javascript" src="app/loading/directive/loadingdirective.js"></script>
 	<script type="text/javascript" src="app/cardapio/controller/cardapiocontroller.js"></script>
 	<script type="text/javascript" src="app/cardapio/directive/itemcard.js"></script>
 	<script type="text/javascript" src="app/item/controller/itemcontroller.js"></script>
@@ -13,6 +15,7 @@
 	<title></title>
 </head>
 <body ng-app="app08" ng-controller="mainCtrl">
+	<div login-Box ng-show="loading"></div>
 	<header>
 		<ul>
 			<li><a ui-sref="home" ui-sref-active="active">Home</a></li>

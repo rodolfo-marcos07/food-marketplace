@@ -3,63 +3,7 @@
 [debug] CLI Version:  3.2.0
 [debug] Platform:     win32
 [debug] Node Version: v4.4.7
-[debug] Time:         Sat Dec 17 2016 11:40:03 GMT-0200 (Horário brasileiro de verão)
-[debug] ----------------------------------------------------------------------
-[debug] 
-[info] Starting Firebase development server...
-[info] 
-[info] Project Directory: C:\Users\Rodolfo\Desktop\app-08\proj-08
-[info] Public Directory: public
-[info] 
-[info] Server listening at: http://localhost:5000
-[debug] ----------------------------------------------------------------------
-[debug] Command:      C:\Program Files\nodejs\node.exe C:\Users\Rodolfo\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
-[debug] CLI Version:  3.2.0
-[debug] Platform:     win32
-[debug] Node Version: v4.4.7
-[debug] Time:         Sun Dec 18 2016 13:50:36 GMT-0200 (Horário brasileiro de verão)
-[debug] ----------------------------------------------------------------------
-[debug] 
-[info] Starting Firebase development server...
-[info] 
-[info] Project Directory: C:\Users\Rodolfo\Desktop\app-08\proj-08
-[info] Public Directory: public
-[info] 
-[info] Server listening at: http://localhost:5000
-[debug] ----------------------------------------------------------------------
-[debug] Command:      C:\Program Files\nodejs\node.exe C:\Users\Rodolfo\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
-[debug] CLI Version:  3.2.0
-[debug] Platform:     win32
-[debug] Node Version: v4.4.7
-[debug] Time:         Sun Dec 18 2016 16:49:36 GMT-0200 (Horário brasileiro de verão)
-[debug] ----------------------------------------------------------------------
-[debug] 
-[info] Starting Firebase development server...
-[info] 
-[info] Project Directory: C:\Users\Rodolfo\Desktop\app-08\proj-08
-[info] Public Directory: public
-[info] 
-[info] Server listening at: http://localhost:5000
-[debug] ----------------------------------------------------------------------
-[debug] Command:      C:\Program Files\nodejs\node.exe C:\Users\Rodolfo\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
-[debug] CLI Version:  3.2.0
-[debug] Platform:     win32
-[debug] Node Version: v4.4.7
-[debug] Time:         Sun Dec 18 2016 19:24:37 GMT-0200 (Horário brasileiro de verão)
-[debug] ----------------------------------------------------------------------
-[debug] 
-[info] Starting Firebase development server...
-[info] 
-[info] Project Directory: C:\Users\Rodolfo\Desktop\app-08\proj-08
-[info] Public Directory: public
-[info] 
-[info] Server listening at: http://localhost:5000
-[debug] ----------------------------------------------------------------------
-[debug] Command:      C:\Program Files\nodejs\node.exe C:\Users\Rodolfo\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
-[debug] CLI Version:  3.2.0
-[debug] Platform:     win32
-[debug] Node Version: v4.4.7
-[debug] Time:         Sun Dec 18 2016 19:59:48 GMT-0200 (Horário brasileiro de verão)
+[debug] Time:         Mon Dec 19 2016 21:24:56 GMT-0200 (Horário brasileiro de verão)
 [debug] ----------------------------------------------------------------------
 [debug] 
 [info] Starting Firebase development server...

@@ -1,4 +1,4 @@
-appModule.controller('novoItemController', function($scope, cardapioService, CATEGORIAS){
+appModule.controller('novoItemController', function($scope, cardapioService, loadingFactory, CATEGORIAS){
 	$scope.item = {};
 	$scope.categoriasOpt = CATEGORIAS;
 	$scope.file_changed = function(element) {
@@ -7,7 +7,12 @@ appModule.controller('novoItemController', function($scope, cardapioService, CAT
 		});
 	};
 	$scope.salvar = function(){
-		cardapioService.salvar($scope.item.titulo, $scope.item.desc, $scope.item.categoria, $scope.item.imagem);
+		loadingFactory.loadingOn();
+		cardapioService.salvar($scope.item.titulo, $scope.item.desc, $scope.item.categoria, $scope.item.imagem)
+			.then(function(){
+				loadingFactory.loadingOff();
+				$scope.$apply();
+			});
 	}
 });
 
