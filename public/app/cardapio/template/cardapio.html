@@ -1,12 +1,16 @@
-<h4>Teste</h4>
-<div>
-	<legend>Filter por categorias</legend>
+<div class="filterItem">
+	<span>Filtrar por categoria</span>
 	<select ng-model="categoria" ng-options="c.name as c.name for c in categoriasOpt" ng-required="true" ng-change="filtrar()">
 	<option value="">Todos</option>
 	</select>
 </div>
 <div ng-repeat="i in itens" class="itemCard">
+	<div class="rating">
+		<img src="assets/img/fork.svg">
+		<p>192</p>
+	</div>
 	<img src="{{i.imagem}}">
 	<p>{{i.titulo}}</p>
 	<p>{{i.descricao}}</p>
+	<p>Feito por <span>{{i.usuario.name}}</span></p>
 </div>

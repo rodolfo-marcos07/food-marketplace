@@ -11,17 +11,17 @@ var config = {
 firebase.initializeApp(config);
 
 // Main Controller
-appModule.controller('mainCtrl', function($scope, loadingFactory, cardapioService){
+appModule.controller('mainCtrl', function($scope, $rootScope, loadingFactory, cardapioService){
 
 	var main = $scope;
-	main.usuario = {};
+	$rootScope.usuario = {};
 
 	loadingFactory.loadingOn();
 
 	main.logoff = function(){
 		firebase.auth().signOut().then(function() {
 			// Sign-out successful.
-			main.usuario = {};
+			$rootScope.usuario = {};
 			main.$apply();
 		}, function(error) {
 			// An error happened.
@@ -35,10 +35,13 @@ appModule.controller('mainCtrl', function($scope, loadingFactory, cardapioServic
 		var token = result.credential.accessToken;
 		// The signed-in user info.
 		var user = result.user;
-		main.usuario.nome = user.displayName;
-		main.usuario.img = user.photoURL;
+
+		$rootScope.usuario.nome = user.displayName;
+		$rootScope.usuario.img = user.photoURL;
+		$rootScope.usuario.uid = user.uid;
 		
 		loadingFactory.loadingOff();
+		$scope.$apply();
 
 	}).catch(function(error) {
 		// Handle Errors here.
@@ -50,11 +53,12 @@ appModule.controller('mainCtrl', function($scope, loadingFactory, cardapioServic
 		var credential = error.credential;
 
 		loadingFactory.loadingOff();
+		$scope.$apply();
 	});
 });
 
 // Services
-appModule.factory('cardapioService', function($http){
+appModule.factory('cardapioService', function($http, $rootScope){
 	
 	// Get a reference to the database service
 	var database = firebase.database();
@@ -73,7 +77,17 @@ appModule.factory('cardapioService', function($http){
 
 			// Prepare object to save on database
 			var updates = {};
-			var toSave = {titulo:tit, descricao:desc, imagem:imgRef.fullPath, categoria: cat};
+			var toSave = {
+				titulo:tit, 
+				descricao:desc, 
+				imagem:imgRef.fullPath, 
+				categoria: cat,
+				rating: 0,
+				usuario: {
+					name: $rootScope.usuario.nome,
+					id: $rootScope.usuario.uid
+				}
+			};
 			updates['/itens/'+key] = toSave;
 
 			// Save on database
