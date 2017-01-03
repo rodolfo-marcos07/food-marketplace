@@ -1,13 +1,23 @@
-<div class="filterItem">
-	<span>Filtrar por categoria</span>
-	<select ng-model="categoria" ng-options="c.name as c.name for c in categoriasOpt" ng-required="true" ng-change="filtrar()">
-	<option value="">Todos</option>
-	</select>
+<div class="headerFerramentas">
+	<div class="filterItem">
+		<span>Filtrar por categoria</span>
+		<select ng-model="categoria" ng-options="c.name as c.name for c in categoriasOpt" ng-required="true" ng-change="filtrar()">
+		<option value="">Todos</option>
+		</select>
+	</div>
+	<div class="orderItem">
+		<span>Ordenar</span>
+		<select ng-model="ordem" ng-options="o.name as o.name for o in ordemOpt" ng-required="true" ng-change="filtrar()">
+		</select>
+	</div>
 </div>
 <div ng-repeat="i in itens" class="itemCard">
 	<div class="rating">
 		<img src="assets/img/fork.svg">
 		<p>192</p>
+	</div>
+	<div class="edit" ng-if="usuario.uid == i.usuario.id">
+		<a ui-sref="editarItem({itemId:i.id})"><img src="assets/img/pencil.png"></a>
 	</div>
 	<img src="{{i.imagem}}">
 	<p>{{i.titulo}}</p>

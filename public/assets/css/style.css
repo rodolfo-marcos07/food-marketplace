@@ -117,13 +117,24 @@ color: #ff6a28;
 	font-weight: bold;
 }
 
-.filterItem{
-	display: block;
+.headerFerramentas{
 	background: #fff;
-	padding: 10px;
+	display: block;
+	width: 100%;
+	height: 44px;
+	padding: 9px;
+	box-sizing: border-box;
 }
 
-.filterItem span, .filterItem select{
+.filterItem{
+	float: left;
+}
+
+.orderItem{
+	float: right;
+}
+
+.filterItem span, .filterItem select, .orderItem span, .orderItem select{
 	display: inline-block;
 	font-size: 18px;
 }

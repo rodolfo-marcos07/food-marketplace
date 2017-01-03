@@ -16,6 +16,16 @@ appModule.controller('novoItemController', function($scope, cardapioService, loa
 	}
 });
 
+appModule.controller('editarItemController', function($scope, $stateParams, cardapioService, loadingFactory, CATEGORIAS){
+	
+	var idItem = $stateParams.itemId;
+	console.log(idItem);
+	
+	$scope.item = {};
+	$scope.categoriasOpt = CATEGORIAS;
+
+});
+
 // Directive
 appModule.directive('file', function(){
 	return {

@@ -93,7 +93,8 @@ appModule.factory('cardapioService', function($http, $rootScope){
 			// Save on database
 			return database.ref().update(updates);
 		},
-		obter: function(categoria){
+		obter: function(categoria, ordem){
+			
 			// Retorna todas as categorias
 			// if(categorias == null){
 			// 	var urlDB = 'https://app-08.firebaseio.com/itens.json?"orderBy"="titulo"';
@@ -104,13 +105,31 @@ appModule.factory('cardapioService', function($http, $rootScope){
 			// }
 
 			// ################ REAL TIME GET ###############
-			if(categoria==null){
-				var itensRef = database.ref('itens');
-				return itensRef;
+			var itensRef = null;
+			
+			if(categoria == null && ordem ==  null){
+				
+				// Sem filtro e sem categoria
+				itensRef = database.ref('itens');
+
+			}else if(categoria == null && ordem != null){
+				
+				// Somente ordem
+				itensRef = database.ref('itens').orderByChild(ordem);
+
+			}else if(categoria != null && ordem == null){
+				
+				// Somente Categoria
+				itensRef = database.ref('itens').orderByChild("categoria").equalTo(categoria);
+
 			}else{
-				var itensRef = database.ref('itens').orderByChild("categoria").equalTo(categoria);
-				return itensRef;
+				
+				// Ordem e categoria
+				itensRef = database.ref('itens').orderByChild(ordem).equalTo(categoria);
 			}
+
+			return itensRef;
+
 		},
 		obterFilePath: function(file){
 			var starsRef = storageRef.child(file);
@@ -138,6 +157,14 @@ appModule.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'app/item/template/item.html'
   }
 
+  var editItemState = {
+  	name: 'editarItem',
+  	url: '/item/{itemId}',
+  	controller: 'editarItemController',
+  	templateUrl: 'app/item/template/item.html'
+  }
+
+  $stateProvider.state(editItemState);
   $stateProvider.state(newItemState);
   $stateProvider.state(homeState);
   $urlRouterProvider.otherwise("/");
@@ -150,4 +177,11 @@ appModule.value('CATEGORIAS', [
     {name: 'Salgados'},
     {name: 'Pratos Quentes'},
     {name: 'Pratos Frios'}
+]);
+
+appModule.value('ORDEM', [
+	{name: 'Novos'},
+	{name: 'Votos'},
+	{name: 'Preço Menor'},
+	{name: 'Preço Maior'}
 ]);
