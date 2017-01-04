@@ -16,14 +16,22 @@ appModule.controller('novoItemController', function($scope, cardapioService, loa
 	}
 });
 
+// Editar Item
 appModule.controller('editarItemController', function($scope, $stateParams, cardapioService, loadingFactory, CATEGORIAS){
 	
 	var idItem = $stateParams.itemId;
-	console.log(idItem);
-	
+
 	$scope.item = {};
 	$scope.categoriasOpt = CATEGORIAS;
 
+	var q_obter = cardapioService.obterItem(idItem);
+	
+	// Once retorna os dados uma vez e desliga a escuta do database
+	q_obter.once('value', function(snapshot){
+		$scope.item = snapshot.val();
+		$scope.$apply();
+	});
+	
 });
 
 // Directive

@@ -62,6 +62,7 @@ appModule.factory('cardapioService', function($http, $rootScope){
 	
 	// Get a reference to the database service
 	var database = firebase.database();
+	
 	// Get a reference to the storage service, which is used to create references in your storage bucket
 	var storage = firebase.storage();
 	var storageRef = storage.ref();
@@ -131,7 +132,12 @@ appModule.factory('cardapioService', function($http, $rootScope){
 			return itensRef;
 
 		},
+		obterItem: function(itemId){
+			
+			return database.ref('itens/' + itemId);
+		},
 		obterFilePath: function(file){
+
 			var starsRef = storageRef.child(file);
 			// Get the download URL
 			return starsRef.getDownloadURL();
