@@ -34,6 +34,10 @@ appModule.controller('cardapioController', function($scope, cardapioService, CAT
 		$scope.itens = [];
 		getItens();
 	}
+
+	cardapio.up = function(key, rating){
+		cardapioService.up(key, rating+1);
+	}
 	// q_obter.then(function(data_callback){
 	// 	angular.forEach(data_callback.data, function(value, key) {
 			

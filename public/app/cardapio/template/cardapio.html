@@ -12,9 +12,9 @@
 	</div>
 </div>
 <div ng-repeat="i in itens" class="itemCard">
-	<div class="rating">
+	<div class="rating" ng-click="up(i.id,i.rating)">
 		<img src="assets/img/fork.svg">
-		<p>192</p>
+		<p>{{i.rating}}</p>
 	</div>
 	<div class="edit" ng-if="usuario.uid == i.usuario.id">
 		<a ui-sref="editarItem({itemId:i.id})"><img src="assets/img/pencil.png"></a>

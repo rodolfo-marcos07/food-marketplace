@@ -8,7 +8,7 @@ appModule.controller('novoItemController', function($scope, cardapioService, loa
 	};
 	$scope.salvar = function(){
 		loadingFactory.loadingOn();
-		cardapioService.salvar($scope.item.titulo, $scope.item.desc, $scope.item.categoria, $scope.item.imagem)
+		cardapioService.salvar($scope.item.titulo, $scope.item.descricao, $scope.item.categoria, $scope.item.imagem)
 			.then(function(){
 				loadingFactory.loadingOff();
 				$scope.$apply();
@@ -31,6 +31,11 @@ appModule.controller('editarItemController', function($scope, $stateParams, card
 		$scope.item = snapshot.val();
 		$scope.$apply();
 	});
+
+	// Update
+	$scope.salvar = function(){
+		cardapioService.update($scope.item, idItem);
+	}
 	
 });
 

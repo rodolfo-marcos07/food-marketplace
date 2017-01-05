@@ -94,6 +94,13 @@ appModule.factory('cardapioService', function($http, $rootScope){
 			// Save on database
 			return database.ref().update(updates);
 		},
+		update: function(item, key){
+			// Save on database
+			database.ref('itens/' + key).set(item);
+		},
+		up: function(key, rating){
+			return database.ref('/itens/'+key).update({rating:rating});
+		},
 		obter: function(categoria, ordem){
 			
 			// Retorna todas as categorias
