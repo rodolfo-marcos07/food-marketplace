@@ -7,6 +7,7 @@
 		<select ng-model="item.categoria" ng-options="c.name as c.name for c in categoriasOpt" ng-required="true">
 			<option value="">Selecione as categorias</option>
 		</select>
+		<input type="decimal" ng-model="item.preco">
 		<input type="button" ng-click="salvar()" value="Salvar">
 	</form>
 	<pre>{{item}}</pre>

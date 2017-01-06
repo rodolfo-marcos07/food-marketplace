@@ -57,102 +57,6 @@ appModule.controller('mainCtrl', function($scope, $rootScope, loadingFactory, ca
 	});
 });
 
-// Services
-appModule.factory('cardapioService', function($http, $rootScope){
-	
-	// Get a reference to the database service
-	var database = firebase.database();
-	
-	// Get a reference to the storage service, which is used to create references in your storage bucket
-	var storage = firebase.storage();
-	var storageRef = storage.ref();
-
-	var service = {
-		salvar: function(tit, desc, cat, file){
-			// Get the key when inserting
-			var key = database.ref().child('itens').push().key;
-			// Get reference for image
-			var imgRef = storageRef.child('images/'+key+'.jpg');
-			// Upload file
-			var uploadTask = imgRef.put(file);
-
-			// Prepare object to save on database
-			var updates = {};
-			var toSave = {
-				titulo:tit, 
-				descricao:desc, 
-				imagem:imgRef.fullPath, 
-				categoria: cat,
-				rating: 0,
-				usuario: {
-					name: $rootScope.usuario.nome,
-					id: $rootScope.usuario.uid
-				}
-			};
-			updates['/itens/'+key] = toSave;
-
-			// Save on database
-			return database.ref().update(updates);
-		},
-		update: function(item, key){
-			// Save on database
-			database.ref('itens/' + key).set(item);
-		},
-		up: function(key, rating){
-			return database.ref('/itens/'+key).update({rating:rating});
-		},
-		obter: function(categoria, ordem){
-			
-			// Retorna todas as categorias
-			// if(categorias == null){
-			// 	var urlDB = 'https://app-08.firebaseio.com/itens.json?"orderBy"="titulo"';
-			// 	return $http({method:'GET',url:urlDB});
-			// }else{
-			// 	var urlDB = 'https://app-08.firebaseio.com/itens.json?"orderBy"="titulo"';
-			// 	return $http({method:'GET',url:urlDB});
-			// }
-
-			// ################ REAL TIME GET ###############
-			var itensRef = null;
-			
-			if(categoria == null && ordem ==  null){
-				
-				// Sem filtro e sem categoria
-				itensRef = database.ref('itens');
-
-			}else if(categoria == null && ordem != null){
-				
-				// Somente ordem
-				itensRef = database.ref('itens').orderByChild(ordem);
-
-			}else if(categoria != null && ordem == null){
-				
-				// Somente Categoria
-				itensRef = database.ref('itens').orderByChild("categoria").equalTo(categoria);
-
-			}else{
-				
-				// Ordem e categoria
-				itensRef = database.ref('itens').orderByChild(ordem).equalTo(categoria);
-			}
-
-			return itensRef;
-
-		},
-		obterItem: function(itemId){
-			
-			return database.ref('itens/' + itemId);
-		},
-		obterFilePath: function(file){
-
-			var starsRef = storageRef.child(file);
-			// Get the download URL
-			return starsRef.getDownloadURL();
-		}
-	};
-	return service;
-});
-
 // UI-Router
 appModule.config(function($stateProvider, $urlRouterProvider) {
   
@@ -193,8 +97,8 @@ appModule.value('CATEGORIAS', [
 ]);
 
 appModule.value('ORDEM', [
-	{name: 'Novos'},
-	{name: 'Votos'},
-	{name: 'Preço Menor'},
-	{name: 'Preço Maior'}
+	{name: 'Novos', value: 'timestamp'},
+	{name: 'Votos', value: 'rating'},
+	{name: 'Preço Menor', value: 'Novos'},
+	{name: 'Preço Maior', value: 'Novos'}
 ]);
