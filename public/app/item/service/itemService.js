@@ -60,6 +60,19 @@ appModule.factory('itemService', function($http, $rootScope){
 			updates['/itens/'+key] = toSave;
 			return database.ref().update(updates);
 		},
+		delete: function(key, imgid){
+			// // Create a reference to the file to delete
+			// var desertRef = storageRef.child('images/desert.jpg');
+
+			// // Delete the file
+			// desertRef.delete().then(function() {
+			//   // File deleted successfully
+			// }).catch(function(error) {
+			//   // Uh-oh, an error occurred!
+			// });
+
+			return database.ref('itens/' + key).remove();
+		},
 		update: function(item, key){
 			database.ref('itens/' + key).set(item);
 		},
