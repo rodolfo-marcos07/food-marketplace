@@ -1,4 +1,4 @@
-appModule.factory('cardapioService', function($http, $rootScope){
+appModule.factory('cardapioService', function($http, $rootScope, itemService){
 	
 	// Get a reference to the database service
 	var database = firebase.database();
@@ -8,10 +8,27 @@ appModule.factory('cardapioService', function($http, $rootScope){
 	var storageRef = storage.ref();
 
 	var service = {
-		up: function(key, rating){
-			return database.ref('/itens/'+key).update({rating:rating});
+		up: function(key, categoria, rating){
+			var updates = {};
+			updates['/itens/'+key] = {rating:rating};
+			updates['/categorias/'+cat+"/"+key] = {rating:rating};
+			return database.ref().update(updates);
 		},
 		obter: function(categoria, ordem){
+
+			console.log(categoria, ordem);
+			
+			var itensRef = database.ref('/itens/');
+			
+			if(categoria){
+				itensRef = database.ref('/categorias/'+categoria);
+			}
+
+			if(ordem){
+				itensRef = itensRef.orderByChild(ordem);
+			}
+
+			return itensRef;
 			
 			// Retorna todas as categorias
 			// if(categorias == null){
@@ -22,23 +39,23 @@ appModule.factory('cardapioService', function($http, $rootScope){
 			// 	return $http({method:'GET',url:urlDB});
 			// }
 			
-			var itensRef = null;
+			// var itensRef = null;
 			
-			if(categoria == null && ordem ==  null){
-				console.log(categoria, ordem);
-				itensRef = database.ref('itens');
-			}else if(categoria == null && ordem != null){
-				console.log(categoria, ordem);
-				itensRef = database.ref('itens').orderByChild(ordem);
-			}else if(categoria != null && ordem == null){
-				console.log(categoria, ordem);
-				itensRef = database.ref('itens').orderByChild("categoria").equalTo(categoria);
-			}else{
-				console.log(categoria, ordem);
-				itensRef = database.ref('itens').orderByChild(ordem).equalTo(categoria);
-			}
+			// if(categoria == null && ordem ==  null){
+			// 	console.log(categoria, ordem);
+			// itensRef = database.ref('itens');
+			// }else if(categoria == null && ordem != null){
+			// 	console.log(categoria, ordem);
+			// 	itensRef = database.ref('itens').orderByChild(ordem);
+			// }else if(categoria != null && ordem == null){
+			// 	console.log(categoria, ordem);
+			// 	itensRef = database.ref('itens').orderByChild("categoria").equalTo(categoria);
+			// }else{
+			// 	console.log(categoria, ordem);
+			// 	itensRef = database.ref('itens').orderByChild(ordem).equalTo(categoria);
+			// }
 
-			return itensRef;
+			// return itensRef;
 
 		},
 		obterFilePath: function(file){

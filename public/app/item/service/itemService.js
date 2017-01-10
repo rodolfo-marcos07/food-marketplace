@@ -9,29 +9,6 @@ appModule.factory('itemService', function($http, $rootScope){
 
 	var service = {
 		salvar: function(tit, desc, cat, file, tt, preco){
-
-			// Update both location
-			// https://firebase.googleblog.com/2015/09/introducing-multi-location-updates-and_86.html
-			var ref = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com");
-			// Generate a new push ID for the new post
-			var newPostRef = ref.child("posts").push();
-			var newPostKey = newPostRef.key();
-			// Create the data we want to update
-			var updatedUserData = {};
-			updatedUserData["user/posts/" + newPostKey] = true;
-			updatedUserData["posts/" + newPostKey] = {
-				title: "New Post",
-				content: "Here is my new post!"
-			};
-			// Do a deep-path update
-			ref.update(updatedUserData, function(error) {
-				if (error) {
-					console.log("Error updating data:", error);
-				}
-			});
-			// Update both location
-
-
 			// Get the key when inserting
 			var key = database.ref().child('itens').push().key;
 			// Get reference for image
@@ -56,7 +33,7 @@ appModule.factory('itemService', function($http, $rootScope){
 			};
 
 			// Insere na categoria
-			database.ref('categoria/'+cat).push(key);
+			updates['/categorias/'+cat+"/"+key] = toSave;
 			updates['/itens/'+key] = toSave;
 			return database.ref().update(updates);
 		},

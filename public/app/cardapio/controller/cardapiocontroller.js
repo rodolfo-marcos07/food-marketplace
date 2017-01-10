@@ -15,13 +15,14 @@ appModule.controller('cardapioController', function($scope, cardapioService, CAT
 				
 				var keyItem = item.key;
 				var value = item.val();
-				var q_obter_img = cardapioService.obterFilePath(value.imagem);
+				value.id = keyItem;
+				$scope.itens.push(value);
 
+				var q_obter_img = cardapioService.obterFilePath(value.imagem);
+				
 				// Obtém caminho de download da imagem
 				q_obter_img.then(function(urlImg){
 					value.imagem = urlImg;
-					value.id = keyItem;
-					$scope.itens.push(value);
 					cardapio.$apply();
 				});
 			});
@@ -36,7 +37,7 @@ appModule.controller('cardapioController', function($scope, cardapioService, CAT
 	}
 
 	cardapio.up = function(key, rating){
-		cardapioService.up(key, rating+1);
+		cardapioService.up(key, categoria, rating+1);
 	}
 	// q_obter.then(function(data_callback){
 	// 	angular.forEach(data_callback.data, function(value, key) {
