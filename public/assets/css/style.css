@@ -1,4 +1,4 @@
-header{
+/*header{
 	position: fixed;
 	top: 0px;
 	left: 0px;
@@ -137,4 +137,8 @@ color: #ff6a28;
 .filterItem span, .filterItem select, .orderItem span, .orderItem select{
 	display: inline-block;
 	font-size: 18px;
+}*/
+
+.mdl-card{
+	width: 100%;
 }

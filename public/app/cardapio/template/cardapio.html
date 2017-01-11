@@ -1,4 +1,37 @@
-<div class="headerFerramentas">
+<div>
+	<div>
+		<label for="categoria" class="mdl-select__label">Categoria</label>
+		<select ng-model="categoria" ng-options="c.name as c.name for c in categoriasOpt" ng-required="true" ng-change="filtrar()" id="categoria" class="mdl-select">
+			<option value="">Todos</option>
+		</select>
+	</div>
+	<div>
+		<span>Ordenar</span>
+		<select ng-model="ordem" ng-options="o.value as o.name for o in ordemOpt" ng-required="true" ng-change="filtrar()">
+		</select>
+	</div>
+</div>
+
+<div class="mdl-grid">
+	<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" ng-repeat="i in itens">
+		<div class="mdl-card mdl-shadow--2dp">
+			<div class="mdl-card__title">
+				<h2 class="mdl-card__title-text">{{i.titulo}}</h2>
+			</div>
+			<div class="mdl-card__media">
+				<img src="{{i.imagem}}" width="173" height="157" border="0" alt="" style="padding:10px;">
+			</div>
+			<div class="mdl-card__supporting-text">
+				{{i.descricao}}
+			</div>
+			<div class="mdl-card__actions">
+				<a href="http://en.wikipedia.org/wiki/Sky_Tower_%28Auckland%29" ui-sref="editarItem({itemId:i.id})">Visualizar</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- <div class="headerFerramentas">
 	<div class="filterItem">
 		<span>Filtrar por categoria</span>
 		<select ng-model="categoria" ng-options="c.name as c.name for c in categoriasOpt" ng-required="true" ng-change="filtrar()">
@@ -10,8 +43,8 @@
 		<select ng-model="ordem" ng-options="o.value as o.name for o in ordemOpt" ng-required="true" ng-change="filtrar()">
 		</select>
 	</div>
-</div>
-<div ng-repeat="i in itens" class="itemCard">
+</div> -->
+<!-- <div ng-repeat="i in itens" class="itemCard">
 	<div class="rating" ng-click="up(i.id,i.rating)">
 		<img src="assets/img/fork.svg">
 		<p>{{i.rating}}</p>
@@ -23,4 +56,4 @@
 	<p>{{i.titulo}}</p>
 	<p>{{i.descricao}}</p>
 	<p>Postado por <span>{{i.usuario.name}}</span></p>
-</div>
+</div> -->
