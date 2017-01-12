@@ -32,7 +32,7 @@ appModule.factory('itemService', function($http, $rootScope){
 				}
 			};
 
-			// Insere na categoria
+			// Insere na categoria Fan-out
 			updates['/categorias/'+cat+"/"+key] = toSave;
 			updates['/itens/'+key] = toSave;
 			return database.ref().update(updates);
@@ -51,7 +51,10 @@ appModule.factory('itemService', function($http, $rootScope){
 			return database.ref('itens/' + key).remove();
 		},
 		update: function(item, key){
-			database.ref('itens/' + key).set(item);
+			var updates = {};
+			updates['/categorias/'+item.categoria+"/"+key] = item;
+			updates['/itens/'+key] = item;
+			return database.ref().update(updates);
 		},
 		obterItem: function(itemId){		
 			return database.ref('itens/' + itemId);
