@@ -33,14 +33,12 @@
 				<div class="mdl-layout-spacer"></div>
 				<!-- Navigation. We hide it in small screens. -->
 				<nav class="mdl-navigation mdl-layout--large-screen-only">
-					<a class="mdl-navigation__link" href="">Link</a>
-					<a class="mdl-navigation__link" href="">Link</a>
-					<a class="mdl-navigation__link" href="">Link</a>
-					<a class="mdl-navigation__link" href="">Link</a>
+					<a class="mdl-navigation__link" ui-sref="home">Cardápio</a>
+					<a class="mdl-navigation__link" ui-sref="novoItem">Novo Item</a>
 				</nav>
 			</div>
 		</header>
-		<div class="mdl-layout__drawer">
+<!-- 		<div class="mdl-layout__drawer">
 			<span class="mdl-layout-title">Title</span>
 			<nav class="mdl-navigation">
 				<a class="mdl-navigation__link" href="">Link</a>
@@ -48,12 +46,21 @@
 				<a class="mdl-navigation__link" href="">Link</a>
 				<a class="mdl-navigation__link" href="">Link</a>
 			</nav>
-		</div>
+		</div> -->
 		<main class="mdl-layout__content">
 			<div class="page-content">
 				<ui-view class="mainContent"></ui-view>
 			</div>
 		</main>
+		<footer class="mdl-mini-footer">
+			<div class="mdl-mini-footer__left-section">
+				<div class="mdl-logo">Title</div>
+				<ul class="mdl-mini-footer__link-list">
+					<li><a href="#">Help</a></li>
+					<li><a href="#">Privacy & Terms</a></li>
+				</ul>
+			</div>
+		</footer>
 	</div>
 
 <!-- 	<header>

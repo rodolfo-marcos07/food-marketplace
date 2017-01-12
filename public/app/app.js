@@ -55,36 +55,43 @@ appModule.controller('mainCtrl', function($scope, $rootScope, loadingFactory, ca
 		loadingFactory.loadingOff();
 		$scope.$apply();
 	});
+
+	// View é carregada
+	$rootScope.$on('$viewContentLoaded', function(){
+		// Expand all new MDL elements
+		componentHandler.upgradeDom();
+	});
 });
 
 // UI-Router
 appModule.config(function($stateProvider, $urlRouterProvider) {
-  
-  var homeState = {
-    name: 'home',
-    url: '/',
-    controller: 'cardapioController',
-    templateUrl: 'app/cardapio/template/cardapio.html'
-  }
 
-  var newItemState = {
-  	name: 'novoItem',
-    url: '/novoItem',
-    controller: 'novoItemController',
-    templateUrl: 'app/item/template/item.html'
-  }
+	var homeState = {
+		name: 'home',
+		url: '/',
+		controller: 'cardapioController',
+		templateUrl: 'app/cardapio/template/cardapio.html'
+	}
 
-  var editItemState = {
-  	name: 'editarItem',
-  	url: '/item/{itemId}',
-  	controller: 'editarItemController',
-  	templateUrl: 'app/item/template/item.html'
-  }
+	var newItemState = {
+		name: 'novoItem',
+		url: '/novoItem',
+		controller: 'novoItemController',
+		templateUrl: 'app/item/template/item.html'
+	}
 
-  $stateProvider.state(editItemState);
-  $stateProvider.state(newItemState);
-  $stateProvider.state(homeState);
-  $urlRouterProvider.otherwise("/");
+	var editItemState = {
+		name: 'editarItem',
+		url: '/item/{itemId}',
+		controller: 'editarItemController',
+		templateUrl: 'app/item/template/item.html'
+	}
+
+	$stateProvider.state(editItemState);
+	$stateProvider.state(newItemState);
+	$stateProvider.state(homeState);
+	$urlRouterProvider.otherwise("/");
+
 });
 
 // A service that returns a value that can be string, object or functions

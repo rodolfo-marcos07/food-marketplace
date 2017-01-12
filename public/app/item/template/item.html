@@ -1,5 +1,52 @@
-<div>
-	<h4>Inserir novo ítem</h4>
+<div class="mdl-grid">
+	<div class="mdl-cell mdl-cell--4-col"></div>
+	<div class="mdl-cell mdl-cell--4-col">
+		<div class="mdl-grid">
+			<div class="mdl-cell mdl-cell--12-col">
+				<!-- Simple Textfield -->
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input ng-model="item.titulo" class="mdl-textfield__input" type="text" id="titulo">
+					<label class="mdl-textfield__label" for="titulo">Titulo</label>
+				</div>
+			</div>
+			<div class="mdl-cell mdl-cell--12-col">
+				<!-- Floating Multiline Textfield -->
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<textarea ng-model="item.descricao" class="mdl-textfield__input" type="text" rows= "3" id="descricao"></textarea>
+					<label class="mdl-textfield__label" for="descricao">Descrição</label>
+				</div>
+			</div>
+			<div class="mdl-cell mdl-cell--12-col">
+				<!-- Numeric Textfield -->
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input ng-model="item.preco" class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="preco">
+					<label class="mdl-textfield__label" for="preco">Preço</label>
+					<span class="mdl-textfield__error">Preço deve conter somente números</span>
+				</div>
+			</div>
+			<div class="mdl-cell mdl-cell--12-col">
+				<!-- Simple Textfield -->
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<select ng-model="item.categoria" ng-options="c.name as c.name for c in categoriasOpt" ng-required="true">
+						<option value="">Selecione as categorias</option>
+					</select>
+				</div>
+			</div>
+			<div class="mdl-cell mdl-cell--12-col">
+				<!-- Raised button with ripple -->
+				<button ng-click="excluir()" class="mdl-button mdl-js-button mdl-js-ripple-effect">
+					Excluir
+				</button>
+				<button ng-click="salvar()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+					Salvar
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="mdl-cell mdl-cell--4-col"></div>
+</div>
+
+<!-- 	<h4>Inserir novo ítem</h4>
 	<form name="newitemform">
 		<input type="text" ng-model="item.titulo">
 		<input type="text" ng-model="item.descricao">
@@ -11,5 +58,5 @@
 		<input type="button" ng-click="salvar()" value="Salvar">
 		<input type="button" ng-click="excluir()" value="Excluir">
 	</form>
-	<pre>{{item}}</pre>
-</div>
+	<pre>{{item}}</pre> -->
+<!-- </div> -->

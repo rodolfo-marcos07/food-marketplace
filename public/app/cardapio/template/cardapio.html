@@ -1,19 +1,19 @@
-<div>
-	<div>
+<div class="mdl-grid">
+	<div class="mdl-cell mdl-cell--2-col">
 		<label for="categoria" class="mdl-select__label">Categoria</label>
 		<select ng-model="categoria" ng-options="c.name as c.name for c in categoriasOpt" ng-required="true" ng-change="filtrar()" id="categoria" class="mdl-select">
 			<option value="">Todos</option>
 		</select>
 	</div>
-	<div>
+	<div class="mdl-cell mdl-cell--2-col">
 		<span>Ordenar</span>
 		<select ng-model="ordem" ng-options="o.value as o.name for o in ordemOpt" ng-required="true" ng-change="filtrar()">
 		</select>
 	</div>
 </div>
 
-<div class="mdl-grid">
-	<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" ng-repeat="i in itens">
+<!-- <div class="mdl-grid">
+	<div class="mdl-cell mdl-cell--4-col" ng-repeat="i in itens">
 		<div class="mdl-card mdl-shadow--2dp">
 			<div class="mdl-card__title">
 				<h2 class="mdl-card__title-text">{{i.titulo}}</h2>
@@ -29,7 +29,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 
 <!-- <div class="headerFerramentas">
 	<div class="filterItem">
