@@ -10,26 +10,19 @@ appModule.factory('cardapioService', function($http, $rootScope, itemService){
 	var service = {
 		up: function(key, categoria, rating){
 			var updates = {};
-			updates['/itens/'+key] = {rating:rating};
-			updates['/categorias/'+cat+"/"+key] = {rating:rating};
+			updates['/itens/'+key+'/rating'] = rating;
+			updates['/categorias/'+categoria+"/"+key+'/rating'] = rating;
 			return database.ref().update(updates);
 		},
 		obter: function(categoria, ordem){
-
-			console.log(categoria, ordem);
-			
 			var itensRef = database.ref('/itens/');
-			
 			if(categoria){
 				itensRef = database.ref('/categorias/'+categoria);
 			}
-
 			if(ordem){
 				itensRef = itensRef.orderByChild(ordem);
 			}
-
 			return itensRef;
-			
 			// Retorna todas as categorias
 			// if(categorias == null){
 			// 	var urlDB = 'https://app-08.firebaseio.com/itens.json?"orderBy"="titulo"';
@@ -56,7 +49,6 @@ appModule.factory('cardapioService', function($http, $rootScope, itemService){
 			// }
 
 			// return itensRef;
-
 		},
 		obterFilePath: function(file){
 			var starsRef = storageRef.child(file);

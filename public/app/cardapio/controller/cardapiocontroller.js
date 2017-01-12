@@ -36,7 +36,7 @@ appModule.controller('cardapioController', function($scope, cardapioService, CAT
 		getItens();
 	}
 
-	cardapio.up = function(key, rating){
+	cardapio.up = function(key, categoria, rating){
 		cardapioService.up(key, categoria, rating+1);
 	}
 	// q_obter.then(function(data_callback){
