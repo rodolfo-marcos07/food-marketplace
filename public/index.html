@@ -17,6 +17,8 @@
 	<!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="assets/css/material.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title></title>
 </head>
 <body ng-app="app08" ng-controller="mainCtrl">
@@ -34,19 +36,27 @@
 				<!-- Navigation. We hide it in small screens. -->
 				<nav class="mdl-navigation mdl-layout--large-screen-only">
 					<a class="mdl-navigation__link" ui-sref="home">Cardápio</a>
-					<a class="mdl-navigation__link" ui-sref="novoItem">Novo Item</a>
+					<a class="mdl-navigation__link" ui-sref="novoItem">
+						<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+							Novo Item
+						</button>
+					</a>
+					<div class="mdl-navigation__link">
+						<img src="{{usuario.img}}" class="user-img">
+						<p>{{usuario.nome}} sair.</p>
+					</div>
 				</nav>
 			</div>
 		</header>
-<!-- 		<div class="mdl-layout__drawer">
+		<div class="mdl-layout__drawer mdl-layout--small-screen-only">
 			<span class="mdl-layout-title">Title</span>
 			<nav class="mdl-navigation">
-				<a class="mdl-navigation__link" href="">Link</a>
-				<a class="mdl-navigation__link" href="">Link</a>
-				<a class="mdl-navigation__link" href="">Link</a>
-				<a class="mdl-navigation__link" href="">Link</a>
+				<a class="mdl-navigation__link" ui-sref="home">Cardápio</a>
+				<a class="mdl-navigation__link" ui-sref="novoItem">Novo Item</a>
+				<a class="mdl-navigation__link" href="">Minha conta</a>
+				<a class="mdl-navigation__link" href="">Sair</a>
 			</nav>
-		</div> -->
+		</div>
 		<main class="mdl-layout__content">
 			<div class="page-content">
 				<ui-view class="mainContent"></ui-view>

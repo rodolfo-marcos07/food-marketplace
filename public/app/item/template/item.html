@@ -4,29 +4,29 @@
 		<div class="mdl-grid">
 			<div class="mdl-cell mdl-cell--12-col">
 				<!-- Simple Textfield -->
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				<div class="mdl-textfield mdl-js-textfield">
+					<label>Titulo</label>
 					<input ng-model="item.titulo" class="mdl-textfield__input" type="text" id="titulo">
-					<label class="mdl-textfield__label" for="titulo">Titulo</label>
 				</div>
 			</div>
 			<div class="mdl-cell mdl-cell--12-col">
 				<!-- Floating Multiline Textfield -->
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				<div class="mdl-textfield mdl-js-textfield">
+					<label>Descrição</label>
 					<textarea ng-model="item.descricao" class="mdl-textfield__input" type="text" rows= "3" id="descricao"></textarea>
-					<label class="mdl-textfield__label" for="descricao">Descrição</label>
 				</div>
 			</div>
 			<div class="mdl-cell mdl-cell--12-col">
 				<!-- Numeric Textfield -->
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				<div class="mdl-textfield mdl-js-textfield">
+					<label>Preço</label>
 					<input ng-model="item.preco" class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="preco">
-					<label class="mdl-textfield__label" for="preco">Preço</label>
 					<span class="mdl-textfield__error">Preço deve conter somente números</span>
 				</div>
 			</div>
 			<div class="mdl-cell mdl-cell--12-col">
 				<!-- Simple Textfield -->
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				<div class="mdl-textfield mdl-js-textfield">
 					<select ng-model="item.categoria" ng-options="c.name as c.name for c in categoriasOpt" ng-required="true">
 						<option value="">Selecione as categorias</option>
 					</select>
