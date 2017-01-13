@@ -16,13 +16,13 @@ appModule.controller('cardapioController', function($scope, cardapioService, CAT
 				var keyItem = item.key;
 				var value = item.val();
 				value.id = keyItem;
-				$scope.itens.push(value);
 
 				var q_obter_img = cardapioService.obterFilePath(value.imagem);
 				
 				// Obtém caminho de download da imagem
 				q_obter_img.then(function(urlImg){
 					value.imagem = urlImg;
+					$scope.itens.push(value);
 					cardapio.$apply();
 				});
 			});

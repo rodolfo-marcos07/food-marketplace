@@ -85,19 +85,6 @@ color: #ff6a28;
 	cursor: pointer;
 }
 
-.loadingBox{
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	background: red;
-	width: 100%;
-	height: 100%;
-	display: block;
-	z-index: 999999;
-	color: #fff;
-	opacity: 0.6;
-}
-
 .user{
 	position: absolute;
 	top: 0px;
@@ -153,6 +140,19 @@ color: #ff6a28;
 
 .filtro div select{
 	font-size: 14px !important;	
+}
+
+.loadingBox{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background: red;
+	width: 100%;
+	height: 100%;
+	display: block;
+	z-index: 999999;
+	color: #fff;
+	opacity: 0.6;
 }
 
 .mdl-card{

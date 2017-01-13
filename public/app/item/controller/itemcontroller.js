@@ -43,7 +43,7 @@ appModule.controller('editarItemController', function($scope, $stateParams, item
 
 	$scope.excluir = function(){
 		loadingFactory.loadingOn();
-		itemService.delete(idItem)
+		itemService.delete($scope.item, idItem)
 			.then(function(){
 				loadingFactory.loadingOff();
 				$scope.$apply();

@@ -14,53 +14,60 @@ firebase.initializeApp(config);
 appModule.controller('mainCtrl', function($scope, $rootScope, loadingFactory, cardapioService){
 
 	var main = $scope;
+
 	$rootScope.usuario = {};
 
-	loadingFactory.loadingOn();
-
-	main.logoff = function(){
+	$rootScope.logoff = function(){
 		firebase.auth().signOut().then(function() {
-			// Sign-out successful.
 			$rootScope.usuario = {};
 			main.$apply();
 		}, function(error) {
-			// An error happened.
+			console.log(error);
 		});
 	}
 
-	// facebook Login
-	var provider = new firebase.auth.FacebookAuthProvider();
-	firebase.auth().signInWithPopup(provider).then(function(result) {
-		// This gives you a Facebook Access Token. You can use it to access the Facebook API.
-		var token = result.credential.accessToken;
-		// The signed-in user info.
-		var user = result.user;
+	$rootScope.login = function(){
 
-		$rootScope.usuario.nome = user.displayName;
-		$rootScope.usuario.img = user.photoURL;
-		$rootScope.usuario.uid = user.uid;
-		
-		loadingFactory.loadingOff();
-		$scope.$apply();
+		var provider = new firebase.auth.FacebookAuthProvider();
+		firebase.auth().signInWithPopup(provider).then(function(result) {
+			
+			// This gives you a Facebook Access Token. You can use it to access the Facebook API.
+			var token = result.credential.accessToken;
+			var user = result.user;
 
-	}).catch(function(error) {
-		// Handle Errors here.
-		var errorCode = error.code;
-		var errorMessage = error.message;
-		// The email of the user's account used.
-		var email = error.email;
-		// The firebase.auth.AuthCredential type that was used.
-		var credential = error.credential;
+			$rootScope.usuario.nome = user.displayName;
+			$rootScope.usuario.img = user.photoURL;
+			$rootScope.usuario.uid = user.uid;
+			
+			dialog.close();
+			$scope.$apply();
 
-		loadingFactory.loadingOff();
-		$scope.$apply();
-	});
+		}).catch(function(error) {
+			
+			// Handle Errors here.
+			var errorCode = error.code;
+			var errorMessage = error.message;
+			var email = error.email;
+			var credential = error.credential;
+
+			loadingFactory.loadingOff();
+			$scope.$apply();
+		});
+	}
 
 	// View é carregada
 	$rootScope.$on('$viewContentLoaded', function(){
-		// Expand all new MDL elements
 		componentHandler.upgradeDom();
 	});
+
+	// Modal de login
+	var dialog = document.querySelector('dialog');
+	$rootScope.openModal = function(){
+		if (!dialog.showModal) {
+			dialogPolyfill.registerDialog(dialog);
+		}
+		dialog.showModal();
+	}
 });
 
 // UI-Router
@@ -94,7 +101,6 @@ appModule.config(function($stateProvider, $urlRouterProvider) {
 
 });
 
-// A service that returns a value that can be string, object or functions
 appModule.value('CATEGORIAS', [
     {name: 'Carnes'},
     {name: 'Doces'},

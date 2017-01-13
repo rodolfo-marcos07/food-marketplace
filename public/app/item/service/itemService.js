@@ -37,18 +37,17 @@ appModule.factory('itemService', function($http, $rootScope){
 			updates['/itens/'+key] = toSave;
 			return database.ref().update(updates);
 		},
-		delete: function(key, imgid){
-			// // Create a reference to the file to delete
-			// var desertRef = storageRef.child('images/desert.jpg');
+		delete: function(item, key){
+			var updates = {};
+			updates['/categorias/'+item.categoria+"/"+key] = null;
+			updates['/itens/'+key] = null;
 
-			// // Delete the file
-			// desertRef.delete().then(function() {
-			//   // File deleted successfully
-			// }).catch(function(error) {
-			//   // Uh-oh, an error occurred!
-			// });
+			var imgRef = storage.ref(item.imagem);
+			imgRef.delete().then(function(){}).catch(function(error) {
+				console.log(error);
+			});
 
-			return database.ref('itens/' + key).remove();
+			return database.ref().update(updates);
 		},
 		update: function(item, key){
 			var updates = {};

@@ -20,11 +20,9 @@
 	<title></title>
 </head>
 <body ng-app="app08" ng-controller="mainCtrl">
-	
 	<div login-Box ng-show="loading"></div>
-
-	<!-- Always shows a header, even in smaller screens. -->
 	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+		<!-- Header fixo -->
 		<header class="mdl-layout__header">
 			<div class="mdl-layout__header-row">
 				<!-- Title -->
@@ -38,25 +36,29 @@
 					<div class="user-menu">
 						<img src="{{usuario.img}}">
 						<!-- Flat button -->
-						<button class="mdl-button mdl-js-button mdl-button--raised">Sair</button>
+						<button class="mdl-button mdl-js-button mdl-button--raised" ng-if="!usuario.uid" ng-click="openModal()">Login</button>
+						<button class="mdl-button mdl-js-button mdl-button--raised" ng-if="usuario.uid" ng-click="logoff()">Sair</button>
 					</div>
 				</nav>
 			</div>
 		</header>
+		<!-- Barra lateral esquerda -->
 		<div class="mdl-layout__drawer mdl-layout--small-screen-only">
 			<span class="mdl-layout-title">Title</span>
 			<nav class="mdl-navigation">
 				<a class="mdl-navigation__link" ui-sref="home">Cardápio</a>
 				<a class="mdl-navigation__link" ui-sref="novoItem">Novo Item</a>
-				<a class="mdl-navigation__link" href="">Minha conta</a>
-				<a class="mdl-navigation__link" href="">Sair</a>
+				<a class="mdl-navigation__link" href="#">Minha conta</a>
+				<a class="mdl-navigation__link" href="#">Sair</a>
 			</nav>
 		</div>
+		<!-- Conteudo principal -->
 		<main class="mdl-layout__content">
 			<div class="page-content">
 				<ui-view class="mainContent"></ui-view>
 			</div>
 		</main>
+		<!-- Footer -->
 		<footer class="mdl-mini-footer">
 			<div class="mdl-mini-footer__left-section">
 				<div class="mdl-logo">Title</div>
@@ -67,19 +69,19 @@
 			</div>
 		</footer>
 	</div>
-
-<!-- 	<header>
-		<ul>
-			<li><a ui-sref="home" ui-sref-active="active">Home</a></li>
-			<li><a ui-sref="novoItem" ui-sref-active="active">Novo item</a></li>
-			<div class="user">
-				<img src="{{usuario.img}}">
-				<p>{{usuario.nome}}</p>
-				<p ng-click="logoff()">Sair</p>
-			</div>
-		</ul>
-	</header>
-	<ui-view class="mainContent"></ui-view> -->
+	<!-- Modal de login -->
+	<dialog class="mdl-dialog">
+		<h4 class="mdl-dialog__title">Login</h4>
+		<div class="mdl-dialog__content">
+			<p>
+				Faça login com o facebook para continuar. 
+				Ao clicar em Login, o popup de login se abrirá.
+			</p>
+		</div>
+		<div class="mdl-dialog__actions">
+			<button type="button" class="mdl-button" ng-click="login()">Login</button>
+		</div>
+	</dialog>
 	<script type="text/javascript" src="assets/js/material.min.js"></script>
 </body>
 </html>
