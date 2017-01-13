@@ -1,11 +1,11 @@
-<div class="mdl-grid">
-	<div class="mdl-cell mdl-cell--2-col">
-		<label for="categoria" class="mdl-select__label">Categoria</label>
-		<select ng-model="categoria" ng-options="c.name as c.name for c in categoriasOpt" ng-required="true" ng-change="filtrar()" id="categoria" class="mdl-select">
+<div class="filtro">
+	<div class="filtro-categoria">
+		<label for="categoria">Categoria</label>
+		<select ng-model="categoria" ng-options="c.name as c.name for c in categoriasOpt" ng-required="true" ng-change="filtrar()" id="categoria">
 			<option value="">Todos</option>
 		</select>
 	</div>
-	<div class="mdl-cell mdl-cell--2-col">
+	<div class="filtro-ordenar">
 		<span>Ordenar</span>
 		<select ng-model="ordem" ng-options="o.value as o.name for o in ordemOpt" ng-required="true" ng-change="filtrar()">
 		</select>
@@ -13,7 +13,7 @@
 </div>
 
 <div class="mdl-grid">
-	<div class="mdl-cell mdl-cell--4-col" ng-repeat="i in itens">
+	<div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone" ng-repeat="i in itens">
 		<div class="mdl-card mdl-shadow--2dp">
 			<div class="mdl-card__title">
 				<h2 class="mdl-card__title-text">{{i.titulo}}</h2>
@@ -23,6 +23,7 @@
 			</div>
 			<div class="mdl-card__supporting-text">
 				{{i.descricao}}
+				<p>R${{i.price}}</p>
 			</div>
 			<div class="mdl-card__actions">
 				<div class="mdl-grid">

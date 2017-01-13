@@ -139,10 +139,35 @@ color: #ff6a28;
 	font-size: 18px;
 }*/
 
+.filtro{
+	text-align: right;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.filtro div{
+	display: inline-block;
+	margin-right: 15px;
+	font-size: 14px !important;
+}
+
+.filtro div select{
+	font-size: 14px !important;	
+}
+
 .mdl-card{
 	width: 100%;
 }
 
-.user-img{
+.user-menu{
+	/* width: 257px; */
+}
+
+.user-menu img{
 	width: 50px;
+	border-radius: 25%;
+}
+
+.user-menu img, .user-menu p{
+	display: inline-block;
 }

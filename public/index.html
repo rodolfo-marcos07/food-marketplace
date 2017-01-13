@@ -13,8 +13,6 @@
 	<script type="text/javascript" src="app/item/controller/itemcontroller.js"></script>
 	<script type="text/javascript" src="app/item/directive/itemDirective.js"></script>
 	<script type="text/javascript" src="app/item/service/itemService.js"></script>
-	<!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
-	<!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="assets/css/material.min.css">
 	<link rel="stylesheet" href="assets/css/style.css">
@@ -36,14 +34,11 @@
 				<!-- Navigation. We hide it in small screens. -->
 				<nav class="mdl-navigation mdl-layout--large-screen-only">
 					<a class="mdl-navigation__link" ui-sref="home">Cardápio</a>
-					<a class="mdl-navigation__link" ui-sref="novoItem">
-						<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
-							Novo Item
-						</button>
-					</a>
-					<div class="mdl-navigation__link">
-						<img src="{{usuario.img}}" class="user-img">
-						<p>{{usuario.nome}} sair.</p>
+					<a class="mdl-navigation__link" ui-sref="novoItem">Novo item</a>
+					<div class="user-menu">
+						<img src="{{usuario.img}}">
+						<!-- Flat button -->
+						<button class="mdl-button mdl-js-button mdl-button--raised">Sair</button>
 					</div>
 				</nav>
 			</div>
