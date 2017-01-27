@@ -21,53 +21,26 @@
 </head>
 <body ng-app="app08" ng-controller="mainCtrl">
 	<div login-Box ng-show="loading"></div>
-	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-		<!-- Header fixo -->
-		<header class="mdl-layout__header">
-			<div class="mdl-layout__header-row">
-				<!-- Title -->
-				<span class="mdl-layout-title">Title</span>
-				<!-- Add spacer, to align navigation to the right -->
-				<div class="mdl-layout-spacer"></div>
-				<!-- Navigation. We hide it in small screens. -->
-				<nav class="mdl-navigation mdl-layout--large-screen-only">
-					<a class="mdl-navigation__link" ui-sref="home">Cardápio</a>
-					<a class="mdl-navigation__link" ui-sref="novoItem">Novo item</a>
-					<div class="user-menu">
-						<img src="{{usuario.img}}">
-						<!-- Flat button -->
-						<button class="mdl-button mdl-js-button mdl-button--raised" ng-if="!usuario.uid" ng-click="openModal()">Login</button>
-						<button class="mdl-button mdl-js-button mdl-button--raised" ng-if="usuario.uid" ng-click="logoff()">Sair</button>
-					</div>
-				</nav>
-			</div>
-		</header>
-		<!-- Barra lateral esquerda -->
-		<div class="mdl-layout__drawer mdl-layout--small-screen-only">
-			<span class="mdl-layout-title">Title</span>
-			<nav class="mdl-navigation">
-				<a class="mdl-navigation__link" ui-sref="home">Cardápio</a>
-				<a class="mdl-navigation__link" ui-sref="novoItem">Novo Item</a>
-				<a class="mdl-navigation__link" href="#">Minha conta</a>
-				<a class="mdl-navigation__link" href="#">Sair</a>
-			</nav>
+	<header class="header">
+		<div class="top-header">
+			<select>
+				<option>Opção 1</option>
+			</select>
+			<div class="menu-btn"></div>
 		</div>
-		<!-- Conteudo principal -->
-		<main class="mdl-layout__content">
-			<div class="page-content">
-				<ui-view class="mainContent"></ui-view>
+		<div class="main-header">
+			<a ui-sref="home">Cardápio</a>
+			<a ui-sref="novoItem">Novo item</a>
+			<div class="user-menu">
+				<img src="{{usuario.img}}">
+				<!-- Flat button -->
+				<button ng-if="!usuario.uid" ng-click="openModal()">Login</button>
+				<button ng-if="usuario.uid" ng-click="logoff()">Sair</button>
 			</div>
-		</main>
-		<!-- Footer -->
-		<footer class="mdl-mini-footer">
-			<div class="mdl-mini-footer__left-section">
-				<div class="mdl-logo">Title</div>
-				<ul class="mdl-mini-footer__link-list">
-					<li><a href="#">Help</a></li>
-					<li><a href="#">Privacy & Terms</a></li>
-				</ul>
-			</div>
-		</footer>
+		</div>
+	</header>
+	<div class="main-content">
+		<ui-view></ui-view>
 	</div>
 </body>
 </html>

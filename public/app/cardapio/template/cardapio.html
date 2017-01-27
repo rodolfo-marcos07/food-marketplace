@@ -12,7 +12,24 @@
 	</div>
 </div>
 
-<div class="mdl-grid">
+<div class="item-container">
+	<div class="item" ng-repeat="i in itens">
+		<div class="item-imagem">
+			<img src="{{i.imagem}}">
+		</div>
+		<div class="item-content">
+			<h4>{{i.titulo}}</h4>
+			<span class="item-data">12/12/2017</span>
+			<div class="center">
+				<p>Postado por <span>{{i.usuario.name}}</span></p>
+				<p>R${{i.price}}</p>
+				<span class="item-rating">{{i.rating}}</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- <div class="mdl-grid">
 	<div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone" ng-repeat="i in itens">
 		<div class="mdl-card mdl-shadow--2dp">
 			<div class="mdl-card__title">
@@ -44,4 +61,4 @@
 		</div>
 	</div>
 	<loading-item></loading-item>
-</div>
+</div> -->

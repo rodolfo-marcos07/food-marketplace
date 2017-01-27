@@ -55,11 +55,6 @@ appModule.controller('mainCtrl', function($scope, $rootScope, loadingFactory, ca
 		});
 	}
 
-	// View é carregada
-	$rootScope.$on('$viewContentLoaded', function(){
-		componentHandler.upgradeDom();
-	});
-
 	// Modal de login
 	var dialog = document.querySelector('dialog');
 	$rootScope.openModal = function(){
