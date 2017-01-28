@@ -11,11 +11,15 @@ var config = {
 firebase.initializeApp(config);
 
 // Main Controller
-appModule.controller('mainCtrl', function($scope, $rootScope, loadingFactory, cardapioService){
+appModule.controller('mainCtrl', function($scope, $rootScope, loadingFactory, cardapioService, CATEGORIAS){
 
 	var main = $scope;
 
+	$rootScope.menuAtivo = false;
+	$rootScope.categoriaAtivo = false;
 	$rootScope.usuario = {};
+
+	main.categoriasOpt = CATEGORIAS;
 
 	$rootScope.logoff = function(){
 		firebase.auth().signOut().then(function() {

@@ -1,3 +1,7 @@
+body{
+	font-family: 'Roboto', sans-serif;
+}
+
 header.header{
 	height: 50px;
 	background: #ff4700;
@@ -11,7 +15,50 @@ header.header{
 }
 
 .main-header{
-	display: none;
+	display: block;
+	background: #ff4700;
+	position: absolute;
+	top: 50px;
+	width: 100%;
+	padding: 15px;
+	padding-bottom: 0px;
+	box-sizing: border-box;
+}
+
+.main-header div a{
+	color: #fff;
+	text-decoration: none;
+	border-top: #fff solid 1px;
+	display: block;
+	font-size: 17px;
+	padding: 6px;
+	text-align: right;
+}
+
+.main-categoria{
+	background: #fff;
+/*	border-bottom: solid #000 1px;
+	border-left: solid #000 1px;
+	border-right: solid #000 1px;*/
+	position: absolute;
+	top: 40px;
+	left: 8px;
+	width: 176px;
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+.main-categoria div{
+	margin-bottom: 7px;
+}
+
+.top-header h4{
+	color: #fff;
+	font-size: 23px;
+	position: absolute;
+	top: 7px;
+	left: 13px;
+	font-weight: bold;
 }
 
 .header-categoria{

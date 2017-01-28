@@ -1,14 +1,16 @@
-appModule.controller('cardapioController', function($scope, cardapioService, CATEGORIAS, ORDEM){
+appModule.controller('cardapioController', function($scope, $rootScope, cardapioService, CATEGORIAS, ORDEM){
 	
 	var cardapio = $scope;
+	
 	cardapio.categoriasOpt = CATEGORIAS;
 	cardapio.ordemOpt = ORDEM;
 	cardapio.itens = [];
-	cardapio.categoria = null;
-	cardapio.ordem = null;
+	
+	$rootScope.categoria = null;
+	$rootScope.ordem = null;
 	
 	function getItens(){
-		var q_obter = cardapioService.obter(cardapio.categoria, cardapio.ordem);
+		var q_obter = cardapioService.obter($rootScope.categoria, $rootScope.ordem);
 		// Once retorna os dados uma vez e desliga a escuta do database
 		q_obter.once('value', function(snapshot){
 			snapshot.forEach(function(item){
@@ -31,7 +33,8 @@ appModule.controller('cardapioController', function($scope, cardapioService, CAT
 
 	getItens();
 	
-	cardapio.filtrar = function(){
+	$rootScope.filtrar = function(categoria){
+		$rootScope.categoria = categoria;
 		$scope.itens = [];
 		getItens();
 	}
