@@ -1,6 +1,7 @@
 appModule.controller('novoItemController', function($scope, itemService, loadingFactory, CATEGORIAS){
 	
 	$scope.item = {};
+	$scope.msgUpload = "Selecione uma imagem";
 	$scope.categoriasOpt = CATEGORIAS;
 	
 	$scope.file_changed = function(element) {
@@ -8,6 +9,10 @@ appModule.controller('novoItemController', function($scope, itemService, loading
 			var photofile = element.files[0];
 		});
 	};
+
+	$scope.selecionaImagem = function(){
+		document.getElementById('btnSelecionarImg').click();
+	}
 	
 	$scope.salvar = function(){
 		loadingFactory.loadingOn();

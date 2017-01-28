@@ -16,7 +16,7 @@ appModule.factory('cardapioService', function($http, $rootScope, itemService){
 		},
 		obter: function(categoria, ordem){
 			var itensRef = database.ref('/itens/');
-			if(categoria){
+			if(categoria !== "Todas"){
 				itensRef = database.ref('/categorias/'+categoria);
 			}
 			if(ordem){

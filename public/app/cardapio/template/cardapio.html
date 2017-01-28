@@ -1,4 +1,4 @@
-<div class="filtro">
+<!-- <div class="filtro">
 	<div class="filtro-categoria">
 		<label for="categoria">Categoria</label>
 		<select ng-model="categoria" ng-options="c.name as c.name for c in categoriasOpt" ng-required="true" ng-change="filtrar()" id="categoria">
@@ -10,7 +10,7 @@
 		<select ng-model="ordem" ng-options="o.value as o.name for o in ordemOpt" ng-required="true" ng-change="filtrar()">
 		</select>
 	</div>
-</div>
+</div> -->
 
 <div class="item-container">
 	<div class="item" ng-repeat="i in itens">
@@ -25,6 +25,9 @@
 				<p>R${{i.price}}</p>
 				<span class="item-rating">{{i.rating}}</span>
 			</div>
+			<a ui-sref="editarItem({itemId:i.id})" class="item-edit">
+				<i class="fa fa-pencil fa-2x"></i>
+			</a>
 		</div>
 	</div>
 </div>

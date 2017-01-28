@@ -6,7 +6,7 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 	cardapio.ordemOpt = ORDEM;
 	cardapio.itens = [];
 	
-	$rootScope.categoria = null;
+	$rootScope.categoria = "Todas";
 	$rootScope.ordem = null;
 	
 	function getItens(){

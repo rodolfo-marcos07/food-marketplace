@@ -59,14 +59,10 @@ appModule.controller('mainCtrl', function($scope, $rootScope, loadingFactory, ca
 		});
 	}
 
-	// Modal de login
-	var dialog = document.querySelector('dialog');
-	$rootScope.openModal = function(){
-		if (!dialog.showModal) {
-			dialogPolyfill.registerDialog(dialog);
-		}
-		dialog.showModal();
-	}
+	// Evento quando view é carregada
+	$rootScope.$on('$viewContentLoaded', function(event){
+		$rootScope.menuAtivo = false;
+	});
 });
 
 // UI-Router
@@ -105,7 +101,8 @@ appModule.value('CATEGORIAS', [
     {name: 'Doces'},
     {name: 'Salgados'},
     {name: 'Pratos Quentes'},
-    {name: 'Pratos Frios'}
+    {name: 'Pratos Frios'},
+    {name: 'Todas'},
 ]);
 
 appModule.value('ORDEM', [

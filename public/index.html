@@ -31,9 +31,10 @@
 		<!-- Top Header -->
 		<div class="top-header">
 			<div class="header-categoria" ng-show="!menuAtivo" ng-click="categoriaAtivo=!categoriaAtivo">
-				<span>Todas</span>
+				<span>{{categoria}}</span>
 				<span class="categoria-icon"><i class="fa fa-caret-down fa-3x"></i></span>
 			</div>
+			<img class="img-usuario" src="{{usuario.img}}" ng-if="usuario.uid && menuAtivo">
 			<h4 ng-if="menuAtivo">Opções</h4>
 			<div class="menu-btn" ng-click="menuAtivo=!menuAtivo">
 				<i class="fa fa-navicon fa-2x"></i></span>
@@ -50,8 +51,8 @@
 		<div class="main-header" ng-show="menuAtivo">
 			<div><a ui-sref="home">Cardápio</a></div>
 			<div><a ui-sref="novoItem">Novo item</a></div>
-			<div><a ng-if="!usuario.uid" ng-click="openModal()">Login</a></div>
-			<div><img src="{{usuario.img}}"><a ng-if="usuario.uid" ng-click="logoff()">Sair</a></div>
+			<div><a ng-if="!usuario.uid" ng-click="login()">Login</a></div>
+			<div><a ng-if="usuario.uid" ng-click="logoff()">({{usuario.nome}}) Sair</a></div>
 		</div>
 	</header>
 
