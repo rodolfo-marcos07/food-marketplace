@@ -1,4 +1,4 @@
-appModule.controller('cardapioController', function($scope, $rootScope, cardapioService, CATEGORIAS, ORDEM){
+appModule.controller('cardapioController', function($scope, $rootScope, cardapioService, loadingFactory, CATEGORIAS, ORDEM){
 	
 	var cardapio = $scope;
 	
@@ -10,6 +10,8 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 	$rootScope.ordem = null;
 	
 	function getItens(){
+
+		loadingFactory.loadingOn();
 		var q_obter = cardapioService.obter($rootScope.categoria, $rootScope.ordem);
 		// Once retorna os dados uma vez e desliga a escuta do database
 		q_obter.once('value', function(snapshot){
@@ -25,6 +27,7 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 				q_obter_img.then(function(urlImg){
 					value.imagem = urlImg;
 					$scope.itens.push(value);
+					loadingFactory.loadingOff();
 					cardapio.$apply();
 				});
 			});

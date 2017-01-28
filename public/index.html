@@ -23,8 +23,6 @@
 </head>
 <body ng-app="app08" ng-controller="mainCtrl">
 
-	<div login-Box ng-show="loading"></div>
-
 	<!-- Header -->
 	<header class="header">
 
@@ -44,7 +42,6 @@
 		<!-- Categorias -->
 		<div class="main-categoria" ng-show="categoriaAtivo">
 			<div ng-repeat="cat in categoriasOpt" ng-click="filtrar(cat.name);">{{cat.name}}</div>
-			<div>{{categoria}}</div>
 		</div>
 
 		<!-- Menu do header -->
@@ -58,6 +55,7 @@
 
 	<!-- Conteudo principal -->
 	<div class="main-content">
+		<div class="loading-box" ng-show="loading"><img src="assets/img/loading.jpg"></div> <!--  -->
 		<ui-view></ui-view>
 	</div>
 </body>

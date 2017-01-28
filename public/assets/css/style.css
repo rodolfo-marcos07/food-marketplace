@@ -14,6 +14,27 @@ header.header{
 	z-index: 999999;
 }
 
+.loading-box{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background: #fff;
+	z-index: 999999;
+	top: 50px;
+	opacity: 0.8;
+}
+
+.loading-box img{
+	display: block;
+	width: 30%;
+	top: 40%;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+	position: absolute;
+}
+
 .main-header{
 	display: block;
 	background: #ff4700;
