@@ -16,6 +16,7 @@
 	<script type="text/javascript" src="app/item/service/itemService.js"></script>
 	<link rel="stylesheet" href="assets/css/reset.css">
 	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/font-awesome/css/font-awesome.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title></title>
 </head>
@@ -23,10 +24,13 @@
 	<div login-Box ng-show="loading"></div>
 	<header class="header">
 		<div class="top-header">
-			<select>
-				<option>Opção 1</option>
-			</select>
-			<div class="menu-btn"></div>
+			<div class="header-categoria">
+				<span>Todas</span>
+				<span class="categoria-icon"><i class="fa fa-caret-down fa-3x"></i></span>
+			</div>
+			<div class="menu-btn">
+				<i class="fa fa-navicon fa-2x"></i></span>
+			</div>
 		</div>
 		<div class="main-header">
 			<a ui-sref="home">Cardápio</a>

@@ -10,6 +10,47 @@ header.header{
 	z-index: 999999;
 }
 
+.main-header{
+	display: none;
+}
+
+.header-categoria{
+	display: block;
+	background: #fff;
+	width: 160px;
+	padding: 8px;
+	position: absolute;
+	border-radius: 3px;
+	top: 8px;
+	left: 8px;
+}
+
+.categoria-icon{
+	position: absolute;
+	display: block;
+	top: -7px;
+	right: 9px;
+}
+
+.categoria-icon i{
+	color: #ff4700;
+}
+
+.menu-btn{
+	position: absolute;
+	right: 14px;
+	top: 5px;
+	border: solid #fff 1px;
+	padding: 3px;
+	border-radius: 3px;
+	width: 40px;
+	text-align: center;
+}
+
+.menu-btn i{
+	color: #fff;
+}
+
 .main-content{
 	display: block;
 	margin-top: 40px;
