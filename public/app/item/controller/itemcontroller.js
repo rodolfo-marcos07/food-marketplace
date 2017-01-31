@@ -3,12 +3,6 @@ appModule.controller('novoItemController', function($scope, itemService, loading
 	$scope.item = {};
 	$scope.msgUpload = "Selecione uma imagem";
 	$scope.categoriasOpt = CATEGORIAS;
-	
-	$scope.file_changed = function(element) {
-		$scope.$apply(function(scope) {
-			var photofile = element.files[0];
-		});
-	};
 
 	$scope.selecionaImagem = function(){
 		document.getElementById('btnSelecionarImg').click();
@@ -17,7 +11,7 @@ appModule.controller('novoItemController', function($scope, itemService, loading
 	$scope.salvar = function(){
 		loadingFactory.loadingOn();
 		var timestamp = new Date().getTime();
-		itemService.salvar($scope.item.titulo, $scope.item.descricao, $scope.item.categoria, $scope.item.imagem, timestamp, $scope.item.preco)
+		itemService.salvar($scope.item.titulo, $scope.item.descricao, $scope.item.categoria, $scope.item.imagem, timestamp, $scope.item.price)
 			.then(function(){
 				loadingFactory.loadingOff();
 				$scope.$apply();
@@ -27,18 +21,26 @@ appModule.controller('novoItemController', function($scope, itemService, loading
 });
 
 // Editar Item
-appModule.controller('editarItemController', function($scope, $stateParams, itemService, loadingFactory, CATEGORIAS){	
+appModule.controller('editarItemController', function($scope, $stateParams, itemService, cardapioService, loadingFactory, CATEGORIAS){	
+	
+	$scope.categoriasOpt = CATEGORIAS;
 	
 	var idItem = $stateParams.itemId;
-
 	$scope.item = {};
-	$scope.categoriasOpt = CATEGORIAS;
 
 	var q_obter = itemService.obterItem(idItem);
 
 	// Once retorna os dados uma vez e desliga a escuta do database
 	q_obter.once('value', function(snapshot){
+		
 		$scope.item = snapshot.val();
+		$scope.item.price = parseInt($scope.item.price);
+
+		var q_obter_img = cardapioService.obterFilePath($scope.item.imagem);
+		q_obter_img.then(function(urlImg){
+			document.getElementById("imagemItem").setAttribute("src",urlImg);
+		});
+		
 		$scope.$apply();
 	});
 

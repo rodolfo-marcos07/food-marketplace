@@ -21,6 +21,30 @@ appModule.controller('mainCtrl', function($scope, $rootScope, loadingFactory, ca
 
 	main.categoriasOpt = CATEGORIAS;
 
+	firebase.auth().getRedirectResult().then(function(result) {
+		
+		// This gives you a Facebook Access Token. You can use it to access the Facebook API.
+		var token = result.credential.accessToken;
+		var user = result.user;
+
+		$rootScope.usuario.nome = user.displayName;
+		$rootScope.usuario.img = user.photoURL;
+		$rootScope.usuario.uid = user.uid;
+
+		$scope.$apply();
+
+	}).catch(function(error) {
+
+		var errorCode = error.code;
+		var errorMessage = error.message;
+		var email = error.email;
+		var credential = error.credential;
+
+		loadingFactory.loadingOff();
+		$scope.$apply();
+
+	});
+
 	$rootScope.logoff = function(){
 		firebase.auth().signOut().then(function() {
 			$rootScope.usuario = {};
@@ -33,30 +57,32 @@ appModule.controller('mainCtrl', function($scope, $rootScope, loadingFactory, ca
 	$rootScope.login = function(){
 
 		var provider = new firebase.auth.FacebookAuthProvider();
-		firebase.auth().signInWithPopup(provider).then(function(result) {
-			
-			// This gives you a Facebook Access Token. You can use it to access the Facebook API.
-			var token = result.credential.accessToken;
-			var user = result.user;
+		firebase.auth().signInWithRedirect(provider);
 
-			$rootScope.usuario.nome = user.displayName;
-			$rootScope.usuario.img = user.photoURL;
-			$rootScope.usuario.uid = user.uid;
+		// firebase.auth().signInWithPopup(provider).then(function(result) {
 			
-			dialog.close();
-			$scope.$apply();
+		// 	// This gives you a Facebook Access Token. You can use it to access the Facebook API.
+		// 	var token = result.credential.accessToken;
+		// 	var user = result.user;
 
-		}).catch(function(error) {
+		// 	$rootScope.usuario.nome = user.displayName;
+		// 	$rootScope.usuario.img = user.photoURL;
+		// 	$rootScope.usuario.uid = user.uid;
 			
-			// Handle Errors here.
-			var errorCode = error.code;
-			var errorMessage = error.message;
-			var email = error.email;
-			var credential = error.credential;
+		// 	dialog.close();
+		// 	$scope.$apply();
 
-			loadingFactory.loadingOff();
-			$scope.$apply();
-		});
+		// }).catch(function(error) {
+			
+		// 	// Handle Errors here.
+		// 	var errorCode = error.code;
+		// 	var errorMessage = error.message;
+		// 	var email = error.email;
+		// 	var credential = error.credential;
+
+		// 	loadingFactory.loadingOff();
+		// 	$scope.$apply();
+		// });
 	}
 
 	// Evento quando view é carregada
@@ -97,12 +123,12 @@ appModule.config(function($stateProvider, $urlRouterProvider) {
 });
 
 appModule.value('CATEGORIAS', [
-    {name: 'Carnes'},
-    {name: 'Doces'},
-    {name: 'Salgados'},
-    {name: 'Pratos Quentes'},
-    {name: 'Pratos Frios'},
-    {name: 'Todas'},
+	{name: 'Carnes'},
+	{name: 'Doces'},
+	{name: 'Salgados'},
+	{name: 'Pratos Quentes'},
+	{name: 'Pratos Frios'},
+	{name: 'Todas'},
 ]);
 
 appModule.value('ORDEM', [

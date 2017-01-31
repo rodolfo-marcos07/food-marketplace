@@ -5,7 +5,7 @@
 			<label>Titulo</label>
 			<input ng-model="item.titulo" class="" type="text">
 			<label>Preço</label>
-			<input ng-model="item.preco" class="" type="number">
+			<input ng-model="item.price" class="" type="number">
 			<label>Descrição</label>
 			<textarea ng-model="item.descricao" class="" type="text" rows= "3"></textarea>
 		</div>
@@ -15,11 +15,13 @@
 		</select>
 
 		<div class="item-seleciona-imagem" ng-click="selecionaImagem()">
-			<img src="assets/img/camera.png">
+			<img id="imagemItem" src="assets/img/camera.png">
 			<span>{{msgUpload}}</span>
 		</div>
 		
 		<input type="file" style="display:none" data-file="item.imagem" id="btnSelecionarImg"/>
+
+		<pre>{{item}}</pre>
 
 		<button ng-click="excluir()" class="edit-btn-excluir">
 			Excluir
