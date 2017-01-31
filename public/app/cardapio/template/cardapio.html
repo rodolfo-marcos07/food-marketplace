@@ -13,7 +13,7 @@
 </div> -->
 
 <div class="item-container">
-	<div class="item" ng-repeat="i in itens">
+	<div class="item" ng-repeat="i in itens" ui-sref="visualizarItem({itemId:i.id})">
 		<div class="item-imagem">
 			<img src="{{i.imagem}}">
 		</div>

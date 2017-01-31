@@ -101,6 +101,13 @@ appModule.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl: 'app/cardapio/template/cardapio.html'
 	}
 
+	var viewItemState = {
+		name: 'visualizarItem',
+		url: '/visualizarItem/{itemId}',
+		controller: 'visualizarItemController',
+		templateUrl: 'app/item/template/visualizar.html'
+	}
+
 	var newItemState = {
 		name: 'novoItem',
 		url: '/novoItem',
@@ -115,6 +122,7 @@ appModule.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl: 'app/item/template/item.html'
 	}
 
+	$stateProvider.state(viewItemState);
 	$stateProvider.state(editItemState);
 	$stateProvider.state(newItemState);
 	$stateProvider.state(homeState);

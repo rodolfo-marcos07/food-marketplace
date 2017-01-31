@@ -57,3 +57,27 @@ appModule.controller('editarItemController', function($scope, $stateParams, item
 			});
 	}
 });
+
+// Novo Item
+appModule.controller('visualizarItemController', function($scope, $stateParams, itemService, cardapioService, loadingFactory, CATEGORIAS){	
+		
+	var idItem = $stateParams.itemId;
+	$scope.item = {};
+
+	var q_obter = itemService.obterItem(idItem);
+
+	// Once retorna os dados uma vez e desliga a escuta do database
+	q_obter.once('value', function(snapshot){
+		
+		$scope.item = snapshot.val();
+		$scope.item.price = parseInt($scope.item.price);
+
+		var q_obter_img = cardapioService.obterFilePath($scope.item.imagem);
+		q_obter_img.then(function(urlImg){
+			document.getElementById("imagemItem").setAttribute("src",urlImg);
+		});
+		
+		$scope.$apply();
+	});
+
+});
