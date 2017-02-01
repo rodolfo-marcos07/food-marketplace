@@ -1,0 +1,24 @@
+<div class="contato-container">
+	<div class="contato-visualizar-editar">
+		
+		<p class="contato-info">Mantenha os dados abaixo atualizados para que potenciais clientes possam entrar em contato com você.</p>
+		
+		<label>Número para contato (obrigatório)</label>
+		<input type="text" ng-model="contato.telefone">
+		
+		<label>Endereço (opcional)</label>
+		<input type="text" ng-model="contato.endereco">
+
+		<label>Fale um pouco sobre você</label>
+		<textarea rows="4" ng-model="contato.sobre"></textarea>
+
+		<p class="contato-aviso">Somente pessoas logadas podem ver seus dados.</p>
+
+		<pre>{{contato}}</pre>
+
+		<button ng-click="salvar()" class="edit-btn-salvar">
+			Salvar
+		</button>
+
+	</div>
+</div>

@@ -11,7 +11,7 @@ var config = {
 firebase.initializeApp(config);
 
 // Main Controller
-appModule.controller('mainCtrl', function($scope, $rootScope, loadingFactory, cardapioService, CATEGORIAS){
+appModule.controller('mainCtrl', function($scope, $rootScope, loadingFactory, cardapioService, contatoService, CATEGORIAS){
 
 	var main = $scope;
 
@@ -31,6 +31,13 @@ appModule.controller('mainCtrl', function($scope, $rootScope, loadingFactory, ca
 		$rootScope.usuario.nome = user.displayName;
 		$rootScope.usuario.img = user.photoURL;
 		$rootScope.usuario.uid = user.uid;
+
+		// Cria uma entrada na relação contato, se não existir
+		contatoService.obter(user.uid).once('value').then(function(snapshot){
+			if(!snapshot.exists()){
+				contatoService.salvar(user.uid, {endereco:"",sobre:"",telefone:""});
+			}
+		});
 
 		$scope.$apply();
 
@@ -104,6 +111,13 @@ appModule.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl: 'app/cardapio/template/cardapio.html'
 	}
 
+	var contatoState = {
+		name: 'contato',
+		url: '/contato/{userId}',
+		controller: 'contatoController',
+		templateUrl: 'app/contato/template/contato.html'
+	}
+
 	var viewItemState = {
 		name: 'visualizarItem',
 		url: '/visualizarItem/{itemId}',
@@ -125,6 +139,7 @@ appModule.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl: 'app/item/template/item.html'
 	}
 
+	$stateProvider.state(contatoState);
 	$stateProvider.state(viewItemState);
 	$stateProvider.state(editItemState);
 	$stateProvider.state(newItemState);
