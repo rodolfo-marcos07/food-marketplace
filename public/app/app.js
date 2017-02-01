@@ -21,6 +21,7 @@ appModule.controller('mainCtrl', function($scope, $rootScope, loadingFactory, ca
 
 	main.categoriasOpt = CATEGORIAS;
 
+	// Se a página foi chamada no redirect do login, obtém os dados do usuário
 	firebase.auth().getRedirectResult().then(function(result) {
 		
 		// This gives you a Facebook Access Token. You can use it to access the Facebook API.
@@ -88,6 +89,8 @@ appModule.controller('mainCtrl', function($scope, $rootScope, loadingFactory, ca
 	// Evento quando view é carregada
 	$rootScope.$on('$viewContentLoaded', function(event){
 		$rootScope.menuAtivo = false;
+		// $rootScope.$apply()
+		// document.getElementsByClassName("main-header")[0].style.display = 'none';
 	});
 });
 

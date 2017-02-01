@@ -152,7 +152,9 @@ header.header{
 }
 
 .item-container .item-imagem img{
-	width: 100%;
+	max-width: 100%;
+	margin: 0 auto;
+	height: 250px;
 	display: block;
 }
 
@@ -198,7 +200,7 @@ header.header{
 	top: 13px;
 }
 
-.item-edicao{
+.item-edicao, .item-visualizar{
     display: block;
     box-sizing: border-box;
     margin: 0 auto;
@@ -214,6 +216,67 @@ header.header{
 .item-edit-container{
 	display: block;
     background: #f5f5f5;
+}
+
+.item-visualizar .item-imagem{
+	width: 100%;
+	box-sizing: border-box;
+	display: block;
+}
+
+.item-visualizar .item-imagem img{
+	width: 100%;
+	display: block;
+}
+
+.item-visualizar .item-imagem .imagem-data{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	color: #3c3c3c;
+	padding: 5px;
+	background: rgba(255, 255, 255, 0.84);
+}
+
+.item-visualizar .item-dados h4{
+	font-size: 20px;
+	margin-top: 35px;
+	margin-bottom: 20px;
+	color: #5f5f5f;
+	font-weight: normal;
+	color: #5f5f5f;
+}
+
+.item-visualizar .item-dados p{
+	margin-bottom: 20px;
+	color: #5f5f5f;
+}
+
+.item-visualizar .item-postagem{
+	position: relative;
+	display: block;
+	height: 50px;
+}
+
+.item-visualizar .item-postagem .item-user{
+	position: absolute;
+	left: 0px;
+	color: #5f5f5f;
+}
+
+.item-visualizar .item-postagem .item-preco{
+	position: absolute;
+	right: 0px;
+	color: #5f5f5f;
+}
+
+.item-contato p{
+	background: #ff4700;
+	color: #fff;
+	padding: 13px;
+	box-sizing: border-box;
+	border-radius: 11px;
+	font-weight: bold;
 }
 
 .item-input label{

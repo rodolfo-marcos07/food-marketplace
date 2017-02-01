@@ -64,6 +64,7 @@ appModule.controller('visualizarItemController', function($scope, $stateParams, 
 	var idItem = $stateParams.itemId;
 	$scope.item = {};
 
+	loadingFactory.loadingOn();
 	var q_obter = itemService.obterItem(idItem);
 
 	// Once retorna os dados uma vez e desliga a escuta do database
@@ -74,7 +75,10 @@ appModule.controller('visualizarItemController', function($scope, $stateParams, 
 
 		var q_obter_img = cardapioService.obterFilePath($scope.item.imagem);
 		q_obter_img.then(function(urlImg){
-			document.getElementById("imagemItem").setAttribute("src",urlImg);
+			$scope.item.imagem = urlImg;
+			loadingFactory.loadingOff();
+			$scope.$apply();
+			// document.getElementById("imagemItem").setAttribute("src",urlImg);
 		});
 		
 		$scope.$apply();
