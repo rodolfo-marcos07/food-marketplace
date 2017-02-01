@@ -9,9 +9,12 @@ appModule.factory('cardapioService', function($http, $rootScope, itemService){
 
 	var service = {
 		up: function(key, categoria, rating){
+
 			var updates = {};
+
 			updates['/itens/'+key+'/rating'] = rating;
 			updates['/categorias/'+categoria+"/"+key+'/rating'] = rating;
+
 			return database.ref().update(updates);
 		},
 		obter: function(categoria, ordem){

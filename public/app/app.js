@@ -139,11 +139,20 @@ appModule.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl: 'app/item/template/item.html'
 	}
 
+	var itemUsuario = {
+		name: 'itemUsuario',
+		url: '/itemusuario/{userId}',
+		controller: 'ItemUsuarioController',
+		templateUrl: 'app/item/template/itemusuario.html'
+	}
+
+
 	$stateProvider.state(contatoState);
 	$stateProvider.state(viewItemState);
 	$stateProvider.state(editItemState);
 	$stateProvider.state(newItemState);
 	$stateProvider.state(homeState);
+	$stateProvider.state(itemUsuario);
 	$urlRouterProvider.otherwise("/");
 
 });
@@ -163,3 +172,16 @@ appModule.value('ORDEM', [
 	{name: 'Preço Menor', value: 'Novos'},
 	{name: 'Preço Maior', value: 'Novos'}
 ]);
+
+// Obter data
+function dataAtualFormatada(){
+	var data = new Date();
+	var dia = data.getDate();
+	if (dia.toString().length == 1)
+		dia = "0"+dia;
+	var mes = data.getMonth()+1;
+	if (mes.toString().length == 1)
+		mes = "0"+mes;
+	var ano = data.getFullYear();  
+	return dia+"/"+mes+"/"+ano;
+}

@@ -85,3 +85,34 @@ appModule.controller('visualizarItemController', function($scope, $stateParams, 
 	});
 
 });
+
+// Item por usuario
+appModule.controller('ItemUsuarioController', function($scope, $stateParams, itemService, cardapioService, loadingFactory, CATEGORIAS){	
+		
+	var userId = $stateParams.userId;
+
+	$scope.itens = [];
+
+	loadingFactory.loadingOn();
+
+	var q_obter = itemService.obterUsuario(userId);
+	// Once retorna os dados uma vez e desliga a escuta do database
+	q_obter.once('value', function(snapshot){
+		snapshot.forEach(function(item){
+			
+			var keyItem = item.key;
+			var value = item.val();
+			value.id = keyItem;
+
+			var q_obter_img = cardapioService.obterFilePath(value.imagem);
+			
+			// Obtém caminho de download da imagem
+			q_obter_img.then(function(urlImg){
+				value.imagem = urlImg;
+				$scope.itens.push(value);
+				loadingFactory.loadingOff();
+				$scope.$apply();
+			});
+		});
+	});
+});

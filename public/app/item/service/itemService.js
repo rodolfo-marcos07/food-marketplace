@@ -9,6 +9,7 @@ appModule.factory('itemService', function($http, $rootScope){
 
 	var service = {
 		salvar: function(tit, desc, cat, file, tt, preco){
+			
 			// Get the key when inserting
 			var key = database.ref().child('itens').push().key;
 			// Get reference for image
@@ -25,22 +26,29 @@ appModule.factory('itemService', function($http, $rootScope){
 				categoria: cat,
 				rating: 0,
 				timestamp: tt,
+				data: dataAtualFormatada(),
 				price: preco,
 				usuario: {
 					name: $rootScope.usuario.nome,
-					id: $rootScope.usuario.uid
+					id: $rootScope.usuario.uid,
+					contato: "99-99872011"
 				}
 			};
 
-			// Insere na categoria Fan-out
-			updates['/categorias/'+cat+"/"+key] = toSave;
+			// Fan-out multiplas inserções
 			updates['/itens/'+key] = toSave;
+			updates['/categorias/'+cat+"/"+key] = toSave;
+			updates['/useritem/'+item.usuario.id+'/'+key] = toSave;
+
 			return database.ref().update(updates);
 		},
 		delete: function(item, key){
+			
 			var updates = {};
-			updates['/categorias/'+item.categoria+"/"+key] = null;
+			
 			updates['/itens/'+key] = null;
+			updates['/categorias/'+item.categoria+"/"+key] = null;
+			updates['/useritem/'+item.usuario.id+'/'+key] = null;
 
 			var imgRef = storage.ref(item.imagem);
 			imgRef.delete().then(function(){}).catch(function(error) {
@@ -50,13 +58,25 @@ appModule.factory('itemService', function($http, $rootScope){
 			return database.ref().update(updates);
 		},
 		update: function(item, key){
+			
 			var updates = {};
-			updates['/categorias/'+item.categoria+"/"+key] = item;
+			
 			updates['/itens/'+key] = item;
+			updates['/categorias/'+item.categoria+"/"+key] = item;
+			updates['/useritem/'+item.usuario.id+'/'+key] = item;
+
 			return database.ref().update(updates);
 		},
-		obterItem: function(itemId){		
+		obterItem: function(itemId){	
+
 			return database.ref('itens/' + itemId);
+			
+		},
+		obterUsuario: function(userId){
+
+			var itensRef = database.ref('/useritem/' + userId);
+			return itensRef;
+
 		}
 	};
 	return service;

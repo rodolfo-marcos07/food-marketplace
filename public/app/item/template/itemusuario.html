@@ -1,0 +1,19 @@
+<div class="item-container">
+	<div class="item" ng-repeat="i in itens" ui-sref="visualizarItem({itemId:i.id})">
+		<div class="item-imagem">
+			<img src="{{i.imagem}}">
+		</div>
+		<div class="item-content">
+			<h4>{{i.titulo}}</h4>
+			<span class="item-data">12/12/2017</span>
+			<div class="center">
+				<p>Postado por <span>{{i.usuario.name}}</span></p>
+				<p>R${{i.price}}</p>
+				<span class="item-rating">{{i.rating}}</span>
+			</div>
+			<a ui-sref="editarItem({itemId:i.id})" class="item-edit">
+				<i class="fa fa-pencil fa-2x"></i>
+			</a>
+		</div>
+	</div>
+</div>
