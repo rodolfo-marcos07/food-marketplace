@@ -25,6 +25,14 @@
 			
 		</div>
 
+		<button ng-click="excluir()" class="edit-btn-excluir" ng-if="item.usuario.id == usuario.uid">
+			Excluir
+		</button>
+
+		<button ng-click="salvar()" class="edit-btn-salvar" ng-if="item.usuario.id == usuario.uid">
+			Editar
+		</button>
+
 
 <!-- 
 		<div class="item-input">
