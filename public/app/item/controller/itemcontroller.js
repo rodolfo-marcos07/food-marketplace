@@ -9,6 +9,12 @@ appModule.controller('novoItemController', function($scope, itemService, loading
 	}
 	
 	$scope.salvar = function(){
+
+		if($scope.formularioItem.$invalid){
+			alert("Preencha os campos");
+			return;
+		}
+
 		loadingFactory.loadingOn();
 		var timestamp = new Date().getTime();
 		itemService.salvar($scope.item.titulo, $scope.item.descricao, $scope.item.categoria, $scope.item.imagem, timestamp, $scope.item.price)
@@ -45,23 +51,22 @@ appModule.controller('editarItemController', function($scope, $stateParams, item
 	});
 
 	$scope.salvar = function(){
+		
+		if($scope.formularioItem.$invalid){
+			alert("Invalido");
+			return;
+		}
+
 		itemService.update($scope.item, idItem);
 	}
 
-	$scope.excluir = function(){
-		loadingFactory.loadingOn();
-		itemService.delete($scope.item, idItem)
-			.then(function(){
-				loadingFactory.loadingOff();
-				$scope.$apply();
-			});
-	}
 });
 
-// Novo Item
+
 appModule.controller('visualizarItemController', function($scope, $stateParams, itemService, cardapioService, loadingFactory, CATEGORIAS){	
 		
 	var idItem = $stateParams.itemId;
+	$scope.itemId = idItem;
 	$scope.item = {};
 
 	loadingFactory.loadingOn();
@@ -83,6 +88,15 @@ appModule.controller('visualizarItemController', function($scope, $stateParams, 
 		
 		$scope.$apply();
 	});
+
+	$scope.excluir = function(){
+		loadingFactory.loadingOn();
+		itemService.delete($scope.item, idItem)
+			.then(function(){
+				loadingFactory.loadingOff();
+				$scope.$apply();
+			});
+	}
 
 });
 

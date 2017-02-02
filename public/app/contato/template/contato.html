@@ -1,24 +1,26 @@
 <div class="contato-container">
 	<div class="contato-visualizar-editar">
+		<form name="contatoItem" novalidate>
 		
-		<p class="contato-info">Mantenha os dados abaixo atualizados para que potenciais clientes possam entrar em contato com você.</p>
-		
-		<label>Número para contato (obrigatório)</label>
-		<input type="text" ng-model="contato.telefone">
-		
-		<label>Endereço (opcional)</label>
-		<input type="text" ng-model="contato.endereco">
+			<p class="contato-info">Mantenha os dados abaixo atualizados para que potenciais clientes possam entrar em contato com você.</p>
+			
+			<label>Número para contato (obrigatório)</label>
+			<input type="text" maxlength="20" ng-model="contato.telefone" required>
+			
+			<label>Endereço (opcional)</label>
+			<input type="text" maxlength="200" ng-model="contato.endereco">
 
-		<label>Fale um pouco sobre você</label>
-		<textarea rows="4" ng-model="contato.sobre"></textarea>
+			<label>Fale um pouco sobre você</label>
+			<textarea rows="4" maxlength="600" ng-model="contato.sobre"></textarea>
 
-		<p class="contato-aviso">Somente pessoas logadas podem ver seus dados.</p>
+			<p class="contato-aviso">Somente pessoas logadas podem ver seus dados.</p>
 
-		<pre>{{contato}}</pre>
+			<pre>{{contato}}</pre>
 
-		<button ng-click="salvar()" class="edit-btn-salvar">
-			Salvar
-		</button>
+			<button ng-click="salvar()" class="edit-btn-salvar">
+				Salvar
+			</button>
 
+		</form>
 	</div>
 </div>

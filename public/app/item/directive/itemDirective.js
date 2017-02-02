@@ -11,12 +11,15 @@ appModule.directive('file', function(){
 				// Reload image on view
 				var reader = new FileReader();
 				reader.onload = function(e){
+					
 					var imgBlob = e.target.result;
-					document.getElementById("imagemItem").setAttribute("src",imgBlob);
+					var img = document.getElementById("imagemItem");
+					img.setAttribute("src",imgBlob);
+
+					scope.$apply();
 				}
 
 				reader.readAsDataURL(event.target.files[0]);
-				scope.$apply();
 			});
 		}
 	};

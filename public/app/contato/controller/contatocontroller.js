@@ -11,7 +11,10 @@ appModule.controller('contatoController', function($scope, loadingFactory, conta
 	});
 
 	$scope.salvar = function(){
-		contatoService.update(userid, $scope.contato);
+		if($scope.contatoItem.$invalid){
+			alert("Preencha todos os campos");
+		}
+		// contatoService.update(userid, $scope.contato);
 	}
 
 });

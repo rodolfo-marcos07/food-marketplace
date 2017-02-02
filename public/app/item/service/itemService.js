@@ -37,8 +37,8 @@ appModule.factory('itemService', function($http, $rootScope){
 
 			// Fan-out multiplas inserções
 			updates['/itens/'+key] = toSave;
-			updates['/categorias/'+cat+"/"+key] = toSave;
-			updates['/useritem/'+item.usuario.id+'/'+key] = toSave;
+			updates['/categorias/'+key] = toSave;
+			updates['/useritem/'+$rootScope.usuario.uid+'/'+key] = toSave;
 
 			return database.ref().update(updates);
 		},
@@ -50,7 +50,7 @@ appModule.factory('itemService', function($http, $rootScope){
 			updates['/categorias/'+item.categoria+"/"+key] = null;
 			updates['/useritem/'+item.usuario.id+'/'+key] = null;
 
-			var imgRef = storage.ref(item.imagem);
+			var imgRef = storage.refFromURL(item.imagem);
 			imgRef.delete().then(function(){}).catch(function(error) {
 				console.log(error);
 			});
@@ -68,15 +68,11 @@ appModule.factory('itemService', function($http, $rootScope){
 			return database.ref().update(updates);
 		},
 		obterItem: function(itemId){	
-
 			return database.ref('itens/' + itemId);
-			
 		},
 		obterUsuario: function(userId){
-
 			var itensRef = database.ref('/useritem/' + userId);
 			return itensRef;
-
 		}
 	};
 	return service;

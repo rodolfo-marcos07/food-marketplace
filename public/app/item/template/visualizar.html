@@ -29,7 +29,7 @@
 			Excluir
 		</button>
 
-		<button ng-click="salvar()" class="edit-btn-salvar" ng-if="item.usuario.id == usuario.uid">
+		<button ui-sref="editarItem({itemId:itemId})" class="edit-btn-salvar" ng-if="item.usuario.id == usuario.uid">
 			Editar
 		</button>
 
