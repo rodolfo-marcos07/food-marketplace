@@ -98,9 +98,15 @@ appModule.controller('mainCtrl', function($scope, $rootScope, loadingFactory, ca
 	// Evento quando view é carregada
 	$rootScope.$on('$viewContentLoaded', function(event){
 		$rootScope.menuAtivo = false;
+		$rootScope.erroAtivo = false;
+		$rootScope.categoriaAtivo = false;
 		// $rootScope.$apply()
 		// document.getElementsByClassName("main-header")[0].style.display = 'none';
 	});
+
+	$rootScope.btnMenu = function(){
+		$rootScope.menuAtivo = !$rootScope.menuAtivo;
+	}
 
 	$rootScope.fecharErro = function(){
 		$rootScope.erroAtivo = false;

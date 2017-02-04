@@ -36,7 +36,7 @@
 			</div>
 			<img class="img-usuario" src="{{usuario.img}}" ng-if="usuario.uid && menuAtivo">
 			<h4 ng-if="menuAtivo">Opções</h4>
-			<div class="menu-btn" ng-click="menuAtivo=!menuAtivo">
+			<div class="menu-btn" ng-click="btnMenu()">
 				<i class="fa fa-navicon fa-2x"></i></span>
 			</div>
 		</div>
@@ -48,9 +48,9 @@
 
 		<!-- Menu do header -->
 		<div class="main-header" ng-show="menuAtivo">
+			<div><a ng-click="login()" ng-if="!usuario.uid">Login</a></div>
 			<div><a ui-sref="home">Cardápio</a></div>
 			<div><a ng-if="usuario.uid" ui-sref="novoItem">Novo item</a></div>
-			<div><a ng-if="!usuario.uid" ng-click="login()">Login</a></div>
 			<div><a ui-sref="itemUsuario({userId:usuario.uid})" ng-if="usuario.uid">Meus itens</a></div>
 			<div><a ui-sref="contato({userId:usuario.uid})" ng-if="usuario.uid">Meus dados</a></div>
 			<div><a ng-if="usuario.uid" ng-click="logoff()">({{usuario.nome}}) Sair</a></div>

@@ -261,6 +261,10 @@ header.header{
 	display: block;
 }
 
+.item-visualizar .item-contato{
+	margin-bottom: 30px;
+}
+
 .item-visualizar .item-imagem .imagem-data{
 	position: absolute;
 	top: 0px;
@@ -304,13 +308,26 @@ header.header{
 .item-visualizar .item-postagem .item-user{
 	position: absolute;
 	left: 0px;
-	color: #5f5f5f;
+	color: #ff4700;
+	text-decoration: underline;
 }
 
 .item-visualizar .item-postagem .item-preco{
 	position: absolute;
 	right: 0px;
 	color: #5f5f5f;
+}
+
+.contato-footer{
+	position: fixed;
+	bottom: 0px;
+	padding: 17px;
+	background: #fff;
+	border-top: #ccc solid 1px;
+	color: #3e3e3e;
+	font-weight: normal;
+	width: 100%;
+	box-sizing: border-box;
 }
 
 .item-contato p{
@@ -388,6 +405,8 @@ select.item-categoria{
 	border-radius: 5px;
 	padding: 10px;
 	border: none;
+	font-weight: normal;
+	font-size: 16px;
 }
 
 .edit-btn-salvar{
