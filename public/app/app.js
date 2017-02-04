@@ -17,6 +17,8 @@ appModule.controller('mainCtrl', function($scope, $rootScope, loadingFactory, ca
 
 	$rootScope.menuAtivo = false;
 	$rootScope.categoriaAtivo = false;
+	$rootScope.erroAtivo = false;
+	$rootScope.mensagemErro = "";
 	$rootScope.usuario = {};
 
 	main.categoriasOpt = CATEGORIAS;
@@ -99,6 +101,10 @@ appModule.controller('mainCtrl', function($scope, $rootScope, loadingFactory, ca
 		// $rootScope.$apply()
 		// document.getElementsByClassName("main-header")[0].style.display = 'none';
 	});
+
+	$rootScope.fecharErro = function(){
+		$rootScope.erroAtivo = false;
+	}
 });
 
 // UI-Router

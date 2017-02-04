@@ -46,6 +46,37 @@ header.header{
 	box-sizing: border-box;
 }
 
+.error-header{
+	display: block;
+	background: #ffffff;
+	position: absolute;
+	top: 50px;
+	width: 100%;
+	padding: 18px;
+	box-sizing: border-box;
+	-webkit-box-shadow: 0px 27px 25px -14px rgba(0,0,0,0.56);
+	-moz-box-shadow: 0px 27px 25px -14px rgba(0,0,0,0.56);
+	box-shadow: 0px 27px 25px -14px rgba(0,0,0,0.56);
+}
+
+.error-header p{
+
+}
+
+.error-header span{
+	background: #ff4700;
+	position: absolute;
+	top: 12px;
+	right: 20px;
+	width: 30px;
+	height: 30px;
+	border-radius: 15px;
+	line-height: 24px;
+	font-size: 24px;
+	color: #fff;
+	text-align: center;
+}
+
 .main-header div a{
 	color: #fff;
 	text-decoration: none;
@@ -132,7 +163,7 @@ header.header{
 	position: relative;
 }
 
-.item-container{
+.item-container, .contato-container{
 	display: block;
 	background: #f5f5f5;
 }
@@ -201,7 +232,7 @@ header.header{
 	top: 13px;
 }
 
-.item-edicao, .item-visualizar{
+.item-edicao, .item-visualizar, .contato-visualizar-editar{
     display: block;
     box-sizing: border-box;
     margin: 0 auto;
@@ -362,4 +393,35 @@ select.item-categoria{
 .edit-btn-salvar{
 	background: #ff4700;
 	color: #fff;
+	font-weight: normal;
+	font-size: 16px;
+}
+
+.contato-info{
+	font-size: 17px;
+	margin-bottom: 31px;
+}
+
+.contato-visualizar-editar label{
+	display: block;
+	color: #ff4700;
+	font-size: 16px;
+	margin-top: 22px;
+}
+
+.contato-visualizar-editar input, .contato-visualizar-editar textarea{
+	display: block;
+	width: 100%;
+	border: #ccc solid 1px;
+	padding: 10px;
+	box-sizing: border-box;
+	border-radius: 8px;
+	margin-top: 6px;
+	font-size: 16px;
+} 
+
+.contato-visualizar-editar .contato-aviso{
+	color: #ff4700;
+	margin-bottom: 10px;
+	margin-top: 100px;
 }

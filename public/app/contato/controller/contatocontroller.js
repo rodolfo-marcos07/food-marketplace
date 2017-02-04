@@ -1,4 +1,4 @@
-appModule.controller('contatoController', function($scope, loadingFactory, contatoService, $stateParams){
+appModule.controller('contatoController', function($scope, loadingFactory, contatoService, $stateParams, $rootScope){
 
 	// Colocar loading
 	var userid = $stateParams.userId;
@@ -12,9 +12,11 @@ appModule.controller('contatoController', function($scope, loadingFactory, conta
 
 	$scope.salvar = function(){
 		if($scope.contatoItem.$invalid){
-			alert("Preencha todos os campos");
+			$rootScope.erroAtivo = true;
+			$rootScope.mensagemErro = "Preencha todos os campos obrigatórios";
+			return;
 		}
-		// contatoService.update(userid, $scope.contato);
+		contatoService.update(userid, $scope.contato);
 	}
 
 });

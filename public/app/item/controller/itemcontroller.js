@@ -1,4 +1,4 @@
-appModule.controller('novoItemController', function($scope, itemService, loadingFactory, CATEGORIAS){
+appModule.controller('novoItemController', function($scope, $rootScope, itemService, loadingFactory, CATEGORIAS){
 	
 	$scope.item = {};
 	$scope.msgUpload = "Selecione uma imagem";
@@ -11,7 +11,8 @@ appModule.controller('novoItemController', function($scope, itemService, loading
 	$scope.salvar = function(){
 
 		if($scope.formularioItem.$invalid){
-			alert("Preencha os campos");
+			$rootScope.erroAtivo = true;
+			$rootScope.mensagemErro = "Preencha todos os campos obrigatórios";
 			return;
 		}
 

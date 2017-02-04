@@ -17,7 +17,7 @@
 	<script type="text/javascript" src="app/contato/controller/contatocontroller.js"></script>
 	<script type="text/javascript" src="app/contato/service/contatoservice.js"></script>
 	<link rel="stylesheet" href="assets/css/reset.css">
-	<!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+	<link rel="stylesheet" href="assets/css/style.css">
 	<link rel="stylesheet" href="assets/css/font-awesome/css/font-awesome.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,10 +49,17 @@
 		<!-- Menu do header -->
 		<div class="main-header" ng-show="menuAtivo">
 			<div><a ui-sref="home">Cardápio</a></div>
-			<div><a ui-sref="novoItem">Novo item</a></div>
+			<div><a ng-if="usuario.uid" ui-sref="novoItem">Novo item</a></div>
 			<div><a ng-if="!usuario.uid" ng-click="login()">Login</a></div>
+			<div><a ui-sref="itemUsuario({userId:usuario.uid})" ng-if="usuario.uid">Meus itens</a></div>
 			<div><a ui-sref="contato({userId:usuario.uid})" ng-if="usuario.uid">Meus dados</a></div>
 			<div><a ng-if="usuario.uid" ng-click="logoff()">({{usuario.nome}}) Sair</a></div>
+		</div>
+
+		<!-- Mensagem de erro -->
+		<div class="error-header" ng-show="erroAtivo">
+			<p>{{mensagemErro}}</p>
+			<span ng-click="fecharErro()">x</span>
 		</div>
 	</header>
 
