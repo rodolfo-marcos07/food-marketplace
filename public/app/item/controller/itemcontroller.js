@@ -1,4 +1,4 @@
-appModule.controller('novoItemController', function($scope, $rootScope, itemService, loadingFactory, CATEGORIAS){
+appModule.controller('novoItemController', function($scope, $state, $rootScope, itemService, loadingFactory, CATEGORIAS){
 	
 	$scope.item = {};
 	$scope.msgUpload = "Selecione uma imagem";
@@ -21,14 +21,14 @@ appModule.controller('novoItemController', function($scope, $rootScope, itemServ
 		itemService.salvar($scope.item.titulo, $scope.item.descricao, $scope.item.categoria, $scope.item.imagem, timestamp, $scope.item.price)
 			.then(function(){
 				loadingFactory.loadingOff();
-				$scope.$apply();
+				$state.go('itemUsuario', {userId: $rootScope.usuario.uid});
 			});
 	}
 
 });
 
 // Editar Item
-appModule.controller('editarItemController', function($scope, $stateParams, itemService, cardapioService, loadingFactory, CATEGORIAS){	
+appModule.controller('editarItemController', function($scope, $rootScope, $state, $stateParams, itemService, cardapioService, loadingFactory, CATEGORIAS){	
 	
 	$scope.categoriasOpt = CATEGORIAS;
 	
@@ -58,13 +58,16 @@ appModule.controller('editarItemController', function($scope, $stateParams, item
 			return;
 		}
 
-		itemService.update($scope.item, idItem);
+		itemService.update($scope.item, idItem)
+			.then(function(){
+				$state.go('itemUsuario', {userId: $rootScope.usuario.uid});
+			});
 	}
 
 });
 
 
-appModule.controller('visualizarItemController', function($scope, $stateParams, itemService, cardapioService, loadingFactory, CATEGORIAS){	
+appModule.controller('visualizarItemController', function($scope, $rootScope, $state, $stateParams, itemService, cardapioService, loadingFactory, CATEGORIAS){	
 		
 	var idItem = $stateParams.itemId;
 	$scope.itemId = idItem;
@@ -95,14 +98,14 @@ appModule.controller('visualizarItemController', function($scope, $stateParams, 
 		itemService.delete($scope.item, idItem)
 			.then(function(){
 				loadingFactory.loadingOff();
-				$scope.$apply();
+				$state.go('itemUsuario', {userId: $rootScope.usuario.uid});
 			});
 	}
 
 });
 
 // Item por usuario
-appModule.controller('ItemUsuarioController', function($scope, $stateParams, itemService, cardapioService, loadingFactory, CATEGORIAS){	
+appModule.controller('ItemUsuarioController', function($scope, $rootScope, $stateParams, itemService, cardapioService, loadingFactory, CATEGORIAS){	
 		
 	var userId = $stateParams.userId;
 

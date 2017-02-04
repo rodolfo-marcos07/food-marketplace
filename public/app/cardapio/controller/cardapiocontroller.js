@@ -15,6 +15,13 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 		var q_obter = cardapioService.obter($rootScope.categoria, $rootScope.ordem);
 		// Once retorna os dados uma vez e desliga a escuta do database
 		q_obter.once('value', function(snapshot){
+
+			if(!snapshot.length){
+				loadingFactory.loadingOff();
+				cardapio.$apply();
+				return;
+			}
+
 			snapshot.forEach(function(item){
 				
 				var keyItem = item.key;

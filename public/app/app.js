@@ -65,34 +65,8 @@ appModule.controller('mainCtrl', function($scope, $rootScope, loadingFactory, ca
 	}
 
 	$rootScope.login = function(){
-
 		var provider = new firebase.auth.FacebookAuthProvider();
 		firebase.auth().signInWithRedirect(provider);
-
-		// firebase.auth().signInWithPopup(provider).then(function(result) {
-			
-		// 	// This gives you a Facebook Access Token. You can use it to access the Facebook API.
-		// 	var token = result.credential.accessToken;
-		// 	var user = result.user;
-
-		// 	$rootScope.usuario.nome = user.displayName;
-		// 	$rootScope.usuario.img = user.photoURL;
-		// 	$rootScope.usuario.uid = user.uid;
-			
-		// 	dialog.close();
-		// 	$scope.$apply();
-
-		// }).catch(function(error) {
-			
-		// 	// Handle Errors here.
-		// 	var errorCode = error.code;
-		// 	var errorMessage = error.message;
-		// 	var email = error.email;
-		// 	var credential = error.credential;
-
-		// 	loadingFactory.loadingOff();
-		// 	$scope.$apply();
-		// });
 	}
 
 	// Evento quando view é carregada
@@ -100,8 +74,6 @@ appModule.controller('mainCtrl', function($scope, $rootScope, loadingFactory, ca
 		$rootScope.menuAtivo = false;
 		$rootScope.erroAtivo = false;
 		$rootScope.categoriaAtivo = false;
-		// $rootScope.$apply()
-		// document.getElementsByClassName("main-header")[0].style.display = 'none';
 	});
 
 	$rootScope.btnMenu = function(){

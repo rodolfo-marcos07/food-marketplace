@@ -16,6 +16,8 @@ appModule.controller('contatoController', function($scope, loadingFactory, conta
 			$rootScope.mensagemErro = "Preencha todos os campos obrigatórios";
 			return;
 		}
+		$scope.contato.nome = $rootScope.usuario.nome;
+		$scope.contato.imagem = $rootScope.usuario.img;
 		contatoService.update(userid, $scope.contato);
 	}
 
