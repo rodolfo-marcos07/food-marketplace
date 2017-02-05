@@ -14,6 +14,7 @@ appModule.factory('cardapioService', function($http, $rootScope, itemService){
 
 			updates['/itens/'+key+'/rating'] = rating;
 			updates['/categorias/'+categoria+"/"+key+'/rating'] = rating;
+			updates['/useritem/'+$rootScope.usuario.uid+'/'+key+'/rating'] = rating;
 
 			return database.ref().update(updates);
 		},

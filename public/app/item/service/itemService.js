@@ -30,13 +30,12 @@ appModule.factory('itemService', function($http, $rootScope){
 				price: preco,
 				usuario: {
 					name: $rootScope.usuario.nome,
-					id: $rootScope.usuario.uid,
-					contato: "99-99872011"
+					id: $rootScope.usuario.uid
 				}
 			};
 
 			// Fan-out multiplas inserções
-			// updates['/itens/'+key] = toSave;
+			updates['/itens/'+key] = toSave;
 			updates['/categorias/'+cat+'/'+key] = toSave;
 			updates['/useritem/'+$rootScope.usuario.uid+'/'+key] = toSave;
 

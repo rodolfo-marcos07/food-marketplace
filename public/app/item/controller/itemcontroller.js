@@ -1,4 +1,4 @@
-appModule.controller('novoItemController', function($scope, $state, $rootScope, itemService, loadingFactory, CATEGORIAS){
+appModule.controller('novoItemController', function($scope, $state, $timeout, $rootScope, itemService, loadingFactory, CATEGORIAS){
 	
 	$scope.item = {};
 	$scope.msgUpload = "Selecione uma imagem";
@@ -20,8 +20,10 @@ appModule.controller('novoItemController', function($scope, $state, $rootScope, 
 		var timestamp = new Date().getTime();
 		itemService.salvar($scope.item.titulo, $scope.item.descricao, $scope.item.categoria, $scope.item.imagem, timestamp, $scope.item.price)
 			.then(function(){
-				loadingFactory.loadingOff();
-				$state.go('itemUsuario', {userId: $rootScope.usuario.uid});
+				$timeout(function(){
+					loadingFactory.loadingOff();
+					$state.go('itemUsuario', {userId: $rootScope.usuario.uid});
+				}, 1000);
 			});
 	}
 
@@ -82,6 +84,9 @@ appModule.controller('visualizarItemController', function($scope, $rootScope, $s
 		$scope.item = snapshot.val();
 		$scope.item.price = parseInt($scope.item.price);
 
+		// visualiza ++
+		cardapioService.up(idItem, $scope.item.categoria, parseInt($scope.item.rating)+1);
+
 		var q_obter_img = cardapioService.obterFilePath($scope.item.imagem);
 		q_obter_img.then(function(urlImg){
 			$scope.item.imagem = urlImg;
@@ -122,7 +127,7 @@ appModule.controller('ItemUsuarioController', function($scope, $rootScope, $stat
 			cardapio.$apply();
 			return;
 		}
-		
+
 		snapshot.forEach(function(item){
 			
 			var keyItem = item.key;
