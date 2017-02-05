@@ -116,6 +116,13 @@ appModule.controller('ItemUsuarioController', function($scope, $rootScope, $stat
 	var q_obter = itemService.obterUsuario(userId);
 	// Once retorna os dados uma vez e desliga a escuta do database
 	q_obter.once('value', function(snapshot){
+
+		if(!snapshot.val()){
+			loadingFactory.loadingOff();
+			cardapio.$apply();
+			return;
+		}
+		
 		snapshot.forEach(function(item){
 			
 			var keyItem = item.key;

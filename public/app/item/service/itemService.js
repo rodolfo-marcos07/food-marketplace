@@ -36,8 +36,8 @@ appModule.factory('itemService', function($http, $rootScope){
 			};
 
 			// Fan-out multiplas inserções
-			updates['/itens/'+key] = toSave;
-			updates['/categorias/'+key] = toSave;
+			// updates['/itens/'+key] = toSave;
+			updates['/categorias/'+cat+'/'+key] = toSave;
 			updates['/useritem/'+$rootScope.usuario.uid+'/'+key] = toSave;
 
 			return database.ref().update(updates);

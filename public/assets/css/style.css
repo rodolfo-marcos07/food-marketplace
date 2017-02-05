@@ -106,7 +106,7 @@ header.header{
 
 .main-categoria{
 	background: #fff;
-/*	border-bottom: solid #000 1px;
+	/*	border-bottom: solid #000 1px;
 	border-left: solid #000 1px;
 	border-right: solid #000 1px;*/
 	position: absolute;
@@ -114,6 +114,7 @@ header.header{
 	left: 8px;
 	width: 176px;
 	padding: 5px;
+	z-index: 10;
 	box-sizing: border-box;
 }
 
