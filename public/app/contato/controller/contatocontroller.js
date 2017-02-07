@@ -2,6 +2,7 @@ appModule.controller('contatoController', function($scope, loadingFactory, conta
 
 	// Colocar loading
 	var userid = $stateParams.userId;
+	$scope.idUsuario = userid;
 	$rootScope.telaCorrente = "contato"
 	$rootScope.tituloTela = "Dados de contato";
 

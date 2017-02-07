@@ -122,7 +122,7 @@ appModule.controller('visualizarItemController', function($scope, $rootScope, $s
 });
 
 // Item por usuario
-appModule.controller('ItemUsuarioController', function($scope, $rootScope, $stateParams, itemService, cardapioService, loadingFactory, CATEGORIAS){	
+appModule.controller('ItemUsuarioController', function($scope, $rootScope, $stateParams, itemService, cardapioService, contatoService, loadingFactory, CATEGORIAS){	
 		
 	var userId = $stateParams.userId;
 	$scope.itens = [];
@@ -130,6 +130,11 @@ appModule.controller('ItemUsuarioController', function($scope, $rootScope, $stat
 	$rootScope.tituloTela = "Itens";
 
 	loadingFactory.loadingOn();
+
+	var dadosUser = contatoService.obter(userId);
+	dadosUser.once('value', function(snapUser){
+		$scope.nomeUsuario = snapUser.val().nome;
+	});
 
 	var q_obter = itemService.obterUsuario(userId);
 	// Once retorna os dados uma vez e desliga a escuta do database
