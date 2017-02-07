@@ -69,7 +69,7 @@ appModule.controller('editarItemController', function($scope, $rootScope, $state
 });
 
 
-appModule.controller('visualizarItemController', function($scope, $rootScope, $state, $stateParams, itemService, cardapioService, loadingFactory, CATEGORIAS){	
+appModule.controller('visualizarItemController', function($scope, $rootScope, $state, $stateParams, itemService, cardapioService, contatoService, loadingFactory, CATEGORIAS){	
 		
 	var idItem = $stateParams.itemId;
 	$scope.itemId = idItem;
@@ -93,6 +93,12 @@ appModule.controller('visualizarItemController', function($scope, $rootScope, $s
 			loadingFactory.loadingOff();
 			$scope.$apply();
 			// document.getElementById("imagemItem").setAttribute("src",urlImg);
+		});
+
+		// Obter dados do contato
+		var dadosUser = contatoService.obter($scope.item.usuario.id);
+		dadosUser.once('value', function(snapUser){
+			$scope.item.contato = snapUser.val().telefone;
 		});
 		
 		$scope.$apply();
