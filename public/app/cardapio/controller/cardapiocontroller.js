@@ -1,7 +1,7 @@
 appModule.controller('cardapioController', function($scope, $rootScope, cardapioService, loadingFactory, CATEGORIAS, ORDEM){
 	
 	var cardapio = $scope;
-	
+	$rootScope.telaCorrente = "cardapio";
 	cardapio.categoriasOpt = CATEGORIAS;
 	cardapio.ordemOpt = ORDEM;
 	cardapio.itens = [];

@@ -3,6 +3,8 @@ appModule.controller('novoItemController', function($scope, $state, $timeout, $r
 	$scope.item = {};
 	$scope.msgUpload = "Selecione uma imagem";
 	$scope.categoriasOpt = CATEGORIAS;
+	$rootScope.telaCorrente = "novoItem";
+	$rootScope.tituloTela = "Novo item";
 
 	$scope.selecionaImagem = function(){
 		document.getElementById('btnSelecionarImg').click();
@@ -33,6 +35,8 @@ appModule.controller('novoItemController', function($scope, $state, $timeout, $r
 appModule.controller('editarItemController', function($scope, $rootScope, $state, $stateParams, itemService, cardapioService, loadingFactory, CATEGORIAS){	
 	
 	$scope.categoriasOpt = CATEGORIAS;
+	$rootScope.telaCorrente = "editarItem";
+	$rootScope.tituloTela = "Editar item";
 	
 	var idItem = $stateParams.itemId;
 	$scope.item = {};
@@ -74,6 +78,8 @@ appModule.controller('visualizarItemController', function($scope, $rootScope, $s
 	var idItem = $stateParams.itemId;
 	$scope.itemId = idItem;
 	$scope.item = {};
+	$rootScope.telaCorrente = "visualizarItem";
+	$rootScope.tituloTela = "Visualização";
 
 	loadingFactory.loadingOn();
 	var q_obter = itemService.obterItem(idItem);
@@ -119,8 +125,9 @@ appModule.controller('visualizarItemController', function($scope, $rootScope, $s
 appModule.controller('ItemUsuarioController', function($scope, $rootScope, $stateParams, itemService, cardapioService, loadingFactory, CATEGORIAS){	
 		
 	var userId = $stateParams.userId;
-
 	$scope.itens = [];
+	$rootScope.telaCorrente = "itemUsuario";
+	$rootScope.tituloTela = "Itens";
 
 	loadingFactory.loadingOn();
 
