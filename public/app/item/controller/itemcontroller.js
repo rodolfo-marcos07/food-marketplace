@@ -3,6 +3,8 @@ appModule.controller('novoItemController', function($scope, $state, $timeout, $r
 	$scope.item = {};
 	$scope.msgUpload = "Selecione uma imagem";
 	$scope.categoriasOpt = CATEGORIAS;
+	$rootScope.telaCorrente = "novoItem";
+	$rootScope.tituloTela = "Novo item";
 
 	$scope.selecionaImagem = function(){
 		document.getElementById('btnSelecionarImg').click();
@@ -33,6 +35,8 @@ appModule.controller('novoItemController', function($scope, $state, $timeout, $r
 appModule.controller('editarItemController', function($scope, $rootScope, $state, $stateParams, itemService, cardapioService, loadingFactory, CATEGORIAS){	
 	
 	$scope.categoriasOpt = CATEGORIAS;
+	$rootScope.telaCorrente = "editarItem";
+	$rootScope.tituloTela = "Editar item";
 	
 	var idItem = $stateParams.itemId;
 	$scope.item = {};
@@ -60,6 +64,7 @@ appModule.controller('editarItemController', function($scope, $rootScope, $state
 			return;
 		}
 
+		loadingFactory.loadingOn();
 		itemService.update($scope.item, idItem)
 			.then(function(){
 				$state.go('itemUsuario', {userId: $rootScope.usuario.uid});
@@ -69,11 +74,13 @@ appModule.controller('editarItemController', function($scope, $rootScope, $state
 });
 
 
-appModule.controller('visualizarItemController', function($scope, $rootScope, $state, $stateParams, itemService, cardapioService, loadingFactory, CATEGORIAS){	
+appModule.controller('visualizarItemController', function($scope, $rootScope, $state, $stateParams, itemService, cardapioService, contatoService, loadingFactory, CATEGORIAS){	
 		
 	var idItem = $stateParams.itemId;
 	$scope.itemId = idItem;
 	$scope.item = {};
+	$rootScope.telaCorrente = "visualizarItem";
+	$rootScope.tituloTela = "Visualização";
 
 	loadingFactory.loadingOn();
 	var q_obter = itemService.obterItem(idItem);
@@ -94,6 +101,12 @@ appModule.controller('visualizarItemController', function($scope, $rootScope, $s
 			$scope.$apply();
 			// document.getElementById("imagemItem").setAttribute("src",urlImg);
 		});
+
+		// Obter dados do contato
+		var dadosUser = contatoService.obter($scope.item.usuario.id);
+		dadosUser.once('value', function(snapUser){
+			$scope.item.contato = snapUser.val().telefone;
+		});
 		
 		$scope.$apply();
 	});
@@ -110,13 +123,19 @@ appModule.controller('visualizarItemController', function($scope, $rootScope, $s
 });
 
 // Item por usuario
-appModule.controller('ItemUsuarioController', function($scope, $rootScope, $stateParams, itemService, cardapioService, loadingFactory, CATEGORIAS){	
+appModule.controller('ItemUsuarioController', function($scope, $rootScope, $stateParams, itemService, cardapioService, contatoService, loadingFactory, CATEGORIAS){	
 		
 	var userId = $stateParams.userId;
-
 	$scope.itens = [];
+	$rootScope.telaCorrente = "itemUsuario";
+	$rootScope.tituloTela = "Itens";
 
 	loadingFactory.loadingOn();
+
+	var dadosUser = contatoService.obter(userId);
+	dadosUser.once('value', function(snapUser){
+		$scope.nomeUsuario = snapUser.val().nome;
+	});
 
 	var q_obter = itemService.obterUsuario(userId);
 	// Once retorna os dados uma vez e desliga a escuta do database

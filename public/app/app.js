@@ -18,6 +18,7 @@ appModule.controller('mainCtrl', function($scope, $rootScope, loadingFactory, ca
 	$rootScope.menuAtivo = false;
 	$rootScope.categoriaAtivo = false;
 	$rootScope.erroAtivo = false;
+	$rootScope.telaCorrente = "";
 	$rootScope.mensagemErro = "";
 	$rootScope.usuario = {};
 
