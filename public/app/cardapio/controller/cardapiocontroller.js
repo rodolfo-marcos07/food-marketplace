@@ -8,6 +8,10 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 	
 	$rootScope.categoria = "Todas";
 	$rootScope.ordem = null;
+
+	var page = 0;
+	var pageItens = 5;
+	var listaItens = [];
 	
 	function getItens(){
 
@@ -28,20 +32,55 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 				var value = item.val();
 				value.id = keyItem;
 
-				var q_obter_img = cardapioService.obterFilePath(value.imagem);
+				listaItens.push(value);
+
+				// var q_obter_img = cardapioService.obterFilePath(value.imagem);
 				
-				// Obtém caminho de download da imagem
-				q_obter_img.then(function(urlImg){
-					value.imagem = urlImg;
-					$scope.itens.push(value);
-					loadingFactory.loadingOff();
-					cardapio.$apply();
-				});
+				// // Obtém caminho de download da imagem
+				// q_obter_img.then(function(urlImg){
+				// 	value.imagem = urlImg;
+				// 	$scope.itens.push(value);
+				// 	loadingFactory.loadingOff();
+				// 	cardapio.$apply();
+				// });
 			});
+
+			console.log(listaItens);
 		});
 	}
 
 	getItens();
+
+	$scope.carregar = function(){
+
+		loadingFactory.loadingOn();
+
+		var y = window.scrollY;
+		for (var i = page*pageItens; i < (page+1)*pageItens; i++) {
+			
+			if(i > listaItens.length) break;
+			var item = listaItens[i];
+			$scope.itens.push(item);
+			// var q_obter_img = cardapioService.obterFilePath(listaItens[i]);
+
+			// // Obtém caminho de download da imagem
+			// q_obter_img.then(function(urlImg){
+			// 	value.imagem = urlImg;
+			// 	$scope.itens.push(value);
+			// 	loadingFactory.loadingOff();
+			// 	cardapio.$apply();
+			// });
+
+		}
+
+		setTimeout(function() {
+			window.scrollTo(0, y);
+			loadingFactory.loadingOff();
+			cardapio.$apply();
+		}, 500);
+		page+=1;
+
+	}
 	
 	$rootScope.filtrar = function(categoria){
 		$rootScope.categoria = categoria;

@@ -19,7 +19,7 @@ appModule.factory('cardapioService', function($http, $rootScope, itemService){
 			return database.ref().update(updates);
 		},
 		obter: function(categoria, ordem){
-			var itensRef = database.ref('/itens/');
+			var itensRef = database.ref('/itens/').limitToLast(200);
 			if(categoria !== "Todas"){
 				itensRef = database.ref('/categorias/'+categoria);
 			}
