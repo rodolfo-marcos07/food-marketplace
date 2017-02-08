@@ -64,6 +64,7 @@ appModule.controller('editarItemController', function($scope, $rootScope, $state
 			return;
 		}
 
+		loadingFactory.loadingOn();
 		itemService.update($scope.item, idItem)
 			.then(function(){
 				$state.go('itemUsuario', {userId: $rootScope.usuario.uid});
