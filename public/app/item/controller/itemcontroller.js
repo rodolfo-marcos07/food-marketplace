@@ -85,7 +85,7 @@ appModule.controller('visualizarItemController', function($scope, $rootScope, $s
 		$scope.item.price = parseInt($scope.item.price);
 
 		// visualiza ++
-		cardapioService.up(idItem, $scope.item.categoria, parseInt($scope.item.rating)+1);
+		cardapioService.up(idItem, $scope.item.categoria, $scope.item.usuario.id, parseInt($scope.item.rating)+1);
 
 		var q_obter_img = cardapioService.obterFilePath($scope.item.imagem);
 		q_obter_img.then(function(urlImg){

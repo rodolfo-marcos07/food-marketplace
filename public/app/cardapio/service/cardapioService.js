@@ -8,13 +8,13 @@ appModule.factory('cardapioService', function($http, $rootScope, itemService){
 	var storageRef = storage.ref();
 
 	var service = {
-		up: function(key, categoria, rating){
+		up: function(key, categoria, idUsuario, rating){
 
 			var updates = {};
 
 			updates['/itens/'+key+'/rating'] = rating;
 			updates['/categorias/'+categoria+"/"+key+'/rating'] = rating;
-			updates['/useritem/'+$rootScope.usuario.uid+'/'+key+'/rating'] = rating;
+			updates['/useritem/'+idUsuario+'/'+key+'/rating'] = rating;
 
 			return database.ref().update(updates);
 		},
