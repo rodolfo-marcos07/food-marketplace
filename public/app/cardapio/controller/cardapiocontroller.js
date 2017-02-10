@@ -15,7 +15,7 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 	
 	function getItens(){
 
-		loadingFactory.loadingOn();
+		// loadingFactory.loadingOn();
 		var q_obter = cardapioService.obter($rootScope.categoria, $rootScope.ordem);
 		// Once retorna os dados uma vez e desliga a escuta do database
 		q_obter.once('value', function(snapshot){
@@ -58,7 +58,7 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 		var y = window.scrollY;
 		for (var i = page*pageItens; i < (page+1)*pageItens; i++) {
 			
-			if(i > listaItens.length) break;
+			if(i >= listaItens.length) break;
 			var item = listaItens[i];
 			$scope.itens.push(item);
 			// var q_obter_img = cardapioService.obterFilePath(listaItens[i]);

@@ -17,29 +17,36 @@ appModule.factory('itemService', function($http, $rootScope){
 			// Upload file
 			var uploadTask = imgRef.put(file);
 
-			// Prepare object to save on database
-			var updates = {};
-			var toSave = {
-				titulo:tit, 
-				descricao:desc, 
-				imagem:imgRef.fullPath, 
-				categoria: cat,
-				rating: 0,
-				timestamp: tt,
-				data: dataAtualFormatada(),
-				price: preco,
-				usuario: {
-					name: $rootScope.usuario.nome,
-					id: $rootScope.usuario.uid
-				}
-			};
+			return uploadTask.then(function(){
+				return imgRef.getDownloadURL().then(function(url){
 
-			// Fan-out multiplas inserções
-			updates['/itens/'+key] = toSave;
-			updates['/categorias/'+cat+'/'+key] = toSave;
-			updates['/useritem/'+$rootScope.usuario.uid+'/'+key] = toSave;
+					// Prepare object to save on database
+					var updates = {};
+					var toSave = {
+						titulo:tit, 
+						descricao:desc, 
+						imagem:url, 
+						categoria: cat,
+						rating: 0,
+						timestamp: tt,
+						data: dataAtualFormatada(),
+						price: preco,
+						usuario: {
+							name: $rootScope.usuario.nome,
+							id: $rootScope.usuario.uid
+						}
+					};
 
-			return database.ref().update(updates);
+					// Fan-out multiplas inserções
+					updates['/itens/'+key] = toSave;
+					updates['/categorias/'+cat+'/'+key] = toSave;
+					updates['/useritem/'+$rootScope.usuario.uid+'/'+key] = toSave;
+
+					return database.ref().update(updates);
+
+				});
+			});
+
 		},
 		delete: function(item, key){
 			

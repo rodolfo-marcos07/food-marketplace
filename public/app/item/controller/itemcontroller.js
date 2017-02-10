@@ -152,16 +152,19 @@ appModule.controller('ItemUsuarioController', function($scope, $rootScope, $stat
 			var keyItem = item.key;
 			var value = item.val();
 			value.id = keyItem;
+			$scope.itens.push(value);
+			loadingFactory.loadingOff();
+			$scope.$apply();
 
-			var q_obter_img = cardapioService.obterFilePath(value.imagem);
+			// var q_obter_img = cardapioService.obterFilePath(value.imagem);
 			
-			// Obtém caminho de download da imagem
-			q_obter_img.then(function(urlImg){
-				value.imagem = urlImg;
-				$scope.itens.push(value);
-				loadingFactory.loadingOff();
-				$scope.$apply();
-			});
+			// // Obtém caminho de download da imagem
+			// q_obter_img.then(function(urlImg){
+			// 	value.imagem = urlImg;
+			// 	$scope.itens.push(value);
+			// 	loadingFactory.loadingOff();
+			// 	$scope.$apply();
+			// });
 		});
 	});
 });
