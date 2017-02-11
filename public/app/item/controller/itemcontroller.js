@@ -94,18 +94,20 @@ appModule.controller('visualizarItemController', function($scope, $rootScope, $s
 		// visualiza ++
 		cardapioService.up(idItem, $scope.item.categoria, $scope.item.usuario.id, parseInt($scope.item.rating)+1);
 
-		var q_obter_img = cardapioService.obterFilePath($scope.item.imagem);
-		q_obter_img.then(function(urlImg){
-			$scope.item.imagem = urlImg;
-			loadingFactory.loadingOff();
-			$scope.$apply();
-			// document.getElementById("imagemItem").setAttribute("src",urlImg);
-		});
+		// var q_obter_img = cardapioService.obterFilePath($scope.item.imagem);
+		// q_obter_img.then(function(urlImg){
+		// 	$scope.item.imagem = urlImg;
+		// 	loadingFactory.loadingOff();
+		// 	$scope.$apply();
+		// 	// document.getElementById("imagemItem").setAttribute("src",urlImg);
+		// });
 
 		// Obter dados do contato
 		var dadosUser = contatoService.obter($scope.item.usuario.id);
 		dadosUser.once('value', function(snapUser){
 			$scope.item.contato = snapUser.val().telefone;
+			loadingFactory.loadingOff();
+			$scope.$apply();
 		});
 		
 		$scope.$apply();

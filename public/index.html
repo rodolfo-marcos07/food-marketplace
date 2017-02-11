@@ -30,6 +30,7 @@
 
 		<!-- Top Header -->
 		<div class="top-header">
+
 			<div class="header-categoria" ng-show='telaCorrente=="cardapio" && !menuAtivo' ng-click="categoriaAtivo=!categoriaAtivo">
 				<span>{{categoria}}</span>
 				<span class="categoria-icon"><i class="fa fa-caret-down fa-3x"></i></span>
@@ -37,9 +38,19 @@
 			<img class="img-usuario" src="{{usuario.img}}" ng-if="usuario.uid && menuAtivo">
 			<h4 ng-if="menuAtivo">Opções</h4>
 			<h4 ng-if='telaCorrente!=="cardapio" && !menuAtivo'>{{tituloTela}}</h4>
+
+			<!-- Menu Hamburger -->
 			<div class="menu-btn" ng-click="btnMenu()">
-				<i class="fa fa-navicon fa-2x"></i></span>
+				<div id="nav-icon3" ng-class="{'open': menuAtivo}">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+<!-- 				<i class="fa fa-navicon fa-2x" ng-show="!menuAtivo"></i></span>
+				<i class="fa fa-close fa-2x" ng-show="menuAtivo"></i></span> -->
 			</div>
+			<!-- Fim Menu -->
 		</div>
 
 		<!-- Categorias -->

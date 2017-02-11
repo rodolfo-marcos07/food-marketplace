@@ -9,6 +9,7 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 	$rootScope.categoria = "Todas";
 	$rootScope.ordem = null;
 
+	var fimItens = false;
 	var page = 0;
 	var pageItens = 5;
 	var listaItens = [];
@@ -23,6 +24,7 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 			if(!snapshot.val()){
 				loadingFactory.loadingOff();
 				cardapio.$apply();
+				fimItens = true;
 				return;
 			}
 
@@ -45,11 +47,36 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 				// });
 			});
 
-			console.log(listaItens);
+			$scope.carregar();
+
 		});
 	}
 
 	getItens();
+	scrollHandler();
+
+	function scrollHandler(){
+		window.addEventListener("scroll", function(){
+
+			if(fimItens) return;
+
+			var body = document.body,
+			html = document.documentElement;
+
+			var height = Math.max( body.scrollHeight, body.offsetHeight, 
+				html.clientHeight, html.scrollHeight, html.offsetHeight );
+
+			console.log(window.scrollY, window.innerHeight, height);
+			if(window.scrollY + window.innerHeight > height - 80){
+				$scope.carregar();
+			}
+
+		});
+		// window.scroll(function() {
+		// 	if($(window).scrollTop() + $(window).height() == $(document).height()) {
+		// 	}
+		// });
+	}
 
 	$scope.carregar = function(){
 
@@ -58,7 +85,11 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 		var y = window.scrollY;
 		for (var i = page*pageItens; i < (page+1)*pageItens; i++) {
 			
-			if(i >= listaItens.length) break;
+			if(i >= listaItens.length){ 
+				fimItens = true;
+				break; 
+			}
+			
 			var item = listaItens[i];
 			$scope.itens.push(item);
 			// var q_obter_img = cardapioService.obterFilePath(listaItens[i]);
