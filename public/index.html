@@ -30,9 +30,13 @@
 
 		<!-- Top Header -->
 		<div class="top-header">
-			<div class="filter-btn">
+
+			<div class="filter-btn" ng-click="categoriaAtivo=!categoriaAtivo">
 				<i class="fa fa-search fa-2x"></i>
 			</div>
+
+			<!-- Logo principal -->
+			<img src="assets/img/logo_small.jpg" class="logo">
 
 <!-- 			<div class="header-categoria" ng-show='telaCorrente=="cardapio" && !menuAtivo' ng-click="categoriaAtivo=!categoriaAtivo">
 				<span>{{categoria}}</span>
@@ -81,18 +85,8 @@
 	<!-- Conteudo principal -->
 	<div class="main-content">
 		<div class="loading-box" ng-show="loading"><img src="assets/img/loading.jpg"></div>
-		<div class="filter-modal">
-			<div class="filter-container">
-				<label>Categoria</label>
-				<span>Todos</span>
-				<label>Ordem</label>
-				<span>Mais novos</span>
-				<button class="edit-btn-salvar">
-					Filtrar
-				</button>
-			</div>
-		</div>
 		<ui-view></ui-view>
 	</div>
+
 </body>
 </html>

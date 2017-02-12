@@ -90,7 +90,15 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 		page+=1;
 
 	}
+
+	$scope.selecionaCategoria = function(){
+		document.getElementById('seletorCategoria').click();
+	}
 	
+	$scope.selecionaOrdem = function(){
+		document.getElementById('seletorOrdem').click();	
+	}
+
 	$rootScope.filtrar = function(categoria){
 		$rootScope.categoria = categoria;
 		$scope.itens = [];

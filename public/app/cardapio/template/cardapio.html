@@ -14,3 +14,19 @@
 		<span class="item-rating">{{i.rating}}<i class="fa fa-eye fa-1x"></i></span>
 	</div>
 </div>
+
+<div class="filter-modal" ng-show="categoriaAtivo">
+	<div class="filter-container">
+		<label>Categoria</label>
+		<span ng-click="selecionaCategoria()">Todos</span>
+		<label>Ordem</label>
+		<span ng-click="selecionaOrdem()">Mais novos</span>
+		<button class="edit-btn-salvar">
+			Filtrar
+		</button>
+		<select id="seletorCategoria" ng-options="item.name as item.name for item in categoriasOpt" ng-model="categoria"></select>
+		<select id="seletorOrdem" ng-options="item.name as item.name for item in ordemOpt" ng-model="ordem"></select>
+		<pre>{{categoria}}</pre>
+		<pre>{{ordem}}</pre>
+	</div>
+</div>
