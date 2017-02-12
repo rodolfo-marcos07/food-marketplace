@@ -36,17 +36,9 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 
 				listaItens.push(value);
 
-				// var q_obter_img = cardapioService.obterFilePath(value.imagem);
-				
-				// // Obtém caminho de download da imagem
-				// q_obter_img.then(function(urlImg){
-				// 	value.imagem = urlImg;
-				// 	$scope.itens.push(value);
-				// 	loadingFactory.loadingOff();
-				// 	cardapio.$apply();
-				// });
 			});
 
+			fimItens = false;
 			$scope.carregar();
 
 		});
@@ -72,10 +64,6 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 			}
 
 		});
-		// window.scroll(function() {
-		// 	if($(window).scrollTop() + $(window).height() == $(document).height()) {
-		// 	}
-		// });
 	}
 
 	$scope.carregar = function(){
@@ -92,16 +80,6 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 			
 			var item = listaItens[i];
 			$scope.itens.push(item);
-			// var q_obter_img = cardapioService.obterFilePath(listaItens[i]);
-
-			// // Obtém caminho de download da imagem
-			// q_obter_img.then(function(urlImg){
-			// 	value.imagem = urlImg;
-			// 	$scope.itens.push(value);
-			// 	loadingFactory.loadingOff();
-			// 	cardapio.$apply();
-			// });
-
 		}
 
 		setTimeout(function() {
@@ -122,19 +100,5 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 	cardapio.up = function(key, categoria, rating){
 		cardapioService.up(key, categoria, rating+1);
 	}
-	// q_obter.then(function(data_callback){
-	// 	angular.forEach(data_callback.data, function(value, key) {
-			
-	// 		var node = this;
-	// 		var q_obter_img = cardapioService.obterFilePath(value.imagem);
-
-	// 		q_obter_img.then(function(urlImg){
-	// 			value.imagem = urlImg;
-	// 			node.push(value);
-	// 			cardapio.$apply();
-	// 		});
-
-	// 	}, $scope.itens);
-	// }, null);
 
 });

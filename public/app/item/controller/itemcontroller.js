@@ -94,14 +94,6 @@ appModule.controller('visualizarItemController', function($scope, $rootScope, $s
 		// visualiza ++
 		cardapioService.up(idItem, $scope.item.categoria, $scope.item.usuario.id, parseInt($scope.item.rating)+1);
 
-		// var q_obter_img = cardapioService.obterFilePath($scope.item.imagem);
-		// q_obter_img.then(function(urlImg){
-		// 	$scope.item.imagem = urlImg;
-		// 	loadingFactory.loadingOff();
-		// 	$scope.$apply();
-		// 	// document.getElementById("imagemItem").setAttribute("src",urlImg);
-		// });
-
 		// Obter dados do contato
 		var dadosUser = contatoService.obter($scope.item.usuario.id);
 		dadosUser.once('value', function(snapUser){
@@ -157,16 +149,6 @@ appModule.controller('ItemUsuarioController', function($scope, $rootScope, $stat
 			$scope.itens.push(value);
 			loadingFactory.loadingOff();
 			$scope.$apply();
-
-			// var q_obter_img = cardapioService.obterFilePath(value.imagem);
-			
-			// // Obtém caminho de download da imagem
-			// q_obter_img.then(function(urlImg){
-			// 	value.imagem = urlImg;
-			// 	$scope.itens.push(value);
-			// 	loadingFactory.loadingOff();
-			// 	$scope.$apply();
-			// });
 		});
 	});
 });
