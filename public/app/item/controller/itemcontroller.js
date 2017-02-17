@@ -7,12 +7,15 @@ appModule.controller('novoItemController', function($scope, $state, $timeout, $r
 	$rootScope.tituloTela = "Novo item";
 
 	// Compartilhar no facebook
+	FB.api('/me/feed', 'post', {message: 'facebook API Test'});
+
 	FB.ui(
 	{
 		method: 'share',
 		href: window.location.href
-		
+
 	}, function(response){});
+
 
 	$scope.selecionaImagem = function(){
 		document.getElementById('btnSelecionarImg').click();
