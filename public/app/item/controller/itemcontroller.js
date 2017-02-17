@@ -79,6 +79,7 @@ appModule.controller('visualizarItemController', function($scope, $rootScope, $s
 	var idItem = $stateParams.itemId;
 	$scope.itemId = idItem;
 	$scope.item = {};
+	$scope.comentarios = {};
 	$rootScope.telaCorrente = "visualizarItem";
 	$rootScope.tituloTela = "Visualização";
 
@@ -101,8 +102,15 @@ appModule.controller('visualizarItemController', function($scope, $rootScope, $s
 			loadingFactory.loadingOff();
 			$scope.$apply();
 		});
-		
-		$scope.$apply();
+
+		var comentário_obter = itemService.obterComentarios(idItem);
+
+		comentário_obter.once('value', function(snapshot){
+			$scope.comentarios = snapshot.val();
+			$scope.$apply();
+		});
+
+		itemService.salvarComentario($scope.itemId,"Rodzila","Esse é um comentário bacanézimo");
 	});
 
 	$scope.excluir = function(){

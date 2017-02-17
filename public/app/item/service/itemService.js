@@ -79,6 +79,23 @@ appModule.factory('itemService', function($http, $rootScope){
 		obterUsuario: function(userId){
 			var itensRef = database.ref('/useritem/' + userId);
 			return itensRef;
+		},
+		obterComentarios: function(itemId){
+			return database.ref('/comentarios/' + itemId);
+		},
+		salvarComentario: function(itemId, nomeUsuario, comentarioTexto){
+			
+			var key = database.ref().child('comentarios/' + itemId + '/').push().key;
+			var updates = {};
+
+			var toSave = {
+				usuario: nomeUsuario,
+				comentario: comentarioTexto,
+				data: dataAtualFormatada()
+			}
+
+			updates['/comentarios/'+itemId+'/'+ key] = toSave;
+			return database.ref().update(updates);
 		}
 	};
 	return service;
