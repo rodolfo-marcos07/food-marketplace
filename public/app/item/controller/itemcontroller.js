@@ -86,6 +86,13 @@ appModule.controller('visualizarItemController', function($scope, $rootScope, $s
 	loadingFactory.loadingOn();
 	var q_obter = itemService.obterItem(idItem);
 
+	// Compartilhar facebook
+	FB.ui({
+		method: 'share',
+		mobile_iframe: true,
+		href: 'https://developers.facebook.com/docs/',
+	}, function(response){});
+
 	// Once retorna os dados uma vez e desliga a escuta do database
 	q_obter.once('value', function(snapshot){
 		
