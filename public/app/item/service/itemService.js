@@ -55,6 +55,7 @@ appModule.factory('itemService', function($http, $rootScope){
 			updates['/itens/'+key] = null;
 			updates['/categorias/'+item.categoria+"/"+key] = null;
 			updates['/useritem/'+item.usuario.id+'/'+key] = null;
+			updates['/comentarios/'+key] = null;
 
 			var imgRef = storage.refFromURL(item.imagem);
 			imgRef.delete().then(function(){}).catch(function(error) {

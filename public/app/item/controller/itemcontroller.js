@@ -6,6 +6,14 @@ appModule.controller('novoItemController', function($scope, $state, $timeout, $r
 	$rootScope.telaCorrente = "novoItem";
 	$rootScope.tituloTela = "Novo item";
 
+	// Compartilhar no facebook
+	FB.ui(
+	{
+		method: 'share',
+		href: window.location.href
+		
+	}, function(response){});
+
 	$scope.selecionaImagem = function(){
 		document.getElementById('btnSelecionarImg').click();
 	}
