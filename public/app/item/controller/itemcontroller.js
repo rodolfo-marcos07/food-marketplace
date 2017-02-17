@@ -90,7 +90,7 @@ appModule.controller('visualizarItemController', function($scope, $rootScope, $s
 	FB.ui({
 		method: 'share',
 		mobile_iframe: true,
-		href: 'https://developers.facebook.com/docs/',
+		href: window.location.href,
 	}, function(response){});
 
 	// Once retorna os dados uma vez e desliga a escuta do database
