@@ -21,8 +21,23 @@
 			<p>{{item.contato}}</p>
 		</div>
 
-		<div class="item-comentarios">
-			<pre>{{comentarios}}</pre>
+		<div class="box-comentarios">
+			<h4>Comentários</h4>
+			<div class="item-comentario" ng-repeat="comentario in comentarios">
+				<p>{{comentario.comentario}}</p>
+				<span>{{comentario.data}}</span>
+				<span>{{comentario.usuario}}</span>
+				<i class="fa fa-2x fa-trash-o excluir" ng-click="excluirComentario(comentario.id)" aria-hidden="true"></i>
+			</div>
+			<h5 ng-if="!usuario.uid">Faça Login para comentar</h5>
+			<div class="item-comentar" ng-if="usuario.uid">
+				<h5>Comentar</h5>
+				<!-- Dentro de ng-if esta em outros escopo, portanto usa $parent -->
+				<textarea ng-model="$parent.novocomentario" rows="5"></textarea>
+				<button class="edit-btn-salvar" ng-click="comentar()">
+					Comentar
+				</button>
+			</div>
 		</div>
 
 		<button ng-click="excluir()" class="edit-btn-excluir" ng-if="item.usuario.id == usuario.uid">

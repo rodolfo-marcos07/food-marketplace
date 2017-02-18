@@ -82,7 +82,12 @@ appModule.factory('itemService', function($http, $rootScope){
 			return itensRef;
 		},
 		obterComentarios: function(itemId){
-			return database.ref('/comentarios/' + itemId);
+			return database.ref('/comentarios/' + itemId).limitToLast(10);
+		},
+		excluirComentario: function(itemId, comentarioId){
+			var updates = {};
+			updates['/comentarios/'+itemId+'/'+comentarioId] = null;
+			return database.ref().update(updates);
 		},
 		salvarComentario: function(itemId, nomeUsuario, comentarioTexto){
 			

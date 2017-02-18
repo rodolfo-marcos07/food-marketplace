@@ -79,19 +79,20 @@ appModule.controller('visualizarItemController', function($scope, $rootScope, $s
 	var idItem = $stateParams.itemId;
 	$scope.itemId = idItem;
 	$scope.item = {};
-	$scope.comentarios = {};
+	$scope.novocomentario = "";
+	$scope.comentarios = [];
 	$rootScope.telaCorrente = "visualizarItem";
 	$rootScope.tituloTela = "Visualização";
 
 	loadingFactory.loadingOn();
 	var q_obter = itemService.obterItem(idItem);
 
-	// Compartilhar facebook
-	FB.ui({
-		method: 'share',
-		mobile_iframe: true,
-		href: window.location.href,
-	}, function(response){});
+	// // Compartilhar facebook
+	// FB.ui({
+	// 	method: 'share',
+	// 	mobile_iframe: true,
+	// 	href: window.location.href,
+	// }, function(response){});
 
 	// Once retorna os dados uma vez e desliga a escuta do database
 	q_obter.once('value', function(snapshot){
@@ -105,20 +106,44 @@ appModule.controller('visualizarItemController', function($scope, $rootScope, $s
 		// Obter dados do contato
 		var dadosUser = contatoService.obter($scope.item.usuario.id);
 		dadosUser.once('value', function(snapUser){
+			
 			$scope.item.contato = snapUser.val().telefone;
 			loadingFactory.loadingOff();
-			$scope.$apply();
+			
+			obterComentarios();
 		});
 
+	});
+
+	function obterComentarios(){
+		$scope.comentarios = [];
 		var comentário_obter = itemService.obterComentarios(idItem);
 
 		comentário_obter.once('value', function(snapshot){
-			$scope.comentarios = snapshot.val();
+			
+			snapshot.forEach(function(item){
+				var comentario = item.val();
+				comentario['id'] = item.key;
+				$scope.comentarios.push(comentario);
+			});
+
 			$scope.$apply();
 		});
+	}
 
-		itemService.salvarComentario($scope.itemId,"Rodzila","Esse é um comentário bacanézimo");
-	});
+	$scope.comentar = function(){
+		itemService.salvarComentario($scope.itemId, $rootScope.usuario.nome, $scope.novocomentario)
+			.then(function(){
+				obterComentarios();
+			});
+	}
+
+	$scope.excluirComentario = function(comentarioId){
+		itemService.excluirComentario($scope.itemId, comentarioId)
+			.then(function(){
+				obterComentarios();
+			});
+	}
 
 	$scope.excluir = function(){
 		loadingFactory.loadingOn();

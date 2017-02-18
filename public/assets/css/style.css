@@ -627,3 +627,67 @@ select.item-categoria{
 #seletorCategoria, #seletorOrdem{
 	display: none;
 }
+
+.box-comentarios{
+	box-sizing: border-box;
+	border-top: #ccc solid 2px;
+	padding-top: 15px;
+	display: block;
+}
+
+.box-comentarios h4{
+	font-size: 18px;
+	color: #ff4700;
+}
+
+.box-comentarios h5{
+	text-align: center;
+	color: #696969;
+	margin-top: 20px;
+}
+
+.item-comentario{
+	background: #f0f2ec;
+	box-sizing: border-box;
+	display: block;
+	padding: 10px;
+	font-size: 14px;
+	border-radius: 5px;
+	margin-top: 15px;
+	position: relative;
+}
+
+.item-comentario p{
+	margin-bottom: 10px;
+}
+
+.item-comentario .excluir{
+	position: absolute;
+	bottom: 7px;
+	right: 10px;
+	color: #a2a2a2;
+}
+
+.item-comentar{
+	display: block;
+	box-sizing: border-box;
+	background: #f0f2ec;
+	padding: 10px;
+	margin-top: 20px;
+	position: relative;
+}
+
+.item-comentar h5{
+	font-size: 18px;
+	color: #ff4700;
+	margin-bottom: 15px;
+}
+
+.item-comentar textarea{
+	width: 100%;
+	display: block;
+	box-sizing: border-box;
+	border: none;
+	padding: 4px;
+	margin-bottom: 20px;
+}
