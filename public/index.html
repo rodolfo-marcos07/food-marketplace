@@ -52,17 +52,12 @@
 		<!-- Top Header -->
 		<div class="top-header">
 
-			<div class="filter-btn" ng-click="categoriaAtivo=!categoriaAtivo">
+			<div class="filter-btn" ng-click="toggleFiltro()">
 				<i class="fa fa-search fa-2x"></i>
 			</div>
 
 			<!-- Logo principal -->
 			<img src="assets/img/logo_small.jpg" class="logo">
-
-<!-- 			<div class="header-categoria" ng-show='telaCorrente=="cardapio" && !menuAtivo' ng-click="categoriaAtivo=!categoriaAtivo">
-				<span>{{categoria}}</span>
-				<span class="categoria-icon"><i class="fa fa-caret-down fa-3x"></i></span>
-			</div> -->
 			<img class="img-usuario" src="{{usuario.img}}" ng-if="usuario.uid && menuAtivo">
 			<h4 ng-if="menuAtivo">Opções</h4>
 			<h4 ng-if='telaCorrente!=="cardapio" && !menuAtivo'>{{tituloTela}}</h4>
@@ -75,16 +70,9 @@
 					<span></span>
 					<span></span>
 				</div>
-<!-- 				<i class="fa fa-navicon fa-2x" ng-show="!menuAtivo"></i></span>
-				<i class="fa fa-close fa-2x" ng-show="menuAtivo"></i></span> -->
 			</div>
 			<!-- Fim Menu -->
 		</div>
-
-		<!-- Categorias -->
-<!-- 		<div class="main-categoria" ng-show="categoriaAtivo">
-			<div ng-repeat="cat in categoriasOpt" ng-click="filtrar(cat.name);">{{cat.name}}</div>
-		</div> -->
 
 		<!-- Menu do header -->
 		<div class="main-header" ng-show="menuAtivo">

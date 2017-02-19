@@ -89,13 +89,14 @@ appModule.factory('itemService', function($http, $rootScope){
 			updates['/comentarios/'+itemId+'/'+comentarioId] = null;
 			return database.ref().update(updates);
 		},
-		salvarComentario: function(itemId, nomeUsuario, comentarioTexto){
+		salvarComentario: function(itemId, nomeUsuario, idUsuario, comentarioTexto){
 			
 			var key = database.ref().child('comentarios/' + itemId + '/').push().key;
 			var updates = {};
 
 			var toSave = {
 				usuario: nomeUsuario,
+				usuarioId: idUsuario,
 				comentario: comentarioTexto,
 				data: dataAtualFormatada()
 			}

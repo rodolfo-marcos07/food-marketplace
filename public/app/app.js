@@ -77,6 +77,10 @@ appModule.controller('mainCtrl', function($scope, $rootScope, loadingFactory, ca
 		$rootScope.categoriaAtivo = false;
 	});
 
+	$rootScope.toggleFiltro = function(){
+		$rootScope.categoriaAtivo =! $rootScope.categoriaAtivo;
+	}
+
 	$rootScope.btnMenu = function(){
 		$rootScope.menuAtivo = !$rootScope.menuAtivo;
 	}
@@ -153,9 +157,8 @@ appModule.value('CATEGORIAS', [
 
 appModule.value('ORDEM', [
 	{name: 'Novos', value: 'timestamp'},
-	{name: 'Votos', value: 'rating'},
-	{name: 'Preço Menor', value: 'Novos'},
-	{name: 'Preço Maior', value: 'Novos'}
+	{name: 'Visualização', value: 'rating'},
+	{name: 'Preço', value: 'price'}
 ]);
 
 // Obter data

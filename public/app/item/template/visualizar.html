@@ -18,7 +18,8 @@
 		</div>
 
 		<div class="item-contato">
-			<p>{{item.contato}}</p>
+			<p ng-show="!usuario.uid">Faça login para entrar em contato</p>
+			<p ng-show="usuario.uid">{{item.contato}}</p>
 		</div>
 
 		<div class="box-comentarios">
@@ -27,7 +28,8 @@
 				<p>{{comentario.comentario}}</p>
 				<span>{{comentario.data}}</span>
 				<span>{{comentario.usuario}}</span>
-				<i class="fa fa-2x fa-trash-o excluir" ng-click="excluirComentario(comentario.id)" aria-hidden="true"></i>
+				<!-- Opção de excluir somente para comentários de usuários logados -->
+				<i class="fa fa-2x fa-trash-o excluir" ng-show="comentario.usuarioId == usuario.uid" ng-click="excluirComentario(comentario.id)" aria-hidden="true"></i>
 			</div>
 			<h5 ng-if="!usuario.uid">Faça Login para comentar</h5>
 			<div class="item-comentar" ng-if="usuario.uid">
@@ -47,36 +49,6 @@
 		<button ui-sref="editarItem({itemId:itemId})" class="edit-btn-salvar" ng-if="item.usuario.id == usuario.uid">
 			Editar
 		</button>
-
-
-<!-- 
-		<div class="item-input">
-			<label>Titulo</label>
-			<input ng-model="item.titulo" class="" type="text">
-			<label>Preço</label>
-			<input ng-model="item.price" class="" type="number">
-			<label>Descrição</label>
-			<textarea ng-model="item.descricao" class="" type="text" rows= "3"></textarea>
-		</div>
-
-		<select ng-model="item.categoria" class="item-categoria" ng-options="c.name as c.name for c in categoriasOpt" ng-required="true">
-			<option value="">Selecione as categorias</option>
-		</select>
-
-		<div class="item-seleciona-imagem" ng-click="selecionaImagem()">
-			<img id="imagemItem" src="assets/img/camera.png">
-			<span>{{msgUpload}}</span>
-		</div>
-		
-		<input type="file" style="display:none" data-file="item.imagem" id="btnSelecionarImg"/>
-
-		<button ng-click="excluir()" class="edit-btn-excluir">
-			Excluir
-		</button>
-
-		<button ng-click="salvar()" class="edit-btn-salvar">
-			Salvar
-		</button> -->
 
 	</div>
 </div>

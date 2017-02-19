@@ -87,13 +87,6 @@ appModule.controller('visualizarItemController', function($scope, $rootScope, $s
 	loadingFactory.loadingOn();
 	var q_obter = itemService.obterItem(idItem);
 
-	// // Compartilhar facebook
-	// FB.ui({
-	// 	method: 'share',
-	// 	mobile_iframe: true,
-	// 	href: window.location.href,
-	// }, function(response){});
-
 	// Once retorna os dados uma vez e desliga a escuta do database
 	q_obter.once('value', function(snapshot){
 		
@@ -132,7 +125,7 @@ appModule.controller('visualizarItemController', function($scope, $rootScope, $s
 	}
 
 	$scope.comentar = function(){
-		itemService.salvarComentario($scope.itemId, $rootScope.usuario.nome, $scope.novocomentario)
+		itemService.salvarComentario($scope.itemId, $rootScope.usuario.nome, $rootScope.usuario.uid, $scope.novocomentario)
 			.then(function(){
 				obterComentarios();
 			});

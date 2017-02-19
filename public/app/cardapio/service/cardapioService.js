@@ -19,40 +19,14 @@ appModule.factory('cardapioService', function($http, $rootScope, itemService){
 			return database.ref().update(updates);
 		},
 		obter: function(categoria, ordem){
-			var itensRef = database.ref('/itens/').limitToLast(200);
+			
 			if(categoria !== "Todas"){
-				itensRef = database.ref('/categorias/'+categoria);
+				itensRef = database.ref('/categorias/'+categoria).orderByChild(ordem).limitToLast(200);
+			}else{
+				var itensRef = database.ref('/itens/').orderByChild(ordem).limitToLast(200);
 			}
-			if(ordem){
-				itensRef = itensRef.orderByChild(ordem);
-			}
-			return itensRef;
-			// Retorna todas as categorias
-			// if(categorias == null){
-			// 	var urlDB = 'https://app-08.firebaseio.com/itens.json?"orderBy"="titulo"';
-			// 	return $http({method:'GET',url:urlDB});
-			// }else{
-			// 	var urlDB = 'https://app-08.firebaseio.com/itens.json?"orderBy"="titulo"';
-			// 	return $http({method:'GET',url:urlDB});
-			// }
-			
-			// var itensRef = null;
-			
-			// if(categoria == null && ordem ==  null){
-			// 	console.log(categoria, ordem);
-			// itensRef = database.ref('itens');
-			// }else if(categoria == null && ordem != null){
-			// 	console.log(categoria, ordem);
-			// 	itensRef = database.ref('itens').orderByChild(ordem);
-			// }else if(categoria != null && ordem == null){
-			// 	console.log(categoria, ordem);
-			// 	itensRef = database.ref('itens').orderByChild("categoria").equalTo(categoria);
-			// }else{
-			// 	console.log(categoria, ordem);
-			// 	itensRef = database.ref('itens').orderByChild(ordem).equalTo(categoria);
-			// }
 
-			// return itensRef;
+			return itensRef;
 		},
 		obterFilePath: function(file){
 			var starsRef = storageRef.child(file);

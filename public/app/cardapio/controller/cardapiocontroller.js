@@ -7,7 +7,7 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 	cardapio.itens = [];
 	
 	$rootScope.categoria = "Todas";
-	$rootScope.ordem = null;
+	$rootScope.ordem = "timestamp";
 
 	var fimItens = false;
 	var page = 0;
@@ -34,11 +34,12 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 				var value = item.val();
 				value.id = keyItem;
 
-				listaItens.push(value);
+				listaItens.unshift(value);
 
 			});
 
 			fimItens = false;
+			page = 0;
 			$scope.carregar();
 
 		});
@@ -58,7 +59,6 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 			var height = Math.max( body.scrollHeight, body.offsetHeight, 
 				html.clientHeight, html.scrollHeight, html.offsetHeight );
 
-			console.log(window.scrollY, window.innerHeight, height);
 			if(window.scrollY + window.innerHeight > height - 80){
 				$scope.carregar();
 			}
@@ -91,17 +91,10 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 
 	}
 
-	$scope.selecionaCategoria = function(){
-		document.getElementById('seletorCategoria').click();
-	}
-	
-	$scope.selecionaOrdem = function(){
-		document.getElementById('seletorOrdem').click();	
-	}
-
-	$rootScope.filtrar = function(categoria){
-		$rootScope.categoria = categoria;
-		$scope.itens = [];
+	$rootScope.filtrar = function(){
+		cardapio.itens = [];
+		listaItens = [];
+		$rootScope.categoriaAtivo = false;
 		getItens();
 	}
 
