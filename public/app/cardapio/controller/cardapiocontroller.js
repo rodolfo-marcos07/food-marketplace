@@ -1,4 +1,4 @@
-appModule.controller('cardapioController', function($scope, $rootScope, cardapioService, loadingFactory, CATEGORIAS, ORDEM){
+appModule.controller('cardapioController', function($scope, $rootScope, cardapioService, loadingFactory, configFactory, CATEGORIAS, ORDEM){
 	
 	var cardapio = $scope;
 	$rootScope.telaCorrente = "cardapio";
@@ -11,12 +11,12 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 
 	var fimItens = false;
 	var page = 0;
-	var pageItens = 5;
+	var pageItens = configFactory.maxItemPage;
 	var listaItens = [];
 	
 	function getItens(){
 
-		// loadingFactory.loadingOn();
+		loadingFactory.loadingOn();
 		var q_obter = cardapioService.obter($rootScope.categoria, $rootScope.ordem);
 		// Once retorna os dados uma vez e desliga a escuta do database
 		q_obter.once('value', function(snapshot){
@@ -40,7 +40,7 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 
 			fimItens = false;
 			page = 0;
-			$scope.carregar();
+			carregar();
 
 		});
 	}
@@ -60,13 +60,13 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 				html.clientHeight, html.scrollHeight, html.offsetHeight );
 
 			if(window.scrollY + window.innerHeight > height - 80){
-				$scope.carregar();
+				carregar();
 			}
 
 		});
 	}
 
-	$scope.carregar = function(){
+	function carregar(){
 
 		loadingFactory.loadingOn();
 

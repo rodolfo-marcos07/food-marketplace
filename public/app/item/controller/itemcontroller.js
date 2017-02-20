@@ -4,7 +4,6 @@ appModule.controller('novoItemController', function($scope, $state, $timeout, $r
 	$scope.msgUpload = "Selecione uma imagem";
 	$scope.categoriasOpt = CATEGORIAS;
 	$rootScope.telaCorrente = "novoItem";
-	$rootScope.tituloTela = "Novo item";
 
 	$scope.selecionaImagem = function(){
 		document.getElementById('btnSelecionarImg').click();
@@ -36,7 +35,6 @@ appModule.controller('editarItemController', function($scope, $rootScope, $state
 	
 	$scope.categoriasOpt = CATEGORIAS;
 	$rootScope.telaCorrente = "editarItem";
-	$rootScope.tituloTela = "Editar item";
 	
 	var idItem = $stateParams.itemId;
 	$scope.item = {};
@@ -82,7 +80,6 @@ appModule.controller('visualizarItemController', function($scope, $rootScope, $s
 	$scope.novocomentario = "";
 	$scope.comentarios = [];
 	$rootScope.telaCorrente = "visualizarItem";
-	$rootScope.tituloTela = "Visualização";
 
 	loadingFactory.loadingOn();
 	var q_obter = itemService.obterItem(idItem);
@@ -150,38 +147,98 @@ appModule.controller('visualizarItemController', function($scope, $rootScope, $s
 });
 
 // Item por usuario
-appModule.controller('ItemUsuarioController', function($scope, $rootScope, $stateParams, itemService, cardapioService, contatoService, loadingFactory, CATEGORIAS){	
+appModule.controller('ItemUsuarioController', function($scope, $rootScope, $stateParams, configFactory, itemService, cardapioService, contatoService, loadingFactory, CATEGORIAS){	
 		
 	var userId = $stateParams.userId;
 	$scope.itens = [];
 	$rootScope.telaCorrente = "itemUsuario";
-	$rootScope.tituloTela = "Itens";
 
-	loadingFactory.loadingOn();
+	var fimItens = false;
+	var page = 0;
+	var pageItens = configFactory.maxItemPage;
+	var listaItens = [];
+
+	function getItens(){
+
+		loadingFactory.loadingOn();
+		var q_obter = itemService.obterUsuario(userId);
+
+		q_obter.once('value', function(snapshot){
+
+			if(!snapshot.val()){
+				loadingFactory.loadingOff();
+				cardapio.$apply();
+				fimItens = true;
+				return;
+			}
+
+			snapshot.forEach(function(item){
+				
+				var keyItem = item.key;
+				var value = item.val();
+				value.id = keyItem;
+
+				listaItens.unshift(value);
+
+			});
+
+			fimItens = false;
+			page = 0;
+			
+			carregar();
+
+		});
+	}
+
+	getItens();
+	scrollHandler();
+
+	function carregar(){
+
+		loadingFactory.loadingOn();
+
+		var y = window.scrollY;
+		for (var i = page*pageItens; i < (page+1)*pageItens; i++) {
+			
+			if(i >= listaItens.length){ 
+				fimItens = true;
+				break; 
+			}
+			
+			var item = listaItens[i];
+			$scope.itens.push(item);
+		}
+
+		setTimeout(function() {
+			window.scrollTo(0, y);
+			loadingFactory.loadingOff();
+			$scope.$apply();
+		}, 500);
+		page+=1;
+
+	}
+
+	function scrollHandler(){
+		window.addEventListener("scroll", function(){
+
+			if(fimItens) return;
+
+			var body = document.body,
+			html = document.documentElement;
+
+			var height = Math.max( body.scrollHeight, body.offsetHeight, 
+				html.clientHeight, html.scrollHeight, html.offsetHeight );
+
+			if(window.scrollY + window.innerHeight > height - 80){
+				carregar();
+			}
+
+		});
+	}
 
 	var dadosUser = contatoService.obter(userId);
 	dadosUser.once('value', function(snapUser){
 		$scope.nomeUsuario = snapUser.val().nome;
 	});
 
-	var q_obter = itemService.obterUsuario(userId);
-	// Once retorna os dados uma vez e desliga a escuta do database
-	q_obter.once('value', function(snapshot){
-
-		if(!snapshot.val()){
-			loadingFactory.loadingOff();
-			cardapio.$apply();
-			return;
-		}
-
-		snapshot.forEach(function(item){
-			
-			var keyItem = item.key;
-			var value = item.val();
-			value.id = keyItem;
-			$scope.itens.push(value);
-			loadingFactory.loadingOff();
-			$scope.$apply();
-		});
-	});
 });

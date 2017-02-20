@@ -4,7 +4,6 @@ appModule.controller('contatoController', function($scope, loadingFactory, conta
 	var userid = $stateParams.userId;
 	$scope.idUsuario = userid;
 	$rootScope.telaCorrente = "contato"
-	$rootScope.tituloTela = "Dados de contato";
 
 	$scope.contato = {};
 

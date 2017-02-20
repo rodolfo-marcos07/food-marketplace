@@ -16,6 +16,7 @@
 	<script type="text/javascript" src="app/item/service/itemService.js"></script>
 	<script type="text/javascript" src="app/contato/controller/contatocontroller.js"></script>
 	<script type="text/javascript" src="app/contato/service/contatoservice.js"></script>
+	<script type="text/javascript" src="app/globalconfig.js"></script>
 	<link rel="stylesheet" href="assets/css/reset.css">
 	<link rel="stylesheet" href="assets/css/style.css">
 	<link rel="stylesheet" href="assets/css/font-awesome/css/font-awesome.min.css">
@@ -52,15 +53,13 @@
 		<!-- Top Header -->
 		<div class="top-header">
 
-			<div class="filter-btn" ng-click="toggleFiltro()">
+			<div class="filter-btn" ng-click="toggleFiltro()" ng-show="telaCorrente=='cardapio'">
 				<i class="fa fa-search fa-2x"></i>
 			</div>
 
 			<!-- Logo principal -->
 			<img src="assets/img/logo_small.jpg" class="logo">
-			<img class="img-usuario" src="{{usuario.img}}" ng-if="usuario.uid && menuAtivo">
-			<h4 ng-if="menuAtivo">Opções</h4>
-			<h4 ng-if='telaCorrente!=="cardapio" && !menuAtivo'>{{tituloTela}}</h4>
+			<img class="img-usuario" src="{{usuario.img}}" ng-show="telaCorrente!=='cardapio'">
 
 			<!-- Menu Hamburger -->
 			<div class="menu-btn" ng-click="btnMenu()">

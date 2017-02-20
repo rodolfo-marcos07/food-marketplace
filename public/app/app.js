@@ -11,7 +11,7 @@ var config = {
 firebase.initializeApp(config);
 
 // Main Controller
-appModule.controller('mainCtrl', function($scope, $rootScope, loadingFactory, cardapioService, contatoService, CATEGORIAS){
+appModule.controller('mainCtrl', function($scope, $rootScope, $state, loadingFactory, cardapioService, contatoService, CATEGORIAS){
 
 	var main = $scope;
 
