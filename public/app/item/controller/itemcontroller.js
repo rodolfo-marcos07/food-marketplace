@@ -158,6 +158,11 @@ appModule.controller('ItemUsuarioController', function($scope, $rootScope, $stat
 	var pageItens = configFactory.maxItemPage;
 	var listaItens = [];
 
+	$scope.expandeInfo = false;
+	$scope.expandeInfoUsuario = function(){
+		$scope.expandeInfo = !expandeInfo;
+	}
+
 	function getItens(){
 
 		loadingFactory.loadingOn();
@@ -238,7 +243,7 @@ appModule.controller('ItemUsuarioController', function($scope, $rootScope, $stat
 
 	var dadosUser = contatoService.obter(userId);
 	dadosUser.once('value', function(snapUser){
-		$scope.nomeUsuario = snapUser.val().nome;
+		$scope.usuarioVisualizar = snapUser.val();
 	});
 
 });

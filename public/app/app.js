@@ -38,7 +38,7 @@ appModule.controller('mainCtrl', function($scope, $rootScope, $state, loadingFac
 		// Cria uma entrada na relação contato, se não existir
 		contatoService.obter(user.uid).once('value').then(function(snapshot){
 			if(!snapshot.exists()){
-				contatoService.salvar(user.uid, {endereco:"",sobre:"",telefone:""});
+				contatoService.salvar(user.uid, {endereco:"", sobre:"", telefone:"", imagem: user.photoURL});
 			}
 		});
 

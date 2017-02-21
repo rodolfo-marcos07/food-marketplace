@@ -18,6 +18,6 @@
 	</div>
 </div>
 
-<div class="contato-footer">
-<p>Postagens de {{nomeUsuario}} (Visualizar perfil)</p>
+<div class="contato-footer" ng-class="{'expand':expandeInfo}">
+	<p><img src="{{usuarioVisualizar.imagem}}">Postagens de {{usuarioVisualizar.nome}}<i class="fa fa-plus fa-2x" ng-click="expandeInfoUsuario()"></i></p>
 </div>
