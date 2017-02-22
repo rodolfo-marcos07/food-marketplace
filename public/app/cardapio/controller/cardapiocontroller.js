@@ -9,7 +9,7 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 	$rootScope.categoria = "Todas";
 	$rootScope.ordem = "timestamp";
 
-	var fimItens = false;
+	$scope.fimItens = false;
 	var page = 0;
 	var pageItens = configFactory.maxItemPage;
 	var listaItens = [];
@@ -24,7 +24,7 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 			if(!snapshot.val()){
 				loadingFactory.loadingOff();
 				cardapio.$apply();
-				fimItens = true;
+				$scope.fimItens = true;
 				return;
 			}
 
@@ -38,7 +38,7 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 
 			});
 
-			fimItens = false;
+			$scope.fimItens = false;
 			page = 0;
 			carregar();
 
@@ -51,15 +51,10 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 	function scrollHandler(){
 		window.addEventListener("scroll", function(){
 
-			if(fimItens) return;
+			if($scope.fimItens) return;
+			var alturaPx = 2200;
 
-			var body = document.body,
-			html = document.documentElement;
-
-			var height = Math.max( body.scrollHeight, body.offsetHeight, 
-				html.clientHeight, html.scrollHeight, html.offsetHeight );
-
-			if(window.scrollY + window.innerHeight > height - 80){
+			if(window.scrollY + window.innerHeight > (alturaPx*page)){
 				carregar();
 			}
 
@@ -74,7 +69,7 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 		for (var i = page*pageItens; i < (page+1)*pageItens; i++) {
 			
 			if(i >= listaItens.length){ 
-				fimItens = true;
+				$scope.fimItens = true;
 				break; 
 			}
 			

@@ -19,33 +19,13 @@
 	<script type="text/javascript" src="app/globalconfig.js"></script>
 	<link rel="stylesheet" href="assets/css/reset.css">
 	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/ring.css">
 	<link rel="stylesheet" href="assets/css/font-awesome/css/font-awesome.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title></title>
 </head>
 <body ng-app="app08" ng-controller="mainCtrl">
-
-	<!-- Facebook API -->
-<!-- 	<script>
-		window.fbAsyncInit = function() {
-			FB.init({
-				appId   : '551515308377496',
-				xfbml   : true,
-				version : 'v2.8'
-			});
-			FB.AppEvents.logPageView();
-		};
-
-		(function(d, s, id){
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) {return;}
-			js = d.createElement(s); js.id = id;
-			js.src = "//connect.facebook.net/en_US/sdk.js";
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
-	</script> -->
-	<!-- End Facebook API -->
 
 	<!-- Header -->
 	<header class="header">
@@ -58,8 +38,8 @@
 			</div>
 
 			<!-- Logo principal -->
-			<img src="assets/img/logo_small.jpg" class="logo">
-			<img class="img-usuario" src="{{usuario.img}}" ng-show="telaCorrente!=='cardapio'">
+			<img src="assets/img/logo_small.png" class="logo">
+			<img class="img-usuario" src="{{usuario.img}}" ng-show="telaCorrente!=='cardapio' && usuario.uid">
 
 			<!-- Menu Hamburger -->
 			<div class="menu-btn" ng-click="btnMenu()">

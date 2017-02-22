@@ -125,6 +125,7 @@ appModule.controller('visualizarItemController', function($scope, $rootScope, $s
 		itemService.salvarComentario($scope.itemId, $rootScope.usuario.nome, $rootScope.usuario.uid, $scope.novocomentario)
 			.then(function(){
 				obterComentarios();
+				$scope.novocomentario = "";
 			});
 	}
 
@@ -153,14 +154,14 @@ appModule.controller('ItemUsuarioController', function($scope, $rootScope, $stat
 	$scope.itens = [];
 	$rootScope.telaCorrente = "itemUsuario";
 
-	var fimItens = false;
+	$scope.fimItens = false;
 	var page = 0;
 	var pageItens = configFactory.maxItemPage;
 	var listaItens = [];
 
 	$scope.expandeInfo = false;
 	$scope.expandeInfoUsuario = function(){
-		$scope.expandeInfo = !expandeInfo;
+		$scope.expandeInfo = !$scope.expandeInfo;
 	}
 
 	function getItens(){
@@ -173,7 +174,7 @@ appModule.controller('ItemUsuarioController', function($scope, $rootScope, $stat
 			if(!snapshot.val()){
 				loadingFactory.loadingOff();
 				cardapio.$apply();
-				fimItens = true;
+				$scope.fimItens = true;
 				return;
 			}
 
@@ -187,7 +188,7 @@ appModule.controller('ItemUsuarioController', function($scope, $rootScope, $stat
 
 			});
 
-			fimItens = false;
+			$scope.fimItens = false;
 			page = 0;
 			
 			carregar();
@@ -206,7 +207,7 @@ appModule.controller('ItemUsuarioController', function($scope, $rootScope, $stat
 		for (var i = page*pageItens; i < (page+1)*pageItens; i++) {
 			
 			if(i >= listaItens.length){ 
-				fimItens = true;
+				$scope.fimItens = true;
 				break; 
 			}
 			
@@ -226,15 +227,10 @@ appModule.controller('ItemUsuarioController', function($scope, $rootScope, $stat
 	function scrollHandler(){
 		window.addEventListener("scroll", function(){
 
-			if(fimItens) return;
+			if($scope.fimItens) return;
+			var alturaPx = 2200;
 
-			var body = document.body,
-			html = document.documentElement;
-
-			var height = Math.max( body.scrollHeight, body.offsetHeight, 
-				html.clientHeight, html.scrollHeight, html.offsetHeight );
-
-			if(window.scrollY + window.innerHeight > height - 80){
+			if(window.scrollY + window.innerHeight > (alturaPx*page) - 80){
 				carregar();
 			}
 

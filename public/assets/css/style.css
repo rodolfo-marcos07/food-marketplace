@@ -15,7 +15,7 @@
 #nav-icon1 span, #nav-icon3 span, #nav-icon4 span {
 	display: block;
 	position: absolute;
-	height: 6px;
+	height: 4px;
 	width: 100%;
 	background: #f9f9fb;
 	border-radius: 9px;
@@ -93,7 +93,6 @@ header.header{
 	background: #fff;
 	z-index: 999999;
 	top: 50px;
-	opacity: 0.8;
 }
 
 .loading-box img{

@@ -158,7 +158,8 @@ appModule.value('CATEGORIAS', [
 appModule.value('ORDEM', [
 	{name: 'Novos', value: 'timestamp'},
 	{name: 'Visualização', value: 'rating'},
-	{name: 'Preço', value: 'price'}
+	{name: 'Preço Maior', value: 'price'},
+	{name: 'Preço Menor', value: 'price_reverse'}
 ]);
 
 // Obter data

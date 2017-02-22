@@ -31,6 +31,7 @@ appModule.factory('itemService', function($http, $rootScope){
 						timestamp: tt,
 						data: dataAtualFormatada(),
 						price: preco,
+						price_reverse: -preco,
 						usuario: {
 							name: $rootScope.usuario.nome,
 							id: $rootScope.usuario.uid
@@ -66,6 +67,8 @@ appModule.factory('itemService', function($http, $rootScope){
 		},
 		update: function(item, key){
 			
+			item.price_reverse = -item.price;
+
 			var updates = {};
 			
 			updates['/itens/'+key] = item;
