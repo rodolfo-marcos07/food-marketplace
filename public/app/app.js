@@ -11,10 +11,12 @@ var config = {
 firebase.initializeApp(config);
 
 // Main Controller
-appModule.controller('mainCtrl', function($scope, $rootScope, $state, loadingFactory, cardapioService, contatoService, CATEGORIAS){
+appModule.controller('mainCtrl', function($scope, $rootScope, $state, loadingFactory, cardapioService, contatoService, CATEGORIAS, CIDADE){
 
 	var main = $scope;
 
+	$rootScope.popupCidadeAtivo = false;
+	$rootScope.cidadeSelecionada = "ipua_sp";
 	$rootScope.menuAtivo = false;
 	$rootScope.categoriaAtivo = false;
 	$rootScope.erroAtivo = false;
@@ -23,6 +25,7 @@ appModule.controller('mainCtrl', function($scope, $rootScope, $state, loadingFac
 	$rootScope.usuario = {};
 
 	main.categoriasOpt = CATEGORIAS;
+	main.cidadesOpt = CIDADE;
 
 	// Se a página foi chamada no redirect do login, obtém os dados do usuário
 	firebase.auth().getRedirectResult().then(function(result) {
@@ -160,6 +163,11 @@ appModule.value('ORDEM', [
 	{name: 'Visualização', value: 'rating'},
 	{name: 'Preço Maior', value: 'price'},
 	{name: 'Preço Menor', value: 'price_reverse'}
+]);
+
+appModule.value('CIDADE', [
+	{name: 'Ipuã-SP', value: 'ipua_sp'},
+	{name: 'Lavras-MG', value: 'lavras_mg'},
 ]);
 
 // Obter data

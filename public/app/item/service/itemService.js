@@ -11,7 +11,7 @@ appModule.factory('itemService', function($http, $rootScope){
 		salvar: function(tit, desc, cat, file, tt, preco){
 			
 			// Get the key when inserting
-			var key = database.ref().child('itens').push().key;
+			var key = database.ref($rootScope.cidadeSelecionada).child('itens').push().key;
 			// Get reference for image
 			var imgRef = storageRef.child('images/'+key+'.jpg');
 			// Upload file
@@ -39,9 +39,9 @@ appModule.factory('itemService', function($http, $rootScope){
 					};
 
 					// Fan-out multiplas inserções
-					updates['/itens/'+key] = toSave;
-					updates['/categorias/'+cat+'/'+key] = toSave;
-					updates['/useritem/'+$rootScope.usuario.uid+'/'+key] = toSave;
+					updates[$rootScope.cidadeSelecionada+'/itens/'+key] = toSave;
+					updates[$rootScope.cidadeSelecionada+'/categorias/'+cat+'/'+key] = toSave;
+					updates[$rootScope.cidadeSelecionada+'/useritem/'+$rootScope.usuario.uid+'/'+key] = toSave;
 
 					return database.ref().update(updates);
 

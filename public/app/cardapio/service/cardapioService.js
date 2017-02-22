@@ -12,18 +12,18 @@ appModule.factory('cardapioService', function($http, $rootScope, itemService){
 
 			var updates = {};
 
-			updates['/itens/'+key+'/rating'] = rating;
-			updates['/categorias/'+categoria+"/"+key+'/rating'] = rating;
-			updates['/useritem/'+idUsuario+'/'+key+'/rating'] = rating;
+			updates[$rootScope.cidadeSelecionada + '/itens/'+key+'/rating'] = rating;
+			updates[$rootScope.cidadeSelecionada + '/categorias/'+categoria+"/"+key+'/rating'] = rating;
+			updates[$rootScope.cidadeSelecionada + '/useritem/'+idUsuario+'/'+key+'/rating'] = rating;
 
 			return database.ref().update(updates);
 		},
 		obter: function(categoria, ordem){
 			
 			if(categoria !== "Todas"){
-				itensRef = database.ref('/categorias/'+categoria).orderByChild(ordem).limitToLast(200);
+				itensRef = database.ref($rootScope.cidadeSelecionada + '/categorias/'+categoria).orderByChild(ordem).limitToLast(200);
 			}else{
-				var itensRef = database.ref('/itens/').orderByChild(ordem).limitToLast(200);
+				var itensRef = database.ref($rootScope.cidadeSelecionada + '/itens/').orderByChild(ordem).limitToLast(200);
 			}
 
 			return itensRef;

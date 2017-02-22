@@ -60,7 +60,14 @@
 			<div><a ng-if="usuario.uid" ui-sref="novoItem">Novo item</a></div>
 			<div><a ui-sref="itemUsuario({userId:usuario.uid})" ng-if="usuario.uid">Meus itens</a></div>
 			<div><a ui-sref="contato({userId:usuario.uid})" ng-if="usuario.uid">Meus dados</a></div>
+			<div><a ng-click="popupCidadeAtivo=true">Alterar Cidade</a></div>
 			<div><a ng-if="usuario.uid" ng-click="logoff()">({{usuario.nome}}) Sair</a></div>
+		</div>
+
+		<div class="popup-cidade" ng-show="popupCidadeAtivo">
+			<select ng-options="cidade.value as cidade.name for cidade in cidadesOpt" ng-model="$root.cidadeSelecionada"></select>
+			{{cidadeSelecionada}}
+			<span ng-click="popupCidadeAtivo=!popupCidadeAtivo">x</span>
 		</div>
 
 		<!-- Mensagem de erro -->
