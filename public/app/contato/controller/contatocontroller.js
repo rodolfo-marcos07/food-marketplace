@@ -1,7 +1,9 @@
-appModule.controller('contatoController', function($scope, loadingFactory, contatoService, $stateParams, $rootScope){
+appModule.controller('contatoController', function($scope, loadingFactory, contatoService, $stateParams, $rootScope, CIDADE){
 
 	// Colocar loading
 	var userid = $stateParams.userId;
+
+	$scope.cidadesOpt = CIDADE;
 	$scope.idUsuario = userid;
 	$rootScope.telaCorrente = "contato"
 

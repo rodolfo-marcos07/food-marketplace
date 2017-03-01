@@ -15,7 +15,6 @@ appModule.controller('mainCtrl', function($scope, $rootScope, $state, loadingFac
 
 	var main = $scope;
 
-	$rootScope.popupCidadeAtivo = false;
 	$rootScope.cidadeSelecionada = "ipua_sp";
 	$rootScope.menuAtivo = false;
 	$rootScope.categoriaAtivo = false;
@@ -38,10 +37,12 @@ appModule.controller('mainCtrl', function($scope, $rootScope, $state, loadingFac
 		$rootScope.usuario.img = user.photoURL;
 		$rootScope.usuario.uid = user.uid;
 
+		localStorage.setItem($rootScope.cidadeSelecionada + "_logged", "true");
+
 		// Cria uma entrada na relação contato, se não existir
 		contatoService.obter(user.uid).once('value').then(function(snapshot){
 			if(!snapshot.exists()){
-				contatoService.salvar(user.uid, {endereco:"", sobre:"", telefone:"", imagem: user.photoURL});
+				contatoService.salvar(user.uid, {endereco:"", sobre:"", telefone:"", imagem: user.photoURL, cidade: $rootScope.cidadeSelecionada});
 			}
 		});
 
@@ -54,6 +55,11 @@ appModule.controller('mainCtrl', function($scope, $rootScope, $state, loadingFac
 		var email = error.email;
 		var credential = error.credential;
 
+		var localLogged = localStorage.getItem("logged");
+		if(localLogged){
+			$rootScope.login();
+		}
+
 		loadingFactory.loadingOff();
 		$scope.$apply();
 
@@ -62,7 +68,11 @@ appModule.controller('mainCtrl', function($scope, $rootScope, $state, loadingFac
 	$rootScope.logoff = function(){
 		firebase.auth().signOut().then(function() {
 			$rootScope.usuario = {};
-			main.$apply();
+			localStorage.clear();
+			sessionStorage.clear();
+			setTimeout(function() {
+				$state.go('home', {});
+			}, 100);
 		}, function(error) {
 			console.log(error);
 		});
@@ -91,6 +101,7 @@ appModule.controller('mainCtrl', function($scope, $rootScope, $state, loadingFac
 	$rootScope.fecharErro = function(){
 		$rootScope.erroAtivo = false;
 	}
+
 });
 
 // UI-Router

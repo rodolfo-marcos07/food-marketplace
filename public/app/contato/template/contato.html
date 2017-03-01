@@ -6,6 +6,9 @@
 			
 			<label>Número para contato (obrigatório)</label>
 			<input type="text" maxlength="20" ng-model="contato.telefone"  ng-disabled="idUsuario!==usuario.uid" required>
+
+			<label>Cidade</label>
+			<select ng-options="cidade.value as cidade.name for cidade in cidadesOpt" ng-model="contato.cidade"></select>
 			
 			<label>Endereço (opcional)</label>
 			<input type="text" maxlength="200" ng-model="contato.endereco" ng-disabled="idUsuario!==usuario.uid">

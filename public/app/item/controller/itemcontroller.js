@@ -58,7 +58,6 @@ appModule.controller('editarItemController', function($scope, $rootScope, $state
 	$scope.salvar = function(){
 		
 		if($scope.formularioItem.$invalid){
-			alert("Invalido");
 			return;
 		}
 

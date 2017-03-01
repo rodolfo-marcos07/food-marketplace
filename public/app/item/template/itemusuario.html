@@ -18,5 +18,10 @@
 <div class='uil-ring-css' ng-show="!fimItens" style='transform:scale(0.6);'><div></div></div>
 
 <div class="contato-footer" ng-class="{'expand':expandeInfo}">
-	<p><img src="{{usuarioVisualizar.imagem}}">Postagens de {{usuarioVisualizar.nome}}<i class="fa fa-plus fa-2x" ng-click="expandeInfoUsuario()"></i></p>
+	<img  class="contato-imagem" src="{{usuarioVisualizar.imagem}}">
+	<p class="contato-nome">Postagens de {{usuarioVisualizar.nome}}</p>
+	<i class="contato-expandir fa fa-plus fa-2x" ng-class="{'fa-minus':expandeInfo}" ng-click="expandeInfoUsuario()"></i>
+	<p class="contato-telefone" ng-show="expandeInfo">{{usuarioVisualizar.telefone}}</p>
+	<p class="contato-endereco" ng-show="expandeInfo">{{usuarioVisualizar.endereco}}</p>
+	<p class="contato-sobre" ng-show="expandeInfo">{{usuarioVisualizar.sobre}}</p>
 </div>

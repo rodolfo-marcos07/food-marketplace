@@ -53,10 +53,10 @@ appModule.factory('itemService', function($http, $rootScope){
 			
 			var updates = {};
 			
-			updates['/itens/'+key] = null;
-			updates['/categorias/'+item.categoria+"/"+key] = null;
-			updates['/useritem/'+item.usuario.id+'/'+key] = null;
-			updates['/comentarios/'+key] = null;
+			updates[$rootScope.cidadeSelecionada+'/itens/'+key] = null;
+			updates[$rootScope.cidadeSelecionada+'/categorias/'+item.categoria+"/"+key] = null;
+			updates[$rootScope.cidadeSelecionada+'/useritem/'+item.usuario.id+'/'+key] = null;
+			updates[$rootScope.cidadeSelecionada+'/comentarios/'+key] = null;
 
 			var imgRef = storage.refFromURL(item.imagem);
 			imgRef.delete().then(function(){}).catch(function(error) {
@@ -71,30 +71,30 @@ appModule.factory('itemService', function($http, $rootScope){
 
 			var updates = {};
 			
-			updates['/itens/'+key] = item;
-			updates['/categorias/'+item.categoria+"/"+key] = item;
-			updates['/useritem/'+item.usuario.id+'/'+key] = item;
+			updates[$rootScope.cidadeSelecionada+'/itens/'+key] = item;
+			updates[$rootScope.cidadeSelecionada+'/categorias/'+item.categoria+"/"+key] = item;
+			updates[$rootScope.cidadeSelecionada+'/useritem/'+item.usuario.id+'/'+key] = item;
 
 			return database.ref().update(updates);
 		},
 		obterItem: function(itemId){	
-			return database.ref('itens/' + itemId);
+			return database.ref($rootScope.cidadeSelecionada+'/itens/' + itemId);
 		},
 		obterUsuario: function(userId){
-			var itensRef = database.ref('/useritem/' + userId);
+			var itensRef = database.ref($rootScope.cidadeSelecionada+'/useritem/' + userId);
 			return itensRef;
 		},
 		obterComentarios: function(itemId){
-			return database.ref('/comentarios/' + itemId).limitToLast(10);
+			return database.ref($rootScope.cidadeSelecionada+'/comentarios/' + itemId).limitToLast(10);
 		},
 		excluirComentario: function(itemId, comentarioId){
 			var updates = {};
-			updates['/comentarios/'+itemId+'/'+comentarioId] = null;
+			updates[$rootScope.cidadeSelecionada+'/comentarios/'+itemId+'/'+comentarioId] = null;
 			return database.ref().update(updates);
 		},
 		salvarComentario: function(itemId, nomeUsuario, idUsuario, comentarioTexto){
 			
-			var key = database.ref().child('comentarios/' + itemId + '/').push().key;
+			var key = database.ref().child($rootScope.cidadeSelecionada+'/comentarios/' + itemId + '/').push().key;
 			var updates = {};
 
 			var toSave = {
@@ -104,7 +104,7 @@ appModule.factory('itemService', function($http, $rootScope){
 				data: dataAtualFormatada()
 			}
 
-			updates['/comentarios/'+itemId+'/'+ key] = toSave;
+			updates[$rootScope.cidadeSelecionada+'/comentarios/'+itemId+'/'+ key] = toSave;
 			return database.ref().update(updates);
 		}
 	};
