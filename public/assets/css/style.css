@@ -242,7 +242,6 @@ header.header{
 	position: absolute;
 	right: 14px;
 	top: 5px;
-	border: solid #fff 2px;
 	padding: 3px;
 	border-radius: 3px;
 	text-align: center;
@@ -258,7 +257,6 @@ header.header{
 
 .filter-btn{
 	color: #fff;
-	border: #fff solid 2px;
 	display: block;
 	position: absolute;
 	top: 5px;

@@ -15,7 +15,7 @@ appModule.controller('mainCtrl', function($scope, $rootScope, $state, loadingFac
 
 	var main = $scope;
 
-	$rootScope.cidadeSelecionada = "ipua_sp";
+	$rootScope.cidadeSelecionada = "lavras_mg";
 	$rootScope.menuAtivo = false;
 	$rootScope.categoriaAtivo = false;
 	$rootScope.erroAtivo = false;
