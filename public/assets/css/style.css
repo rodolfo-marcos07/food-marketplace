@@ -744,3 +744,90 @@ select.item-categoria{
 	margin-left: 73px;
 	margin-top: 20px;
 }
+
+.landing{
+	background: #f8f8f8;
+	padding: 0px 40px;
+}
+
+.landing-box{
+	margin-top: 20px;
+}
+
+.landing > img{
+	margin: 0 auto;
+	display: block;
+}
+
+.landing span{
+	color: #505050;
+	text-align: center;
+	margin-top: 50px;
+	display: block;
+}
+
+.landing button{
+	width: 100%;
+	display: block;
+	font-size: 20px;
+	border: none;
+	padding: 10px;
+	background: #d04138;
+	margin-top: 31px;
+	font-weight: bold;
+	border-radius: 7px;
+	color: #fff;
+}
+
+.landing-box i{
+	display: inline-block;
+	width: 18%;
+	position: relative;
+	vertical-align: middle;
+	box-sizing: border-box;
+}
+
+.landing-box p{
+	display: inline-block;
+	width: 80%;
+	position: relative;
+	font-size: 17px;
+	color: #5f5f5f;
+	box-sizing: border-box;
+}
+
+.landing-opcoes{
+	margin-top: 10px;
+}
+
+.landing-opcoes > div{
+	background: #f1f1f1;
+	border: #ff4700 solid 2px;
+	display: block;
+	border-radius: 7px;
+	margin-top: 5px;
+	padding: 10px;
+	position: relative;
+	box-sizing: border-box;
+}
+
+.landing-opcoes > div p{
+	font-size: 20px;
+	color: #777777;
+	font-weight: bold;
+}
+
+.landing-opcoes > div i{
+	display: none;
+}
+
+.landing-opcoes > div.selecionado i{
+	display: block;
+}
+
+.landing-cidade{
+	text-align: center;
+	margin-top: 80px;
+	font-size: 17px;
+	color: #5f5f5f;
+}
