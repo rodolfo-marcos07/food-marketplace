@@ -23,8 +23,8 @@ appModule.controller('cardapioController', function($scope, $rootScope, cardapio
 
 			if(!snapshot.val()){
 				loadingFactory.loadingOff();
-				cardapio.$apply();
 				$scope.fimItens = true;
+				cardapio.$apply();
 				return;
 			}
 

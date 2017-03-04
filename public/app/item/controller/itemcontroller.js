@@ -172,7 +172,7 @@ appModule.controller('ItemUsuarioController', function($scope, $rootScope, $stat
 
 			if(!snapshot.val()){
 				loadingFactory.loadingOff();
-				cardapio.$apply();
+				$scope.$apply();
 				$scope.fimItens = true;
 				return;
 			}

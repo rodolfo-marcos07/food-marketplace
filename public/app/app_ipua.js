@@ -42,7 +42,10 @@ appModule.controller('mainCtrl', function($scope, $rootScope, $state, loadingFac
 		// Cria uma entrada na relação contato, se não existir
 		contatoService.obter(user.uid).once('value').then(function(snapshot){
 			if(!snapshot.exists()){
-				contatoService.salvar(user.uid, {endereco:"", sobre:"", telefone:"", imagem: user.photoURL, cidade: $rootScope.cidadeSelecionada});
+				contatoService.salvar(user.uid, {endereco:"", sobre:"", telefone:"", imagem: user.photoURL, cidade: $rootScope.cidadeSelecionada})
+					.then(function(){
+						$state.go('contato',{userId:user.uid});
+					});
 			}
 		});
 
@@ -55,7 +58,7 @@ appModule.controller('mainCtrl', function($scope, $rootScope, $state, loadingFac
 		var email = error.email;
 		var credential = error.credential;
 
-		var localLogged = localStorage.getItem("logged");
+		var localLogged = localStorage.getItem($rootScope.cidadeSelecionada + "_logged");
 		if(localLogged){
 			$rootScope.login();
 		}

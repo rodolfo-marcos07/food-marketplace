@@ -22,7 +22,12 @@ appModule.controller('contatoController', function($scope, loadingFactory, conta
 		}
 		$scope.contato.nome = $rootScope.usuario.nome;
 		$scope.contato.imagem = $rootScope.usuario.img;
-		contatoService.update(userid, $scope.contato);
+		contatoService.update(userid, $scope.contato)
+			.then(function(){
+				$rootScope.erroAtivo = true;
+				$rootScope.mensagemErro = "Dados atualizados com sucesso";
+				$scope.$apply();
+			});
 	}
 
 });
