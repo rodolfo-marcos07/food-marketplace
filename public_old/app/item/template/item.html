@@ -1,0 +1,31 @@
+<div class="item-edit-container">
+	<div class="item-edicao">
+		<form name="formularioItem" novalidate>
+
+			<div class="item-input">
+				<label>Titulo</label>
+				<input ng-model="item.titulo" class="" type="text" maxlength="40" required>
+				<label>Preço</label>
+				<input ng-model="item.price" class="" type="number" required>
+				<label>Descrição</label>
+				<textarea ng-model="item.descricao" class="" type="text" rows= "3" maxlength="500" required></textarea>
+			</div>
+
+			<select ng-model="item.categoria" class="item-categoria" ng-options="c.name as c.name for c in categoriasOpt" required>
+				<option value="">Selecione as categorias</option>
+			</select>
+
+			<div class="item-seleciona-imagem" ng-click="selecionaImagem()">
+				<img id="imagemItem" src="assets/img/camera.jpg">
+				<span>{{msgUpload}}</span>
+			</div>
+			
+			<input type="file" style="display:none" data-file="item.imagem" id="btnSelecionarImg" required/>
+
+			<button ng-click="salvar()" class="edit-btn-salvar">
+				Salvar
+			</button>
+
+		</form>
+	</div>
+</div>

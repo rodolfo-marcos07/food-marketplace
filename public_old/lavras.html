@@ -4,7 +4,7 @@
 	<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
 	<script type="text/javascript" src="assets/js/angular.min.js"></script>
 	<script type="text/javascript" src="assets/js/angular-ui-router.min.js"></script>
-	<script type="text/javascript" src="app/app_ipua.js"></script>
+	<script type="text/javascript" src="app/app_lavras.js"></script>
 	<script type="text/javascript" src="app/loading/service/loadingservice.js"></script>
 	<script type="text/javascript" src="app/loading/directive/loadingdirective.js"></script>
 	<script type="text/javascript" src="app/cardapio/controller/cardapiocontroller.js"></script>
@@ -57,8 +57,8 @@
 		<div class="main-header" ng-show="menuAtivo">
 			<div><a ng-click="login()" ng-if="!usuario.uid">Login</a></div>
 			<div><a ui-sref="home">Cardápio</a></div>
-			<div><a ng-if="usuario.uid" ng-click="abrirNovoItem()">Novo item</a></div>
-			<div><a ng-if="usuario.uid" ng-click="abrirMeusItens()">Meus itens</a></div>
+			<div><a ng-if="usuario.uid" ui-sref="novoItem">Novo item</a></div>
+			<div><a ui-sref="itemUsuario({userId:usuario.uid})" ng-if="usuario.uid">Meus itens</a></div>
 			<div><a ui-sref="contato({userId:usuario.uid})" ng-if="usuario.uid">Meus dados</a></div>
 			<div><a ng-if="usuario.uid" ng-click="logoff()">({{usuario.nome}}) Sair</a></div>
 		</div>
@@ -69,20 +69,6 @@
 			<span ng-click="fecharErro()">x</span>
 		</div>
 	</header>
-
-	<!-- Popup de perfil incompleto -->
-	<div class="popup-background" ng-show="popupPerfilAtivo" ng-click="fecharPopupPerfil()">
-		<div class="popup-perfil">
-			<h3>Preencha seus dados para continuar</h3>
-			<p>Para poder</p>
-			<ul>
-				<li>-Criar um item</li>
-				<li>-Acessar seu cardápio</li>
-			</ul>
-			<p>Você deve preencher seus dados</p>
-			<a ui-sref="contato({userId:usuario.uid})">Preencher agora</a>
-		</div>
-	</div>
 
 	<!-- Conteudo principal -->
 	<div class="main-content">

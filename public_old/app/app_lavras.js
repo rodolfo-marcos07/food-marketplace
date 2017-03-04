@@ -15,18 +15,12 @@ appModule.controller('mainCtrl', function($scope, $rootScope, $state, loadingFac
 
 	var main = $scope;
 
-	$rootScope.cidadeSelecionada = "ipua_sp";
-
+	$rootScope.cidadeSelecionada = "lavras_mg";
 	$rootScope.menuAtivo = false;
 	$rootScope.categoriaAtivo = false;
-	$rootScope.popupPerfilAtivo = false;
-	
-	$rootScope.telaCorrente = "";
-	
 	$rootScope.erroAtivo = false;
+	$rootScope.telaCorrente = "";
 	$rootScope.mensagemErro = "";
-
-	$rootScope.usuarioCompleto = false;
 	$rootScope.usuario = {};
 
 	main.categoriasOpt = CATEGORIAS;
@@ -48,12 +42,7 @@ appModule.controller('mainCtrl', function($scope, $rootScope, $state, loadingFac
 		// Cria uma entrada na relação contato, se não existir
 		contatoService.obter(user.uid).once('value').then(function(snapshot){
 			if(!snapshot.exists()){
-				contatoService.salvar(user.uid, {endereco:"", sobre:"", telefone:"", imagem: user.photoURL, cidade: $rootScope.cidadeSelecionada})
-					.then(function(){
-						$rootScope.usuarioCompleto = false;
-					});
-			}else{
-				$rootScope.usuarioCompleto = snapshot.val().telefone !== "";
+				contatoService.salvar(user.uid, {endereco:"", sobre:"", telefone:"", imagem: user.photoURL, cidade: $rootScope.cidadeSelecionada});
 			}
 		});
 
@@ -66,7 +55,7 @@ appModule.controller('mainCtrl', function($scope, $rootScope, $state, loadingFac
 		var email = error.email;
 		var credential = error.credential;
 
-		var localLogged = localStorage.getItem($rootScope.cidadeSelecionada + "_logged");
+		var localLogged = localStorage.getItem("logged");
 		if(localLogged){
 			$rootScope.login();
 		}
@@ -92,28 +81,6 @@ appModule.controller('mainCtrl', function($scope, $rootScope, $state, loadingFac
 	$rootScope.login = function(){
 		var provider = new firebase.auth.FacebookAuthProvider();
 		firebase.auth().signInWithRedirect(provider);
-	}
-
-	$rootScope.abrirNovoItem = function(){
-		if(!$rootScope.usuarioCompleto){
-			$rootScope.menuAtivo = false;
-			$rootScope.popupPerfilAtivo = true;
-		}else{
-			$state.go("novoItem",{});
-		}
-	}
-
-	$rootScope.fecharPopupPerfil = function(){
-		$rootScope.popupPerfilAtivo = false;
-	}
-
-	$rootScope.abrirMeusItens = function(){
-		if(!$rootScope.usuarioCompleto){
-			$rootScope.menuAtivo = false;
-			$rootScope.popupPerfilAtivo = true;
-		}else{
-			$state.go("itemUsuario",{userId:$rootScope.usuario.uid});
-		}	
 	}
 
 	// Evento quando view é carregada

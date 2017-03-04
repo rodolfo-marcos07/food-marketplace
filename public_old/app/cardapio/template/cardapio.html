@@ -1,0 +1,31 @@
+<div class="item-container">
+	<h3 ng-show="itens.length==0" class="item-vazio">Nenhum item encontrado</h3>
+	<div class="item" ng-repeat="i in itens" ui-sref="visualizarItem({itemId:i.id})">
+		<div class="item-imagem">
+			<img src="{{i.imagem}}">
+		</div>
+		<div class="item-content">
+			<h4>{{i.titulo}}</h4>
+			<span class="item-data">{{i.data}}</span>
+			<div class="center">
+				<p>Postado por <span>{{i.usuario.name}}</span></p>
+				<p>R${{i.price}}</p>
+			</div>
+		</div>
+		<span class="item-rating">{{i.rating}}<i class="fa fa-eye fa-1x"></i></span>
+	</div>
+</div>
+
+<div class='uil-ring-css' ng-show="!fimItens" style='transform:scale(0.6);'><div></div></div>
+
+<div class="filter-modal" ng-show="categoriaAtivo">
+	<div class="filter-container">
+		<label>Categoria</label>
+		<select id="seletorCategoria" ng-options="item.name as item.name for item in categoriasOpt" ng-model="$root.categoria"></select>
+		<label>Ordem</label>
+		<select id="seletorOrdem" ng-options="item.value as item.name for item in ordemOpt" ng-model="$root.ordem"></select>
+		<button class="edit-btn-salvar" ng-click="filtrar()">
+			Filtrar
+		</button>
+	</div>
+</div>

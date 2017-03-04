@@ -19,7 +19,6 @@ appModule.controller('mainCtrl', function($scope, $rootScope, $state, loadingFac
 
 	$rootScope.menuAtivo = false;
 	$rootScope.categoriaAtivo = false;
-	$rootScope.popupPerfilAtivo = false;
 	
 	$rootScope.telaCorrente = "";
 	
@@ -50,7 +49,7 @@ appModule.controller('mainCtrl', function($scope, $rootScope, $state, loadingFac
 			if(!snapshot.exists()){
 				contatoService.salvar(user.uid, {endereco:"", sobre:"", telefone:"", imagem: user.photoURL, cidade: $rootScope.cidadeSelecionada})
 					.then(function(){
-						$rootScope.usuarioCompleto = false;
+						$state.go('contato',{userId:user.uid});
 					});
 			}else{
 				$rootScope.usuarioCompleto = snapshot.val().telefone !== "";
@@ -95,25 +94,11 @@ appModule.controller('mainCtrl', function($scope, $rootScope, $state, loadingFac
 	}
 
 	$rootScope.abrirNovoItem = function(){
-		if(!$rootScope.usuarioCompleto){
-			$rootScope.menuAtivo = false;
-			$rootScope.popupPerfilAtivo = true;
-		}else{
-			$state.go("novoItem",{});
-		}
-	}
 
-	$rootScope.fecharPopupPerfil = function(){
-		$rootScope.popupPerfilAtivo = false;
 	}
 
 	$rootScope.abrirMeusItens = function(){
-		if(!$rootScope.usuarioCompleto){
-			$rootScope.menuAtivo = false;
-			$rootScope.popupPerfilAtivo = true;
-		}else{
-			$state.go("itemUsuario",{userId:$rootScope.usuario.uid});
-		}	
+		
 	}
 
 	// Evento quando view é carregada
