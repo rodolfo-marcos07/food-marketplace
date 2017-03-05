@@ -172,8 +172,8 @@ appModule.controller('ItemUsuarioController', function($scope, $rootScope, $stat
 
 			if(!snapshot.val()){
 				loadingFactory.loadingOff();
-				$scope.$apply();
 				$scope.fimItens = true;
+				$scope.$apply();
 				return;
 			}
 

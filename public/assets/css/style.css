@@ -106,6 +106,18 @@ header.header{
 	position: absolute;
 }
 
+.loading-box span{
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	width: 100px;
+	top: 50%;
+	margin-top: 35px;
+}
+
 .top-header{
 	z-index: 5;
 	display: block;
@@ -496,6 +508,7 @@ color: #7f7f7f;
 .contato-footer{
 	position: fixed;
 	bottom: 0px;
+	min-height: 60px;
 	padding: 10px;
 	background: #fff;
 	border-top: #ccc solid 1px;
@@ -718,30 +731,31 @@ select.item-categoria{
 .contato-nome{
 	display: block;
 	position: absolute;
-	left: 87px;
+	left: 21px;
 	font-size: 17px;
-	top: 31px;
+	top: 20px;
 }
 
 .contato-expandir{
 	position: absolute;
-	top: 26px;
+	top: 15px;
 	right: 26px;
 }
 
 .contato-telefone{
-	margin-left: 73px;
+	margin-left: 10px;
 	margin-bottom: 10px;
+	margin-top: 39px;
 	font-weight: bold;
 }
 
 .contato-endereco{
-	margin-left: 73px;
+	margin-left: 10px;
 }
 
 .contato-sobre{
-	margin-left: 73px;
-	margin-top: 20px;
+	margin-left: 10px;
+	margin-top: 7px;
 }
 
 .landing{

@@ -121,6 +121,7 @@ appModule.controller('mainCtrl', function($scope, $rootScope, $state, loadingFac
 		$rootScope.menuAtivo = false;
 		$rootScope.erroAtivo = false;
 		$rootScope.categoriaAtivo = false;
+		$rootScope.popupPerfilAtivo = false;
 	});
 
 	$rootScope.toggleFiltro = function(){

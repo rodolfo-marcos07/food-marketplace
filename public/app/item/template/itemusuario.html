@@ -1,4 +1,5 @@
 <div class="item-container">
+	<h3 ng-show="itens.length==0" class="item-vazio" ng-show="fimItens">Nenhum item encontrado</h3>
 	<div class="item" ng-repeat="i in itens" ui-sref="visualizarItem({itemId:i.id})">
 		<div class="item-imagem">
 			<img src="{{i.imagem}}">
@@ -18,10 +19,10 @@
 <div class='uil-ring-css' ng-show="!fimItens" style='transform:scale(0.6);'><div></div></div>
 
 <div class="contato-footer" ng-class="{'expand':expandeInfo}">
-	<img  class="contato-imagem" src="{{usuarioVisualizar.imagem}}">
+	<!-- <img  class="contato-imagem" src="{{usuarioVisualizar.imagem}}"> -->
 	<p class="contato-nome">Postagens de {{usuarioVisualizar.nome}}</p>
 	<i class="contato-expandir fa fa-plus fa-2x" ng-class="{'fa-minus':expandeInfo}" ng-click="expandeInfoUsuario()"></i>
-	<p class="contato-telefone" ng-show="expandeInfo">{{usuarioVisualizar.telefone}}</p>
-	<p class="contato-endereco" ng-show="expandeInfo">{{usuarioVisualizar.endereco}}</p>
+	<p class="contato-telefone" ng-show="expandeInfo">(Tel.) {{usuarioVisualizar.telefone}}</p>
+	<p class="contato-endereco" ng-show="expandeInfo">{{usuarioVisualizar.endereco}} - {{usuarioVisualizar.cidade}}</p>
 	<p class="contato-sobre" ng-show="expandeInfo">{{usuarioVisualizar.sobre}}</p>
 </div>

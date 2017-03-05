@@ -26,6 +26,7 @@ appModule.controller('contatoController', function($scope, loadingFactory, conta
 			.then(function(){
 				$rootScope.erroAtivo = true;
 				$rootScope.mensagemErro = "Dados atualizados com sucesso";
+				$rootScope.usuarioCompleto = true;
 				$scope.$apply();
 			});
 	}

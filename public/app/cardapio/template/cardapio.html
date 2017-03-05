@@ -1,5 +1,5 @@
 <div class="item-container">
-	<h3 ng-show="itens.length==0" class="item-vazio">Nenhum item encontrado</h3>
+	<h3 ng-show="itens.length==0" class="item-vazio" ng-show="fimItens">Nenhum item encontrado</h3>
 	<div class="item" ng-repeat="i in itens" ui-sref="visualizarItem({itemId:i.id})">
 		<div class="item-imagem">
 			<img src="{{i.imagem}}">
